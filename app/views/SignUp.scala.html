@@ -1,0 +1,50 @@
+@import play.api.i18n.Messages.implicitMessagesProviderToMessages
+signupForm: Form[_])
+
+@import helper._
+@import views.html._
+
+@main("Signup","signup") {
+
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-1 col-md-4">
+            <h1>"Signup"</h1>
+        </div>
+    </div>
+
+    <div id="signup" class="row">
+
+        <div class="col-xs-6 col-xs-offset-1 col-md-4">
+            @* Display proprietary login form *@
+
+            @*            @if(signupForm.hasGlobalErrors) {*@
+            @*		        <p class="alert alert-danger">*@
+            @*		          @signupForm.globalError().get().message()*@
+            @*                    getGlobalError.get.message*@
+            @*		     	</p>*@
+        }
+
+@*     @inputText(
+    signupForm("name"),
+    '_label -> "Your name"
+@*) *@
+
+@*             @_emailPartial(signupForm)*@
+
+@*             @_passwordPartial(signupForm)*@
+
+<button type="submit" class="btn btn-default">"Sign up now"</button>
+@*    	}*@
+</div>
+
+@*    <!--*@
+@*    <div class="col-xs-6 col-xs-offset-2 col-md-4">*@
+    "or sign up using one of the following providers:"
+@* Display list of available providers *@
+@*//        @_providerPartial(playAuth, skipCurrent=false)*@
+@*    </div>*@
+@*    -->*@
+
+</div>
+
+@*}*@
