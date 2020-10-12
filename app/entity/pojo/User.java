@@ -11,6 +11,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import controllers.triplestore.UserManagement;
+import model.LinkedAccount;
+import model.SysUser;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -119,31 +122,31 @@ public class User implements Comparable<User> {
         org_uri = uri;
     }
 
-//    public boolean isAdministrator() {
-//        SysUser user = SysUser.findByEmail(getEmail());
-//        if(null != user){
-//            return user.isDataManager();
-//        }
-//        return false;
-//    }
-//
-//    public boolean isValidated() {
-//        SysUser user = SysUser.findByEmail(getEmail());
-//        if(null != user) {
-//            return user.isEmailValidated();
-//        }
-//        return false;
-//    }
+    public boolean isAdministrator() {
+        SysUser user = SysUser.findByEmail(getEmail());
+        if(null != user){
+            return user.isDataManager();
+        }
+        return false;
+    }
+
+    public boolean isValidated() {
+        SysUser user = SysUser.findByEmail(getEmail());
+        if(null != user) {
+            return user.isEmailValidated();
+        }
+        return false;
+    }
 
     public void getGroupNames(List<String> accessLevels) {
-//        if(getImmediateGroupUri() != null) {
-//            User user = UserGroup.find(getImmediateGroupUri());
-//            if(user != null){
-//                System.out.println("Access Level: " + user.getUri());
-//                accessLevels.add(user.getUri());
-//                user.getGroupNames(accessLevels);
-//            }
-//        }
+        if(getImmediateGroupUri() != null) {
+            User user = UserGroup.find(getImmediateGroupUri());
+            if(user != null){
+                System.out.println("Access Level: " + user.getUri());
+                accessLevels.add(user.getUri());
+                user.getGroupNames(accessLevels);
+            }
+        }
     }
 
     public void save() {
@@ -182,22 +185,22 @@ public class User implements Comparable<User> {
                 CollectionUtil.getCollectionPath(CollectionUtil.Collection.PERMISSIONS_SPARQL), query);
         Model model = qexec.execConstruct();
 
-//        File ttl_file = new File(UserManagement.getTurtlePath());
-//        FileOutputStream outputStream = null;
-//        try {
-//            outputStream = new FileOutputStream(ttl_file);
-//        } catch (FileNotFoundException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        RDFDataMgr.write(outputStream, model, Lang.TURTLE);
+        File ttl_file = new File(UserManagement.getTurtlePath());
+        FileOutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(ttl_file);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        RDFDataMgr.write(outputStream, model, Lang.TURTLE);
 
         String result = "";
-//        try {
-//            result = new String(Files.readAllBytes(
-//                    Paths.get(UserManagement.getTurtlePath())));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            result = new String(Files.readAllBytes(
+                    Paths.get(UserManagement.getTurtlePath())));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return result;
     }
@@ -363,15 +366,15 @@ public class User implements Comparable<User> {
 
         if (deleteAuth){
             User user = User.find(uri);
-//            if(null != user){
-//                SysUser sys_user = SysUser.findByEmail(user.getEmail());
-//                if(null != sys_user){
-//                    for (LinkedAccount acc : LinkedAccount.findByIdSolr(sys_user)) {
-//                        acc.delete();
-//                    }
-//                    sys_user.delete();
-//                }
-//            }
+            if(null != user){
+                SysUser sys_user = SysUser.findByEmail(user.getEmail());
+                if(null != sys_user){
+                    for (LinkedAccount acc : LinkedAccount.findByIdSolr(sys_user)) {
+                        acc.delete();
+                    }
+                    sys_user.delete();
+                }
+            }
         }
 
         String queryString = "";

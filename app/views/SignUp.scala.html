@@ -1,50 +1,32 @@
-@import play.api.i18n.Messages.implicitMessagesProviderToMessages
+@(url:String)
 signupForm: Form[_])
-
 @import helper._
 @import views.html._
+@* @implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapBasic.f) }*@
 
-@main("Signup","signup") {
 
+ @main("Signup", "signUp") {
     <div class="row">
-        <div class="col-xs-6 col-xs-offset-1 col-md-4">
-            <h1>"Signup"</h1>
+        <div class="col-xs-6 col-xs-offset-1 col-sm-4">
+            <h1>Sign Up</h1>
+            <h1></h1>
         </div>
     </div>
 
-    <div id="signup" class="row">
+    <div id="login" class="row">
 
-        <div class="col-xs-6 col-xs-offset-1 col-md-4">
-            @* Display proprietary login form *@
+        <div class="col-xs-6 col-xs-offset-1 col-sm-4">
+@*            <li><a href="controllers.routes.Signup.hello()"><i class="icon-off"></i> "Sign out"</a></li>*@
+            <form action="@url?client_name=FormClient" method="POST">
+                <b>User Name</b></br>
+                <input type="text" name="username" value="" />
+                <p /><p />
+                <b>Password</b></br>
+                <input type="password" name="password" value="" />
+                <p />
+                <input type="submit" name="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+}
 
-            @*            @if(signupForm.hasGlobalErrors) {*@
-            @*		        <p class="alert alert-danger">*@
-            @*		          @signupForm.globalError().get().message()*@
-            @*                    getGlobalError.get.message*@
-            @*		     	</p>*@
-        }
-
-@*     @inputText(
-    signupForm("name"),
-    '_label -> "Your name"
-@*) *@
-
-@*             @_emailPartial(signupForm)*@
-
-@*             @_passwordPartial(signupForm)*@
-
-<button type="submit" class="btn btn-default">"Sign up now"</button>
-@*    	}*@
-</div>
-
-@*    <!--*@
-@*    <div class="col-xs-6 col-xs-offset-2 col-md-4">*@
-    "or sign up using one of the following providers:"
-@* Display list of available providers *@
-@*//        @_providerPartial(playAuth, skipCurrent=false)*@
-@*    </div>*@
-@*    -->*@
-
-</div>
-
-@*}*@

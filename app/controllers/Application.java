@@ -1,8 +1,9 @@
 package controllers;
 
 import be.objectify.deadbolt.java.actions.SubjectPresent;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import model.JsonContent;
+import model.SysUser;
 import modules.SecurityModule;
 import org.pac4j.cas.profile.CasProxyProfile;
 import org.pac4j.core.client.Client;
@@ -24,17 +25,27 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.twirl.api.Content;
+import providers.MyUsernamePasswordAuthProvider;
 import util.Utils;
+import views.html.signUp;
+import views.html.triplestore.notRegistered;
 
 import java.util.List;
+import play.data.Form;
 
 public class Application extends Controller {
+//    private final MyUsernamePasswordAuthProvider provider;
+
 
     @Inject
     private Config config;
 
     @Inject
     private PlaySessionStore playSessionStore;
+
+//    public Application(MyUsernamePasswordAuthProvider provider) {
+//        this.provider = provider;
+//    }
 
     private List<CommonProfile> getProfiles(Http.Request request) {
         final PlayWebContext context = new PlayWebContext(request, playSessionStore);
@@ -177,9 +188,35 @@ public class Application extends Controller {
         }
     }
 
-    @SubjectPresent(handlerKey = "FormClient", forceBeforeAuthCheck = true)
-    public Result signUp(Http.Request request) {
+    public Result signUp() throws TechnicalException {
         final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(views.html.loginForm.render(formClient.getCallbackUrl()));
+        return ok(views.html.signUp.render(formClient.getCallbackUrl()));
     }
+
+//    public Result signup() {
+//        return ok(views.html.signup().render(""));//this.provider.getSignupForm()));
+//    }
+//    	public Result doSignup(Http.Request request) {
+//            System.out.println ("POst user signUp");
+//            final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
+//		final Form<MyUsernamePasswordAuthProvider.MySignup> filledForm = this.provider.getSignupForm().bindFromRequest(request);
+//		if (filledForm.hasErrors()) {
+//			// User did not fill everything properly
+//			return badRequest(signUp.render(formClient.getCallbackUrl()));
+//		} else {
+//			if (SysUser.existsSolr()) { // only check for pre-registration if it is not the first user signing up
+//			    System.out.println ("User exists");
+////				if (!UserManagement.isPreRegistered(filledForm.get().email)) {
+////					return ok(notRegistered.render());
+////				}
+//			}
+
+			// Everything was filled
+			// do something with your part of the form before handling the user
+			// signUp
+//			return null; //this.provider.handleSignup(request);
+
+//		}
+//	}
+
 }

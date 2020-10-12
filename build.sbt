@@ -63,12 +63,13 @@ libraryDependencies ++= Seq(
   "org.pac4j" % "pac4j-kerberos" % pac4jVersion exclude("org.springframework", "spring-core"),
   "org.pac4j" % "pac4j-couch" % pac4jVersion,
   "com.typesafe.play" % "play-cache_2.12" % playVersion,
-  "com.googlecode.json-simple" % "json-simple" % "1.1.1",
   "commons-io" % "commons-io" % "2.8.0",
   "be.objectify" %% "deadbolt-java" % "2.8.1",
   "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.11.0",
   "org.apache.poi" % "poi-ooxml" % "3.14",
   "org.apache.commons" % "commons-configuration2" % "2.0",
+  "com.typesafe.play" %% "play-mailer" % "8.0.1",
+  "com.typesafe.play" %% "play-mailer-guice" % "8.0.1",
 
   //For Java > 8
   "javax.xml.bind" % "jaxb-api" % "2.3.1",
