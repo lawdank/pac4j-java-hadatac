@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import controllers.triplestore.UserManagement;
+//import controllers.triplestore.UserManagement;
 import model.LinkedAccount;
 import model.SysUser;
 import org.apache.jena.query.Query;
@@ -185,24 +185,24 @@ public class User implements Comparable<User> {
                 CollectionUtil.getCollectionPath(CollectionUtil.Collection.PERMISSIONS_SPARQL), query);
         Model model = qexec.execConstruct();
 
-        File ttl_file = new File(UserManagement.getTurtlePath());
+//        File ttl_file = new File(UserManagement.getTurtlePath());
         FileOutputStream outputStream = null;
-        try {
-            outputStream = new FileOutputStream(ttl_file);
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            outputStream = new FileOutputStream(ttl_file);
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        }
         RDFDataMgr.write(outputStream, model, Lang.TURTLE);
 
         String result = "";
-        try {
-            result = new String(Files.readAllBytes(
-                    Paths.get(UserManagement.getTurtlePath())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            result = new String(Files.readAllBytes(
+//                    Paths.get(UserManagement.getTurtlePath())));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        return result;
+        return null ;// return result;
     }
 
     public static List<String> getUserEmails() {

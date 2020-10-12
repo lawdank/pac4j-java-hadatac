@@ -13,10 +13,14 @@ import org.pac4j.core.client.Clients;
 import org.pac4j.core.client.direct.AnonymousClient;
 import org.pac4j.core.config.Config;
 import org.pac4j.core.context.HttpConstants;
+import org.pac4j.core.context.WebContext;
 import org.pac4j.core.credentials.UsernamePasswordCredentials;
 import org.pac4j.core.credentials.authenticator.Authenticator;
+import org.pac4j.core.exception.CredentialsException;
 import org.pac4j.core.matching.matcher.PathMatcher;
 import org.pac4j.core.profile.CommonProfile;
+import org.pac4j.core.util.CommonHelper;
+import org.pac4j.core.util.Pac4jConstants;
 import org.pac4j.http.client.direct.DirectBasicAuthClient;
 import org.pac4j.http.client.direct.ParameterClient;
 import org.pac4j.http.client.indirect.FormClient;
@@ -110,6 +114,11 @@ public class SecurityModule extends AbstractModule {
         return new FormClient(baseUrl + "/loginForm", new SimpleTestUsernamePasswordAuthenticator());
     }
 
+//    @Provides
+//    protected FormClient provideFormClient1() {
+//        return new FormClient(baseUrl + "/loginForm", new SimpleTestUsernamePasswordAuthenticator());
+//    }
+
     @Provides
     protected IndirectBasicAuthClient provideIndirectBasicAuthClient() {
         return new IndirectBasicAuthClient(new SimpleTestUsernamePasswordAuthenticator());
@@ -182,15 +191,12 @@ public class SecurityModule extends AbstractModule {
     }
 
     @Provides
-    protected Config provideConfig(FacebookClient facebookClient, TwitterClient twitterClient, FormClient formClient,
-                                   IndirectBasicAuthClient indirectBasicAuthClient, CasClient casClient, SAML2Client saml2Client,
-                                   OidcClient oidcClient, ParameterClient parameterClient, DirectBasicAuthClient directBasicAuthClient,
-                                   CasProxyReceptor casProxyReceptor, DirectFormClient directFormClient) {
+    protected Config provideConfig(FormClient formClient, IndirectBasicAuthClient indirectBasicAuthClient, DirectFormClient directFormClient) {
 
         //casClient.getConfiguration().setProxyReceptor(casProxyReceptor);
 
-        final Clients clients = new Clients(baseUrl + "/callback", facebookClient, twitterClient, formClient,
-                indirectBasicAuthClient, casClient, saml2Client, oidcClient, parameterClient, directBasicAuthClient,
+        final Clients clients = new Clients(baseUrl + "/callback", formClient,
+                indirectBasicAuthClient,
                 new AnonymousClient(), directFormClient);
 
         PlayHttpActionAdapter.INSTANCE.getResults().put(HttpConstants.UNAUTHORIZED, unauthorized(views.html.error401.render().toString()).as((HttpConstants.HTML_CONTENT_TYPE)));
