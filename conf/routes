@@ -15,6 +15,10 @@ GET         /hadatac/form/index.html          controllers.Application.formIndex(
 GET         /hadatac/form/index.html.json     controllers.Application.formIndexJson(request: Request)
 #GET         /hadatac/signUp                   controllers.Application.signUp()
 GET        /send/mail                      controllers.SendMail.sendMail()
+GET         /hadatac/p/option1                controllers.Test1.index1()
+GET         /hadatac/p/option2                controllers.Test1.index2()
+POST        /hadatac/p/option3                controllers.Test2.index3()
+GET         /hadatac/p/option4                controllers.Test2.index4()
 #ApplicationJava.send()
 
 # Widgets
@@ -23,7 +27,6 @@ POST    /hadatac/signUp                    controllers.WidgetController.createWi
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
-#POST        /hadatac/signUp/hello		      controllers.Signup.hello(request:Request)
 GET         /facebookadmin/index.html         controllers.Application.facebookAdminIndex(request: Request)
 GET         /facebookcustom/index.html        controllers.Application.facebookCustomIndex(request: Request)
 GET         /facebook/notprotected.html       controllers.Application.facebookNotProtectedIndex(request: Request)

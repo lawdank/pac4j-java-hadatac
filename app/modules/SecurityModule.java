@@ -25,7 +25,7 @@ import org.pac4j.http.client.direct.DirectBasicAuthClient;
 import org.pac4j.http.client.direct.ParameterClient;
 import org.pac4j.http.client.indirect.FormClient;
 import org.pac4j.http.client.indirect.IndirectBasicAuthClient;
-import org.pac4j.http.credentials.authenticator.test.SimpleTestUsernamePasswordAuthenticator;
+//import org.pac4j.http.credentials.authenticator.test.SimpleTestUsernamePasswordAuthenticator;
 import org.pac4j.jwt.config.signature.SecretSignatureConfiguration;
 import org.pac4j.jwt.credentials.authenticator.JwtAuthenticator;
 import org.pac4j.oauth.client.FacebookClient;
@@ -47,6 +47,7 @@ import java.io.File;
 import java.util.Optional;
 
 import org.pac4j.http.client.direct.DirectFormClient;
+import providers.SimpleTestUsernamePasswordAuthenticator;
 import util.Utils;
 
 import static play.mvc.Results.forbidden;

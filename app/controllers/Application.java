@@ -25,7 +25,7 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.twirl.api.Content;
-import providers.MyUsernamePasswordAuthProvider;
+//import providers.MyUsernamePasswordAuthProvider;
 import util.Utils;
 import views.html.signUp;
 import views.html.triplestore.notRegistered;
@@ -51,6 +51,13 @@ public class Application extends Controller {
         final PlayWebContext context = new PlayWebContext(request, playSessionStore);
         final ProfileManager<CommonProfile> profileManager = new ProfileManager(context);
         return profileManager.getAll(true);
+    }
+
+    private CommonProfile getProfile(Http.Request request) {
+        final PlayWebContext context = new PlayWebContext(request, playSessionStore);
+        final ProfileManager<CommonProfile> profileManager = new ProfileManager(context);
+        return profileManager.getAll(true).get(0);
+        //.getAll(true);
     }
 
     @Secure(clients = "AnonymousClient")
@@ -101,7 +108,7 @@ public class Application extends Controller {
         return protectedIndexView(request);
     }
 
-    //@Secure(clients = "FormClient")
+
     @SubjectPresent(handlerKey = "FormClient", forceBeforeAuthCheck = true)
     public Result formIndex(Http.Request request) {
         return protectedIndexView(request);
@@ -192,31 +199,5 @@ public class Application extends Controller {
         final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
         return ok(views.html.signUp.render(formClient.getCallbackUrl()));
     }
-
-//    public Result signup() {
-//        return ok(views.html.signup().render(""));//this.provider.getSignupForm()));
-//    }
-//    	public Result doSignup(Http.Request request) {
-//            System.out.println ("POst user signUp");
-//            final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-//		final Form<MyUsernamePasswordAuthProvider.MySignup> filledForm = this.provider.getSignupForm().bindFromRequest(request);
-//		if (filledForm.hasErrors()) {
-//			// User did not fill everything properly
-//			return badRequest(signUp.render(formClient.getCallbackUrl()));
-//		} else {
-//			if (SysUser.existsSolr()) { // only check for pre-registration if it is not the first user signing up
-//			    System.out.println ("User exists");
-////				if (!UserManagement.isPreRegistered(filledForm.get().email)) {
-////					return ok(notRegistered.render());
-////				}
-//			}
-
-			// Everything was filled
-			// do something with your part of the form before handling the user
-			// signUp
-//			return null; //this.provider.handleSignup(request);
-
-//		}
-//	}
 
 }

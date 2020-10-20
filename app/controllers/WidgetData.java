@@ -71,14 +71,9 @@ public class WidgetData {
 
     public String validate() {
 			if (password == null || !password.equals(repeatPassword)) {
-				return "password.signup.error.passwords_not_same";
+				return "Passwords do not match";
 			}
+//			if(name)
 			return null;
 		}
-//        if (password == null || !password.equals(repeatPassword)) {
-//            return messagesApi.preferred(request).at("change_password error passwords_not_same");
-//        }
-//        return null;
-//    }
-
 }

@@ -53,7 +53,6 @@ public class WidgetController extends Controller {
     }
 
     public Result listWidgets(Http.Request request) throws TechnicalException {
-//        mailerClient.send();
         return ok(views.html.listWidgets.render(asScala(widgets), form, request, messagesApi.preferred(request)));
 
     }
@@ -69,7 +68,7 @@ public class WidgetController extends Controller {
             if (data.validate()!=null){
 //                messagesApi.preferred(request).at("Your e-mail has already been validated.");
                 return redirect(routes.WidgetController.listWidgets())
-                        .flashing("error","Passwords do not match.");
+                        .flashing("error",data.validate());
             }
             widgets.add(new Widget(data.getName(), data.getEmail(), data.getPassword(), data.getRepeatPassword()));
             //Adding to DB
@@ -86,7 +85,9 @@ public class WidgetController extends Controller {
                 Iterator<SolrDocument> i = list.iterator();
 
                 while (i.hasNext()) {
-                    System.out.println("User at i :"+i+i.next());
+                    System.out.println("User at i :"+i.next());
+                    if(i.next().containsValue(data.getEmail()))
+                    System.out.println("Email already validated");
 //				SysUser user = SysUser.convertSolrDocumentToUser(i.next());
 //                System.out.println("Users:"+user);
 //				users.add(user);
@@ -105,8 +106,9 @@ public class WidgetController extends Controller {
                 System.out.println("[ERROR] User.getAuthUserFindSolr - Exception message: " + e.getMessage());
             }
 
-            return redirect(routes.WidgetController.listWidgets())
-                    .flashing("info", "User added!");
+            return redirect(routes.Portal.index());
+                    //routes.WidgetController.listWidgets())
+                    //.flashing("info", "User added!");
         }
     }
 }

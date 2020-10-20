@@ -2,7 +2,7 @@
 @import model.Widget
 @(widgets: Seq[Widget], form: Form[WidgetData])(implicit request: Request, messages: play.i18n.Messages)
 
-@main("Widgets","widgets") {
+@main("Signup","signUp") {
 
     <div class="row">
         <div class="col-xs-6 col-xs-offset-1 col-sm-4">
@@ -25,32 +25,18 @@
             </div>
         }
     }
-
+    <div id="signup" class="row">
+    <div class="col-xs-6 col-xs-offset-1 col-sm-4">
     @helper.form(routes.WidgetController.createWidget) {
-       @* @helper.CSRF.formField *@
+        @helper.inputText(form("name"), '_label->"Your name")
 
-        @helper.inputText(form("name"))
+        @helper.inputText(form("email"), '_label->"Your e-mail address")
 
-        @helper.inputText(form("email"))
-
-        @helper.inputText(form("password"))
-        @helper.inputText(form("repeatPassword"))
+        @helper.inputText(form("password"), '_label->"Password")
+        @helper.inputText(form("repeatPassword"), '_label->"Repeat Password")
 
         <button type="submit">Sign up now</button>
     }
-
-
-@*    <table>*@
-@*        <thead>*@
-@*            <tr><th>Name</th><th>Price</th>*@
-@*        </thead>*@
-@*        <tbody>*@
-@*        @for(w <- widgets) {*@
-@*            <tr><td>@w.name</td><td>@w.email</td><td>@w.password</td><td>@w.repeatPassword</td></tr>*@
-@*        }*@
-@*        </tbody>*@
-@*    </table>*@
-
-@*    <hr/>*@
+    </div></div>
 
 }

@@ -1,0 +1,26 @@
+@(controller: String, option: Integer)
+
+<a href="..">Back</a><br />
+<h3>Controller</h3>
+<ul>
+    <li>@controller</li>
+</ul>
+
+<h3>Option</h3>
+<ul>
+    <li>@option</li>
+</ul>
+
+<h3>Natigation</h3>
+
+<ul>
+    <li><a href="/hadatac/p/option1">Controller 1, Option 1</a></li>
+    <li><a href="/hadatac/p/option2">Controller 1, Option 2</a></li>
+    <form method="post" action="/hadatac/p/option3" class="inline">
+        <input type="hidden" name="extra_submit_param" value="extra_submit_value">
+        <button type="submit" name="submit_param" value="test" class="link-button">
+            Controller 2, Option 3
+        </button>
+    </form>
+    <li><a href="/hadatac/p/option4">Controller 2, Option 4</a></li>
+</ul>
