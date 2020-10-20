@@ -27,7 +27,7 @@ import play.mvc.Result;
 import play.twirl.api.Content;
 //import providers.MyUsernamePasswordAuthProvider;
 import util.Utils;
-import views.html.SignUp;
+import views.html.signUp;
 import views.html.triplestore.notRegistered;
 
 import java.util.List;
@@ -57,7 +57,6 @@ public class Application extends Controller {
         final PlayWebContext context = new PlayWebContext(request, playSessionStore);
         final ProfileManager<CommonProfile> profileManager = new ProfileManager(context);
         return profileManager.getAll(true).get(0);
-        //.getAll(true);
     }
 
     @Secure(clients = "AnonymousClient")
@@ -197,7 +196,7 @@ public class Application extends Controller {
 
     public Result signUp() throws TechnicalException {
         final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(views.html.SignUp.render(formClient.getCallbackUrl()));
+        return ok(views.html.signUp.render(formClient.getCallbackUrl()));
     }
 
 }
