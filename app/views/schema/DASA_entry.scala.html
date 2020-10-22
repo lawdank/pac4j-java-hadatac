@@ -1,0 +1,31 @@
+@(mode: String,
+  dasa : entity.pojo.DataAcquisitionSchemaAttribute)
+
+@import entity.pojo.DataAcquisitionSchema
+@import metadata.loader.URIUtils
+    
+
+@for(attr <- dasa.getAttributes()) {
+	@if(!DataAcquisitionSchema.METADASA.contains(URIUtils.replaceNameSpaceEx(attr))){
+  		<tr>
+} else {
+  <tr bgcolor='#FCEBDD'>
+}
+}
+
+   <td>@if(dasa != null && dasa.getLabel() != null) { <b> @dasa.getLabel() </b> }</td> 
+   <td>@if(dasa != null && dasa.getPosition() != null) { 
+     @if(dasa.getPosition().equals("-1")) {
+         any
+     } else {
+        @dasa.getPosition()
+     }
+   }</td> 
+   <td>@if(dasa != null && dasa.getObjectViewLabel() != null) { <a href="#@dasa.getObjectViewLabel()">@dasa.getObjectViewLabel()</a> }</td> 
+   <td>@if(dasa != null && dasa.getEntityViewLabel() != null) { @dasa.getEntityViewLabel() }</td> 
+   <td>@if(dasa != null && dasa.getConcatAttributeLabel() != null) { @dasa.getConcatAttributeLabel() }</td> 
+   <td>@if(dasa != null && dasa.getInRelationToLabel() != null) { @dasa.getInRelationToLabel() }</td> 
+   <td>@if(dasa != null && dasa.getUnitLabel() != null) { @dasa.getUnitLabel() }</td> 
+   <td>@if(dasa != null && dasa.getEventViewLabel() != null) { <a href="#@dasa.getEventViewLabel()">@dasa.getEventViewLabel()</a> }</td> 
+ 
+</tr>

@@ -1,4 +1,4 @@
-package controllers.metadata;
+package controllers.Metadata;
 
 import java.util.ArrayList;
 import java.util.HashMap;

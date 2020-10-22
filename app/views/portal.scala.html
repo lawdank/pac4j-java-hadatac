@@ -1,3 +1,4 @@
+@* @(profileList: java.util.List[org.pac4j.core.profile.CommonProfile])*@
 @import java.lang.System.console
 @()
 
@@ -9,13 +10,14 @@
 @import be.objectify.deadbolt.java.utils.TemplateUtils._
 @import play.api.Play
 @import com.typesafe.config.ConfigFactory
-
+@* @profiles() = { @profileList.toList }*@
 @main("HADatAc: Human-Aware Data Acquisition Framework") {
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-1 col-xs-0"></div>
             <div class="col-md-8 col-xs-0">
+                <h1></h1></br>
                 <h3><font color="darkBlue">@ConfigFactory.load().getString("hadatac.community.shortname")'s Human-Aware Data Acquisition Framework</font></h3>
                 @ConfigFactory.load().getString("hadatac.community.description")
                 <hr>
@@ -54,7 +56,7 @@
             </div>
             <div class="col-md-3 col-xs-2">
                 <h4>Metadata Recording and Data Upload</h4>
-@*                @defining("") { filename => @defining("") { da_uri =>
+                @defining("") { filename => @defining("") { da_uri =>
 @*                    <a href="@controllers.annotator.routes.AutoAnnotator.index("/", ".")"*@
 @*                    id="autoannotate" class="btn btn-primary btn-block" role="button">Ingest Files</a>*@
 @*                @defining(0) { page =>*@
@@ -73,14 +75,13 @@
 @*                }*@
 @*                    <a href="@controllers.dataacquisitionmanagement.routes.DataAcquisitionManagement.index(State.ACTIVE)"*@
 @*                    id="dataacquisitions" class="btn btn-primary btn-block" role="button">Manage Data Stream Specs [STR]</a>*@
-@*                    <a href="@controllers.schema.routes.DASManagement.index()"*@
-@*                    id="DAS" class="btn btn-primary btn-block" role="button">Manage Semantic Data Dictionaries [SDD]</a>*@
+                    <a href="@controllers.schema.routes.DASManagement.index()"
+                    id="DAS" class="btn btn-primary btn-block" role="button">Manage Semantic Data Dictionaries [SDD]</a>
 @*                    <a href="@controllers.indicators.routes.IndicatorManagement.index()"*@
 @*                    id="indicators" class="btn btn-primary btn-block" role="button">Manage Indicators</a>*@
                     @* <a href="@controllers.fileviewer.routes.SDDEditor.index()"
-                    id="sddeditor" class="btn btn-primary btn-block" role="button">SDD Editor</a>
-                }
-                }*@
+                    id="sddeditor" class="btn btn-primary btn-block" role="button">SDD Editor</a> *@
+                }}
             </div>
 @*            @restrict(roles = anyOf(allOf("data_manager"))) {*@
 @*                @defining(AuthApplication.getAuthApplication().getUserProvider().getUser(session())) { user =>*@
@@ -139,8 +140,8 @@
 
         <script type="text/javascript">
                 $( document ).ready(function() {
-                    @*var hasUser = ("@AuthApplication.getAuthApplication().getUserProvider().getUser(session())" != "");*@
-                    // if (hasUser) {
+                    @* var hasUser = ("@     .getAuthApplication().getUserProvider().getUser(session())" != ""); *@
+                    if (hasUser) {
                         $('#kg').attr( 'class', 'btn btn-primary btn-block' );
                         $('#metadatafacet').attr( 'class', 'btn btn-primary btn-block' );
                         $('#subjectviewdemo').attr( 'class', 'btn btn-primary btn-block');
@@ -162,7 +163,8 @@
                         $('#annotator').attr( 'class', 'btn btn-primary btn-block' );
                         $('#csvloader').attr( 'class', 'btn btn-primary btn-block' );
                         $('#DAS').attr( 'class', 'btn btn-primary btn-block' );
-                    // } else {
+                     } else
+                {
                     //     $('#kg').attr( 'class', 'btn btn-primary btn-block disabled' );
                     //     $('#metadatafacet').attr( 'class', 'btn btn-primary btn-block disabled' );
                     //     $('#subjectviewdemo').attr( 'class', 'btn btn-primary btn-block disabled');
@@ -183,8 +185,8 @@
                     //     $('#dataacquisitions').attr( 'class', 'btn btn-primary btn-block disabled' );
                     //     $('#annotator').attr( 'class', 'btn btn-primary btn-block disabled' );
                     //     $('#csvloader').attr( 'class', 'btn btn-primary btn-block disabled' );
-                    //     $('#DAS').attr( 'class', 'btn btn-primary btn-block disabled' );
-                    // }
+                    $('#DAS').attr('class', 'btn btn-primary btn-block disabled');
+                  }
                 });
         </script>
 

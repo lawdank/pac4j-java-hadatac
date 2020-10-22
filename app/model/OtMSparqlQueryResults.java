@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-import controllers.metadata.DynamicFunctions;
+import controllers.Metadata.DynamicFunctions;
 
 import java.util.Iterator;
 //import javax.swing.tree.TreeNode;

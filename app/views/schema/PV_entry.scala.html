@@ -1,0 +1,13 @@
+@(pv : entity.pojo.PossibleValue)
+
+@import java.net._
+@import util._
+@import entity.pojo.DataAcquisitionSchema
+
+<tr>
+   <td>@if(pv != null && pv.getHasVariable() != null) { @pv.getHasVariable() }</td> 
+   <td>@if(pv != null && pv.getHasCode() != null) { @pv.getHasCode() }</td> 
+   <td>@if(pv != null && pv.getHasCodeLabel() != null) { @pv.getHasCodeLabel() }</td> 
+   <td>@if(pv != null && pv.getHasClass() != null) { @pv.getHasClass() }</td> 
+   <td>@if(pv != null && pv.getHasResource() != null) { @pv.getHasResource() }</td> 
+</tr>

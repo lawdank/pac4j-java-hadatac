@@ -47,7 +47,7 @@
                     <ul class="nav navbar-nav">
 @*                        <li><a href="@controllers.dataacquisitionsearch.routes.DataAcquisitionSearch.index()">Search Data</a></li>*@
 @*                         <li><a href="@controllers.metadata.routes.Metadata.index()">Browse Metadata</a></li>*@
-@*                        <li><a href="@controllers.routes.Dashboard.index()">Dashboard</a></li>*@
+                        <li><a href="@controllers.routes.Dashboard.index()">Dashboard</a></li>
 @*                        @if(org.hadatac.utils.CollectionUtil.isSandboxMode()) {*@
 @*                            <li><a style="background-color: #FFFF00" href="@controllers.sandbox.routes.Sandbox.index()">Sandbox Mode</a></li>*@
 @*                        } else {*@
@@ -67,10 +67,10 @@
 @*                                    @if(user!=null){*@
 @*                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> @user.getName() <span class="caret"></span></a>*@
 @*                                    }*@
-@*                                <ul class="dropdown-menu" role="menu">*@
-@*                                    <li class="@("active".when(nav == "profile"))"><a href="@controllers.routes.Application.protectedIndex()getProfile(request)">Profile</a></li>*@
-@*                                    <li><a href="@controllers.routes.CentralLogoutController.logout()"><i class="icon-off"></i> Log Out</a></li>*@
-@*                                </ul>*@
+                               @* <ul class="dropdown-menu" role="menu">*@
+                                    <li class="@("active".when(nav == "profile"))"><a href="@controllers.routes.Application.protectedIndex()">Profile</a></li>
+                                    <li><a href="@controllers.routes.CentralLogoutController.logout()"><i class="icon-off"></i> Log Out</a></li>
+                               @* </ul>*@
 @*                                </li>*@
 
 @*                            </ul>*@
@@ -80,6 +80,8 @@
 
 
                          <a href="/form/index.html" class=" navbar-right btn btn-default navbar-btn ">Log in</a>
+                    </ul>
+                </div>
 
                 </div>
             </div>

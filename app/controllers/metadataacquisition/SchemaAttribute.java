@@ -13,17 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QuerySolution;
-import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.ResultSetFactory;
 import org.apache.jena.query.ResultSetRewindable;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.UpdateResponse;
-import controllers.metadata.DynamicFunctions;
+import controllers.Metadata.DynamicFunctions;
 import http.SPARQLUtils;
 import http.SolrUtils;
 import model.SysUser;
@@ -34,13 +30,8 @@ import org.json.simple.JSONObject;
 
 import com.typesafe.config.ConfigFactory;
 
-import be.objectify.deadbolt.java.actions.Group;
-import be.objectify.deadbolt.java.actions.Restrict;
 import views.html.metadataacquisition.schema_attributes;
 import java.util.Iterator;
-
-import org.apache.solr.client.solrj.request.UpdateRequest;
-import org.apache.solr.common.SolrInputDocument;
 
 
 public class SchemaAttribute extends Controller {

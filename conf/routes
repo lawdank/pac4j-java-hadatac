@@ -13,12 +13,14 @@ POST        /hadatac					      controllers.Portal.postIndex()
 GET         /hadatac/loginForm                controllers.Application.loginForm()
 GET         /hadatac/form/index.html          controllers.Application.formIndex(request: Request)
 GET         /hadatac/form/index.html.json     controllers.Application.formIndexJson(request: Request)
-#GET         /hadatac/signUp                   controllers.Application.signUp()
-GET        /send/mail                      controllers.SendMail.sendMail()
+#GET         /hadatac/signUp                  controllers.Application.signUp()
+GET        /send/mail                         controllers.SendMail.sendMail()
 GET         /hadatac/p/option1                controllers.Test1.index1()
 GET         /hadatac/p/option2                controllers.Test1.index2()
 POST        /hadatac/p/option3                controllers.Test2.index3()
 GET         /hadatac/p/option4                controllers.Test2.index4()
+GET	    /hadatac/dash					      controllers.Dashboard.index()
+POST    /hadatac/dash                         controllers.Dashboard.postIndex()
 #ApplicationJava.send()
 
 # Widgets
@@ -64,10 +66,6 @@ GET	    /hadatac/schemaattributes             	       controllers.metadataacquis
 POST	/hadatac/schemaattributes             	       controllers.metadataacquisition.SchemaAttribute.postIndex(request: Request)
 GET	    /hadatac/schemaattributes/updateda             controllers.metadataacquisition.SchemaAttribute.update()
 POST	/hadatac/schemaattributes/updateda             controllers.metadataacquisition.SchemaAttribute.postUpdate()
-GET	    /hadatac/metadataacquisitions/solrsearch       http.SolrSearchProxy.getStudyAcquisition(request: Request)
-POST	/hadatac/metadataacquisitions/solrsearch   	   http.SolrSearchProxy.getStudyAcquisition(request: Request)
-GET	    /hadatac/dataacquisitionbrowser/solrsearch     http.SolrSearchProxy.getDataAcquisition(request: Request)
-POST	/hadatac/dataacquisitionbrowser/solrsearch     http.SolrSearchProxy.getDataAcquisition(request: Request)
 GET	    /hadatac/schemaattributes/solrsearch		   http.SolrSearchProxy.getSchemaAttributes(request: Request)
 POST	/hadatac/schemaattributes/solrsearch		   http.SolrSearchProxy.getSchemaAttributes(request: Request)
 GET	    /hadatac/metadataacquisitions/analytes/solrsearch    http.SolrSearchProxy.getAnalytesAcquisition(request: Request)
@@ -84,10 +82,79 @@ GET     /hadatac/version                               controllers.Version.index
 POST    /hadatac/version                               controllers.Version.postIndex()
 
 # metadata store management URLs
-#GET     /hadatac/ts/clean                              controllers.triplestore.Clean.clean(oper: String)
-#POST    /hadatac/ts/clean                              controllers.triplestore.Clean.postClean(oper: String)
-#GET     /hadatac/ts/startstop                          controllers.triplestore.StartStop.index(oper: String, repository: String)
-#POST    /hadatac/ts/startstop                          controllers.triplestore.StartStop.postIndex(oper: String, repository: String)
+GET     /hadatac/ts/loadont                            controllers.triplestore.LoadOnt.loadOnt(oper: String)
+POST    /hadatac/ts/loadont                            controllers.triplestore.LoadOnt.postLoadOnt(oper: String)
+GET     /hadatac/ts/loadont/cache                      controllers.triplestore.LoadOnt.eraseCache()
+GET     /hadatac/ts/loadont/exportnamespaces           controllers.triplestore.LoadOnt.exportNamespaces()
+GET     /hadatac/ts/exportkb                           controllers.triplestore.ExportKB.exportFile(oper: String)
+POST    /hadatac/ts/exportkb                           controllers.triplestore.ExportKB.exportFile(oper: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                     controllers.Assets.at(path="/public", file)
+#GET     /assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)
+
+# JavaScript Routing
+#GET     /assets/javascript/routesMain.js       controllers.JS.jsRoutesMain()
+
+GET     /hadatac/version                               controllers.Version.index()
+POST    /hadatac/version                               controllers.Version.postIndex()
+GET	    /hadatac/acquisitions/loadccsv		      	   controllers.dataacquisitionsearch.LoadCCSV.loadCCSV(oper: String)
+POST	/hadatac/acquisitions/loadccsv		      	   controllers.dataacquisitionsearch.LoadCCSV.postLoadCCSV(oper: String)
+POST	/hadatac/acquisitions/loadccsv/upload	  	   controllers.dataacquisitionsearch.LoadCCSV.uploadFile(request : Request)
+GET	    /hadatac/metadataacquisitions/solrsearch       http.SolrSearchProxy.getStudyAcquisition(request: Request)
+POST	/hadatac/metadataacquisitions/solrsearch   	   http.SolrSearchProxy.getStudyAcquisition(request: Request)
+GET	    /hadatac/dataacquisitionbrowser/solrsearch     http.SolrSearchProxy.getDataAcquisition(request: Request)
+POST	/hadatac/dataacquisitionbrowser/solrsearch     http.SolrSearchProxy.getDataAcquisition(request: Request)
+GET	    /hadatac/schemaattributes/solrsearch		   http.SolrSearchProxy.getSchemaAttributes(request: Request)
+POST	/hadatac/schemaattributes/solrsearch		   http.SolrSearchProxy.getSchemaAttributes(request: Request)
+GET	    /hadatac/metadataacquisitions/analytes/solrsearch    http.SolrSearchProxy.getAnalytesAcquisition(request: Request)
+POST	/hadatac/metadataacquisitions/analytes/solrsearch    http.SolrSearchProxy.getAnalytesAcquisition(request: Request)
+GET	    /hadatac/metadataacquisitions/download	       http.SolrSearchProxy.getStudyAcquisitionDownload(request: Request)
+GET	    /hadatac/dataacquisitions/download	           http.SolrSearchProxy.getDataAcquisitionDownload(request: Request)
+POST    /hadatac/dataacquisitions/download	           http.SolrSearchProxy.getDataAcquisitionDownload(request: Request)
+GET	    /hadatac/getIndicatorValueDownload/download	   http.SolrSearchProxy.getIndicatorValueDownload(lm: String)
+POST    /hadatac/apiStudy/download			           http.SolrSearchProxy.getApiStudyDownload(request: Request)
+POST    /hadatac/apiStudyVariable/download		       http.SolrSearchProxy.getApiStudyVariableDownload(request: Request)
+POST    /hadatac/apiStudyVariableData/download		   http.SolrSearchProxy.getApiStudyVariableDataDownload(request: Request)
+
+# Metadata
+GET	    /hadatac/metadata/dynamicfunctions  	       controllers.Metadata.DynamicFunctions.index()
+POST	/hadatac/metadata/dynamicfunctions	           controllers.Metadata.DynamicFunctions.postIndex()
+GET	    /hadatac/schemaattributes             	       controllers.metadataacquisition.SchemaAttribute.index(request: Request)
+POST	/hadatac/schemaattributes             	       controllers.metadataacquisition.SchemaAttribute.postIndex(request: Request)
+GET	    /hadatac/schemaattributes/updateda             controllers.metadataacquisition.SchemaAttribute.update()
+POST	/hadatac/schemaattributes/updateda             controllers.metadataacquisition.SchemaAttribute.postUpdate()
+
+# schema management
+GET	    /hadatac/schema/new			                   controllers.schema.NewDAS.index()
+POST	/hadatac/schema/new			                   controllers.schema.NewDAS.postIndex()
+POST 	/hadatac/schema/new/form		               controllers.schema.NewDAS.processForm(request: Request)
+POST 	/hadatac/schema/new/formfile		           controllers.schema.NewDAS.processFormFromFile(labels: String)
+POST 	/hadatac/schema/new/formfilelabels	           controllers.schema.NewDAS.processFormFromFileLabels(labels: String)
+GET	    /hadatac/schema/		    	               controllers.schema.DASManagement.index()
+POST	/hadatac/schema/     			               controllers.schema.DASManagement.postIndex()
+GET	    /hadatac/schema/das/delete	    	           controllers.schema.DeleteDAS.index(das_uri : String)
+POST	/hadatac/schema/das/delete		               controllers.schema.DeleteDAS.postIndex(das_uri : String)
+POST 	/hadatac/schema/das/delete/form	               controllers.schema.DeleteDAS.processForm(das_uri : String, request: Request)
+GET	    /hadatac/schema/dasa/delete	    	           controllers.schema.DeleteDASA.index(dasa_uri : String)
+POST	/hadatac/schema/dasa/delete		               controllers.schema.DeleteDASA.postIndex(dasa_uri : String)
+POST 	/hadatac/schema/dasa/delete/form	           controllers.schema.DeleteDASA.processForm(dasa_uri : String)
+GET	    /hadatac/schema/view			               controllers.schema.ViewDAS.index(das_uri : String)
+POST	/hadatac/schema/view	                       controllers.schema.ViewDAS.postIndex(das_uri : String)
+GET	    /hadatac/schema/viewcode			           controllers.schema.ViewDAS.codebook(das_uri : String)
+POST	/hadatac/schema/viewcode	                   controllers.schema.ViewDAS.postCodebook(das_uri : String)
+GET	    /hadatac/schema/edit			               controllers.schema.EditDAS.index(das_uri : String)
+POST	/hadatac/schema/edit	                       controllers.schema.EditDAS.postIndex(das_uri : String)
+
+#annotator
+GET	    /hadatac/annotator/		    	               controllers.annotator.Annotator.selectDeployment
+POST	/hadatac/annotator/     		               controllers.annotator.Annotator.postSelectDeployment
+GET	    /hadatac/annotator/loadfile		               controllers.annotator.Annotator.uploadCSV(deployment_uri : String)
+POST	/hadatac/annotator/loadfile     	           controllers.annotator.Annotator.postUploadCSV(deployment_uri : String)
+POST	/hadatac/annotator/loadcsv/upload              controllers.annotator.FileProcessing.uploadFile(json : String, request: Request)
+POST    /hadatac/annotator/generate                    controllers.annotator.Downloads.postGenerate(handler : String, request: Request)
+
+# metadata store management URLs
 GET     /hadatac/ts/loadont                            controllers.triplestore.LoadOnt.loadOnt(oper: String)
 POST    /hadatac/ts/loadont                            controllers.triplestore.LoadOnt.postLoadOnt(oper: String)
 GET     /hadatac/ts/loadont/cache                      controllers.triplestore.LoadOnt.eraseCache()
@@ -105,39 +172,7 @@ GET     /hadatac/ts/loadont/exportnamespaces           controllers.triplestore.L
 GET     /hadatac/ts/exportkb                           controllers.triplestore.ExportKB.exportFile(oper: String)
 POST    /hadatac/ts/exportkb                           controllers.triplestore.ExportKB.exportFile(oper: String)
 
+
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                     controllers.Assets.at(path="/public", file)
-#GET     /assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)
-
-# JavaScript Routing
-#GET     /assets/javascript/routesMain.js       controllers.JS.jsRoutesMain()
-
-# Permissions store management URLs
-#GET     /hadatac/perm/onlinepreregister                controllers.triplestore.UserManagement.onLinePreRegistration(oper: String)
-#POST    /hadatac/perm/onlinepreregister                controllers.triplestore.UserManagement.postOnLinePreRegistration(oper: String)
-#GET     /hadatac/perm/onlinegroupregister              controllers.triplestore.UserManagement.onLineGroupRegistration(oper: String)
-#POST    /hadatac/perm/onlinegroupregister              controllers.triplestore.UserManagement.postOnLineGroupRegistration(oper: String)
-#GET     /hadatac/perm/user                  	       controllers.triplestore.UserManagement.index(oper: String)
-#POST    /hadatac/perm/user                             controllers.triplestore.UserManagement.postIndex(oper: String)
-#POST    /hadatac/perm/preregister/upload               controllers.triplestore.UserManagement.uploadFile(file_type: String, request: Request)
-#POST    /hadatac/perm/preregister/uploadform           controllers.triplestore.UserManagement.submitPreRegistrationForm(oper: String, request: Request)
-#GET	    /hadatac/perm/userNetwork		               controllers.triplestore.UserNetwork.index()
-#POST	/hadatac/perm/userNetwork		               controllers.triplestore.UserNetwork.postIndex()
-#GET	    /hadatac/perm/grantadmin		               controllers.triplestore.UserManagement.grantAdminPermission(user_uri: String)
-#POST	/hadatac/perm/grantadmin     		           controllers.triplestore.UserManagement.postGrantAdminPermission(user_uri: String)
-#GET	    /hadatac/perm/revokeadmin		               controllers.triplestore.UserManagement.revokeAdminPermission(user_uri: String)
-#POST	/hadatac/perm/revokeadmin    		           controllers.triplestore.UserManagement.postRevokeAdminPermission(user_uri: String)
-#GET	    /hadatac/perm/edit		                       controllers.triplestore.UserManagement.editUser(user_uri: String)
-#POST	/hadatac/perm/edit     			               controllers.triplestore.UserManagement.postEditUser(user_uri: String)
-#GET	    /hadatac/perm/editgroup		                   controllers.triplestore.UserManagement.editGroup(user_uri: String)
-#POST	/hadatac/perm/editgroup     		           controllers.triplestore.UserManagement.postEditGroup(user_uri: String)
-#GET	    /hadatac/perm/delete		                   controllers.triplestore.UserManagement.deleteUser(user_uri: String, deleteAuth: Boolean, deleteMember: Boolean)
-#POST	/hadatac/perm/delete     		               controllers.triplestore.UserManagement.postDeleteUser(user_uri: String, deleteAuth: Boolean, deleteMember: Boolean)
-#GET	    /hadatac/perm/backupauth		               controllers.triplestore.UserManagement.backupUserAuthentication()
-#POST	/hadatac/perm/backupauth     		           controllers.triplestore.UserManagement.postBackupUserAuthentication()
-#GET	    /hadatac/perm/backupgraph		               controllers.triplestore.UserManagement.backupUserGraph()
-#POST	/hadatac/perm/backupgraph     		           controllers.triplestore.UserManagement.postBackupUserGraph()
-#GET	    /hadatac/perm/invite		                   controllers.triplestore.UserManagement.sendInvitationEmail(user_name: String, user_email: String)
-#POST	/hadatac/perm/invite     		               controllers.triplestore.UserManagement.postSendInvitationEmail(user_name: String, user_email: String)
-
+GET     /hadatac/assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)
 

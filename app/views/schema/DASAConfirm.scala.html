@@ -1,0 +1,18 @@
+@(message: String, description: String, dasa : entity.pojo.DataAcquisitionSchemaAttribute)
+
+@import views.html._
+@import util._
+@import controllers.schema._
+
+@main(message) {
+    <h3>@message</h3>
+
+    <ul>
+      <li><b>Name</b>: @dasa.getLabel()</li>
+    </ul>
+    
+    <h4>@description</h4>
+
+    <a href="@controllers.schema.routes.EditDAS.index(dasa.getPartOfSchema())" class="btn btn-primary" role="button">Back to SDD Editing</a>
+       
+}
