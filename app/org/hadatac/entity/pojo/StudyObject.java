@@ -18,11 +18,11 @@ import org.apache.solr.common.SolrDocumentList;
 import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.NameSpaces;
 import org.hadatac.utils.FirstLabel;
-import http.SPARQLUtils;
-import model.Facet;
-import model.FacetHandler;
-import model.Facetable;
-import model.Pivot;
+import org.hadatac.console.http.SPARQLUtils;
+import org.hadatac.console.models.Facet;
+import org.hadatac.console.models.FacetHandler;
+import org.hadatac.console.models.Facetable;
+import org.hadatac.console.models.Pivot;
 
 import org.hadatac.annotations.PropertyField;
 import org.hadatac.annotations.PropertyValueType;
@@ -988,7 +988,7 @@ public class StudyObject extends HADatAcThing {
 
         query += NameSpaces.getInstance().printSparqlNameSpaceList();
         query += " DELETE WHERE { \n";
-        if (study_uri.startsWith("http")) {
+        if (study_uri.startsWith("org.hadatac.console.http")) {
             query += "<" + this.getUri() + ">";
         } else {
             query += this.getUri();

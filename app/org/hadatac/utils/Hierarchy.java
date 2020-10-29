@@ -9,8 +9,8 @@ import org.apache.jena.query.ResultSetFormatter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import http.SPARQLUtils;
-import model.TreeNode;
+import org.hadatac.console.http.SPARQLUtils;
+import org.hadatac.console.models.TreeNode;
 
 public class Hierarchy {
 

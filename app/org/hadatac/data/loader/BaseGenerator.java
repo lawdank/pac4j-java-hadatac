@@ -15,11 +15,11 @@ import org.eclipse.rdf4j.model.Model;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
-import controllers.annotator.AnnotationLogger;
-import org.hadatac.pojo.DataFile;
-import org.hadatac.pojo.HADatAcThing;
-import metadata.api.MetadataFactory;
-import util.CollectionUtil;
+import org.hadatac.console.controllers.annotator.AnnotationLogger;
+import org.hadatac.entity.pojo.DataFile;
+import org.hadatac.entity.pojo.HADatAcThing;
+import org.hadatac.metadata.api.MetadataFactory;
+import org.hadatac.utils.CollectionUtil;
 
 public abstract class BaseGenerator {
 

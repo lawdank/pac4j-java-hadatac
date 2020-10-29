@@ -12,10 +12,10 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import model.Facet;
-import model.FacetHandler;
-import model.Facetable;
-import model.Pivot;
+import org.hadatac.console.models.Facet;
+import org.hadatac.console.models.FacetHandler;
+import org.hadatac.console.models.Facetable;
+import org.hadatac.console.models.Pivot;
 import org.hadatac.metadata.loader.URIUtils;
 import org.hadatac.utils.CollectionUtil;
 

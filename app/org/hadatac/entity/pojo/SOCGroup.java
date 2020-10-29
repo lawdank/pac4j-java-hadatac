@@ -12,8 +12,7 @@ import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.NameSpaces;
-import org.hadatac.entity.pojo.SOCGroup;
-import http.SPARQLUtils;
+import org.hadatac.console.http.SPARQLUtils;
 
 public class SOCGroup extends HADatAcThing {
 

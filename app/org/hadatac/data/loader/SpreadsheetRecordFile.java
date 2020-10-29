@@ -1,4 +1,4 @@
-package data.loader;
+package org.hadatac.data.loader;
 
 import java.io.File;
 import java.io.FileInputStream;

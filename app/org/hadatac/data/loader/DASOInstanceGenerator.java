@@ -1,17 +1,17 @@
 package org.hadatac.data.loader;
 
-import org.hadatac.pojo.DataAcquisitionSchema;
-import org.hadatac.pojo.DataAcquisitionSchemaAttribute;
-import org.hadatac.pojo.DataAcquisitionSchemaObject;
-import org.hadatac.pojo.DataFile;
-import org.hadatac.pojo.ObjectCollection;
-import org.hadatac.pojo.STR;
-import org.hadatac.pojo.VirtualColumn;
-import org.hadatac.pojo.StudyObject;
-import org.hadatac.pojo.StudyObjectMatching;
-import org.hadatac.pojo.Study;
-import metadata.loader.URIUtils;
-import util.ConfigProp;
+import org.hadatac.entity.pojo.DataAcquisitionSchema;
+import org.hadatac.entity.pojo.DataAcquisitionSchemaAttribute;
+import org.hadatac.entity.pojo.DataAcquisitionSchemaObject;
+import org.hadatac.entity.pojo.DataFile;
+import org.hadatac.entity.pojo.ObjectCollection;
+import org.hadatac.entity.pojo.STR;
+import org.hadatac.entity.pojo.VirtualColumn;
+import org.hadatac.entity.pojo.StudyObject;
+import org.hadatac.entity.pojo.StudyObjectMatching;
+import org.hadatac.entity.pojo.Study;
+import org.hadatac.metadata.loader.URIUtils;
+import org.hadatac.utils.ConfigProp;
 
 import java.lang.String;
 import java.util.concurrent.ConcurrentHashMap;

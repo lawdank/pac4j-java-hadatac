@@ -70,6 +70,7 @@ libraryDependencies ++= Seq(
   "org.apache.commons" % "commons-configuration2" % "2.0",
   "com.typesafe.play" %% "play-mailer" % "8.0.1",
   "com.typesafe.play" %% "play-mailer-guice" % "8.0.1",
+  "org.springframework.security" % "spring-security-crypto" % "5.4.1",
 
   //For Java > 8
   "javax.xml.bind" % "jaxb-api" % "2.3.1",
@@ -79,6 +80,7 @@ libraryDependencies ++= Seq(
 
 ) ++ guiceDeps //For Play 2.6 & JDK9
 
-resolvers ++= Seq(Resolver.mavenLocal, "Sonatype snapshots repository" at "https://oss.sonatype.org/content/repositories/snapshots/", "Shibboleth releases" at "https://build.shibboleth.net/nexus/content/repositories/releases/")
+resolvers ++= Seq(Resolver.mavenLocal, "Sonatype snapshots repository" at "https://oss.sonatype.org/content/repositories/snapshots/", "Shibboleth releases" at "https://build.shibboleth.net/nexus/content/repositories/releases/",
+"Spring Framework Security" at "https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto")
 
 routesGenerator := InjectedRoutesGenerator

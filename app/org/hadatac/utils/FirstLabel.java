@@ -2,7 +2,7 @@ package org.hadatac.utils;
 
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSetRewindable;
-import http.SPARQLUtils;
+import org.hadatac.console.http.SPARQLUtils;
 
 public class FirstLabel {
 

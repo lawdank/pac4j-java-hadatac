@@ -13,10 +13,10 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.sparql.engine.http.QueryExceptionHTTP;
-import http.SPARQLUtils;
-import model.Facet;
-import model.FacetHandler;
-import model.Facetable;
+import org.hadatac.console.http.SPARQLUtils;
+import org.hadatac.console.models.Facet;
+import org.hadatac.console.models.FacetHandler;
+import org.hadatac.console.models.Facetable;
 import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.NameSpaces;
 

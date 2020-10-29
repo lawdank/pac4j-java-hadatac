@@ -1,4 +1,4 @@
-package org.hadatac.pojo;
+package org.hadatac.entity.pojo;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,14 +21,12 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import controllers.annotator.AnnotationLogger;
-import model.Facet;
-import model.FacetHandler;
-import model.Facetable;
-import model.Pivot;
+import org.hadatac.console.controllers.annotator.AnnotationLogger;
+import org.hadatac.console.models.Facet;
+import org.hadatac.console.models.FacetHandler;
+import org.hadatac.console.models.Facetable;
+import org.hadatac.console.models.Pivot;
 import org.hadatac.metadata.loader.URIUtils;
-import org.hadatac.pojo.DataFile;
-import org.hadatac.pojo.StudyObject;
 import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.State;
 import org.joda.time.DateTime;

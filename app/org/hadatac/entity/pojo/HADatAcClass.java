@@ -17,14 +17,14 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.query.ResultSetFormatter;
+import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.NameSpaces;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.hadatac.utils.CollectionUtil;
-import http.SPARQLUtils;
-import model.TreeNode;
+import org.hadatac.console.http.SPARQLUtils;
+import org.hadatac.console.models.TreeNode;
 
 public class HADatAcClass extends HADatAcThing {
 

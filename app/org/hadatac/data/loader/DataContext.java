@@ -9,10 +9,10 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import util.CollectionUtil;
-import util.CollectionUtil.Collection;
-import util.Command;
-import util.Feedback;
+import org.hadatac.utils.CollectionUtil;
+import org.hadatac.utils.CollectionUtil.Collection;
+import org.hadatac.utils.Command;
+import org.hadatac.utils.Feedback;
 
 import com.typesafe.config.ConfigFactory;
 
@@ -33,7 +33,7 @@ public class DataContext {
     public static Long playTotalMeasurements() {
         DataContext data = new DataContext( "user",
                 "password",
-                ConfigFactory.load().getString("hadatac.solr.org.hadatac.data"),
+                ConfigFactory.load().getString("hadatac.solr.data"),
                 false);
 
         return data.totalMeasurements();
@@ -42,7 +42,7 @@ public class DataContext {
     public static Long playTotalDataAcquisitions() {
         DataContext data = new DataContext( "user",
                 "password",
-                ConfigFactory.load().getString("hadatac.solr.org.hadatac.data"),
+                ConfigFactory.load().getString("hadatac.solr.data"),
                 false);
 
         return data.totalDataAcquisitions();
@@ -51,7 +51,7 @@ public class DataContext {
     public static Long playTotalDataFiles() {
         DataContext data = new DataContext( "user",
                 "password",
-                ConfigFactory.load().getString("hadatac.solr.org.hadatac.data"),
+                ConfigFactory.load().getString("hadatac.solr.data"),
                 false);
 
         return data.totalDataFiles();

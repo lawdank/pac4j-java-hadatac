@@ -1,14 +1,8 @@
-package metadata.loader;
+package org.hadatac.metadata.loader;
 
 import org.apache.jena.query.DatasetAccessor;
 import org.apache.jena.query.DatasetAccessorFactory;
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
-import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.ResultSetFactory;
 import org.apache.jena.query.ResultSetRewindable;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -18,10 +12,10 @@ import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
-import http.SPARQLUtils;
-import util.CollectionUtil;
-import util.Feedback;
-import util.NameSpaces;
+import org.hadatac.console.http.SPARQLUtils;
+import org.hadatac.utils.CollectionUtil;
+import org.hadatac.utils.Feedback;
+import org.hadatac.utils.NameSpaces;
 
 import com.typesafe.config.ConfigFactory;
 

@@ -1,4 +1,4 @@
-package data.loader;
+package org.hadatac.data.loader;
 
 import java.time.Instant;
 import java.io.IOException;
@@ -14,21 +14,21 @@ import java.util.HashMap;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
-import entity.pojo.STR;
-import entity.pojo.ObjectCollection;
-import entity.pojo.PossibleValue;
-import entity.pojo.SOCGroup;
-import entity.pojo.StudyObject;
-import entity.pojo.StudyObjectMatching;
-import entity.pojo.DataAcquisitionSchema;
-import entity.pojo.DataAcquisitionSchemaAttribute;
-import entity.pojo.DataAcquisitionSchemaObject;
-import entity.pojo.DataFile;
-import entity.pojo.HADatAcThing;
-import entity.pojo.Measurement;
-import metadata.loader.URIUtils;
-import util.CollectionUtil;
-import util.Feedback;
+import org.hadatac.entity.pojo.STR;
+import org.hadatac.entity.pojo.ObjectCollection;
+import org.hadatac.entity.pojo.PossibleValue;
+import org.hadatac.entity.pojo.SOCGroup;
+import org.hadatac.entity.pojo.StudyObject;
+import org.hadatac.entity.pojo.StudyObjectMatching;
+import org.hadatac.entity.pojo.DataAcquisitionSchema;
+import org.hadatac.entity.pojo.DataAcquisitionSchemaAttribute;
+import org.hadatac.entity.pojo.DataAcquisitionSchemaObject;
+import org.hadatac.entity.pojo.DataFile;
+import org.hadatac.entity.pojo.HADatAcThing;
+import org.hadatac.entity.pojo.Measurement;
+import org.hadatac.metadata.loader.URIUtils;
+import org.hadatac.utils.CollectionUtil;
+import org.hadatac.utils.Feedback;
 
 public class MeasurementGenerator extends BaseGenerator {
 
@@ -658,7 +658,7 @@ public class MeasurementGenerator extends BaseGenerator {
                         }
                     }
                 } else {
-                    // Assign the entity of inRelationToDaso to inRelationToUri
+                    // Assign the org.hadatac.entity of inRelationToDaso to inRelationToUri
                     measurement.setInRelationToUri(inRelationToDaso.getEntity());
                 }
             }

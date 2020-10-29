@@ -25,9 +25,9 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import controllers.annotator.AnnotationLogger;
-import http.SolrUtils;
-import model.TreeNode;
+import org.hadatac.console.controllers.annotator.AnnotationLogger;
+import org.hadatac.console.http.SolrUtils;
+import org.hadatac.console.models.TreeNode;
 import org.hadatac.data.loader.CSVRecordFile;
 import org.hadatac.data.loader.RecordFile;
 import org.hadatac.data.loader.SpreadsheetRecordFile;
@@ -281,7 +281,7 @@ public class DataFile implements Cloneable {
     		return "";
     	}
     	return ConfigFactory.load().getString("hadatac.host") + 
-    			controllers.routes.Portal.index().url() + 
+    			org.hadatac.console.controllers.routes.Portal.index().url() +
     			filename.replace("file:///", "");
     }
     

@@ -1,4 +1,4 @@
-package data.model;
+package org.hadatac.data.model;
 
 public class ParsingResult {
     private int status = 0;

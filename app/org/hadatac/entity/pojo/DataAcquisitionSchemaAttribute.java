@@ -17,13 +17,11 @@ import org.apache.jena.update.UpdateRequest;
 import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.NameSpaces;
 import org.hadatac.utils.FirstLabel;
-import org.hadatac.entity.pojo.DataAcquisitionSchemaObject;
 //import org.hadatac.entity.pojo.DataAcquisitionSchemaEvent;
-import org.hadatac.entity.pojo.DataAcquisitionSchema;
 import org.hadatac.metadata.loader.URIUtils;
 
 //import controllers.AuthApplication;
-import http.SPARQLUtils;
+import org.hadatac.console.http.SPARQLUtils;
 
 public class DataAcquisitionSchemaAttribute extends HADatAcThing {
 

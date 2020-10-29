@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.NotImplementedException;
-import model.Facet;
-import model.FacetHandler;
-import model.Facetable;
+import org.hadatac.console.models.Facet;
+import org.hadatac.console.models.FacetHandler;
+import org.hadatac.console.models.Facetable;
 import org.hadatac.metadata.api.MetadataFactory;
 import org.hadatac.metadata.loader.URIUtils;
 import org.apache.jena.query.QuerySolution;
@@ -23,13 +23,13 @@ import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 import org.eclipse.rdf4j.model.Model;
+import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.NameSpaces;
 
-import org.hadatac.utils.CollectionUtil;
 import org.hadatac.annotations.PropertyField;
 import org.hadatac.annotations.ReversedPropertyField;
 import org.hadatac.annotations.Subject;
-import http.SPARQLUtils;
+import org.hadatac.console.http.SPARQLUtils;
 
 
 public abstract class HADatAcThing implements Facetable {

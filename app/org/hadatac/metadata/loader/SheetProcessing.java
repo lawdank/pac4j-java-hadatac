@@ -1,4 +1,4 @@
-package metadata.loader;
+package org.hadatac.metadata.loader;
 
 import java.util.Iterator;
 import java.util.Vector;
@@ -6,9 +6,8 @@ import java.util.Vector;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import metadata.loader.URIUtils;
-import metadata.model.SpreadsheetParsingResult;
-import util.Feedback;
+import org.hadatac.metadata.model.SpreadsheetParsingResult;
+import org.hadatac.utils.Feedback;
 
 public class SheetProcessing {
 

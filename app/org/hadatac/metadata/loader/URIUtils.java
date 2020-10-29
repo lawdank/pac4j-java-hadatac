@@ -1,12 +1,12 @@
-package metadata.loader;
+package org.hadatac.metadata.loader;
 
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
 import org.apache.poi.ss.usermodel.Cell;
-import util.NameSpace;
-import util.NameSpaces;
+import org.hadatac.utils.NameSpace;
+import org.hadatac.utils.NameSpaces;
 
 public class URIUtils {
 

@@ -4,16 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.hadatac.pojo.ConsoleStore;
-import org.hadatac.pojo.STR;
-import org.hadatac.pojo.DataAcquisitionSchema;
-import org.hadatac.pojo.Dataset;
-import org.hadatac.pojo.Deployment;
-import org.hadatac.pojo.Detector;
-import org.hadatac.pojo.Instrument;
-import org.hadatac.pojo.Platform;
-import org.hadatac.pojo.Study;
-import util.ConfigProp;
+import org.hadatac.entity.pojo.ConsoleStore;
+import org.hadatac.entity.pojo.STR;
+import org.hadatac.entity.pojo.DataAcquisitionSchema;
+import org.hadatac.entity.pojo.Dataset;
+import org.hadatac.entity.pojo.Deployment;
+import org.hadatac.entity.pojo.Detector;
+import org.hadatac.entity.pojo.Instrument;
+import org.hadatac.entity.pojo.Platform;
+import org.hadatac.entity.pojo.Study;
+import org.hadatac.utils.ConfigProp;
 
 import com.typesafe.config.ConfigFactory;
 

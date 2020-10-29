@@ -24,13 +24,11 @@ import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.NameSpaces;
 import org.hadatac.utils.FirstLabel;
 import org.hadatac.metadata.loader.URIUtils;
-import org.hadatac.entity.pojo.ObjectCollection;
-import org.hadatac.entity.pojo.VirtualColumn;
-import http.SPARQLUtils;
-import model.Facet;
-import model.FacetHandler;
-import model.Facetable;
-import model.Pivot;
+import org.hadatac.console.http.SPARQLUtils;
+import org.hadatac.console.models.Facet;
+import org.hadatac.console.models.FacetHandler;
+import org.hadatac.console.models.Facetable;
+import org.hadatac.console.models.Pivot;
 
 public class ObjectCollection extends HADatAcThing implements Comparable<ObjectCollection> {
 

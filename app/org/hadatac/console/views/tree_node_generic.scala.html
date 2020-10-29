@@ -1,0 +1,48 @@
+@import org.hadatac.console.views.html.tree_node_generic
+@(node       : org.hadatac.console.models.TreeNode,
+        optionName : String,
+        selected   : String,
+        isDir      : Boolean)
+
+@import org.hadatac.console.controllers.metadata._
+@import org.hadatac.console.controllers.metadata.DynamicFunctions
+@import java.net._
+@import org.hadatac.utils._
+@import org.hadatac.metadata.loader.URIUtils
+@import org.hadatac.entity.pojo.DataFile
+
+@if(node == null) {
+    EMPTY
+} else {
+    @if(isDir) {
+        @if(!selected.equals("") && node.getName().equals(selected)) {
+
+            <li><a href="#"><input type="radio" name="@optionName" id="@optionName" value="@node.getName()"
+            onchange="typechange()" checked>&nbsp;&nbsp; @DataFile.getFolderLabel(node.getName())</a>
+        } else {
+            <li><a href="#"><input type="radio" name="@optionName" id="@optionName" value="@node.getName()"
+            onchange="typechange()" >&nbsp;&nbsp; @DataFile.getFolderLabel(node.getName())</a>
+        }
+    } else {
+        @if(node.getName().startsWith("+")) {
+            <li><a href="#"><input type="radio" name="@optionName" id="@optionName" value="@node.getName()" disabled>&nbsp;&nbsp;
+                @DataFile.getFolderLabel(node.getName())</a>
+        } else {
+            @if(!selected.equals("") && node.getName().equals(selected)) {
+                <li><a href="#"><input type="radio" name="@optionName" id="@optionName" value="@node.getName()"
+                onchange="typechange()" checked>&nbsp;&nbsp; @DataFile.getFolderLabel(node.getName())</a>
+            } else {
+                <li><a href="#"><input type="radio" name="@optionName" id="@optionName" value="@node.getName()"
+                onchange="typechange()" >&nbsp;&nbsp; @DataFile.getFolderLabel(node.getName())</a>
+                    }
+        }
+    }
+    @if(node.getChildren().size() > 0) {
+        <ul>
+        @for(child <- node.getChildren()) {
+            @tree_node_generic(child, optionName, selected, isDir)
+        }
+        </ul>
+    }
+}
+</li>
