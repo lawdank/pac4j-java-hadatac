@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +7,8 @@ import java.util.TreeMap;
 import java.util.Iterator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hadatac.console.models.TreeNode;
+import org.hadatac.console.models.TripleDocument;
 
 public class SparqlQueryResults{
     public TreeMap<String,TripleDocument> sparqlResults;
@@ -59,7 +61,7 @@ public class SparqlQueryResults{
 		else this.treeResults = "";
 
         // NOW BUILD THE SPARQLQUERYRESULTS:
-        this.sparqlResults = new TreeMap<String,TripleDocument>();
+        this.sparqlResults = new TreeMap<String, TripleDocument>();
         while (parseResults.hasNext()){
             try {
                 JsonNode doc = parseResults.next();

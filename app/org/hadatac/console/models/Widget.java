@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 /**
  * Presentation object used for displaying org.hadatac.data in a template.

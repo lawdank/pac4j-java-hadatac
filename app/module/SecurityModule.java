@@ -1,10 +1,10 @@
-package modules;
+package module;
 
 import be.objectify.deadbolt.java.cache.HandlerCache;
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
-import controllers.CustomAuthorizer;
+import org.hadatac.console.controllers.CustomAuthorizer;
 import org.pac4j.cas.client.CasClient;
 import org.pac4j.cas.client.CasProxyReceptor;
 import org.pac4j.cas.config.CasConfiguration;
@@ -13,14 +13,10 @@ import org.pac4j.core.client.Clients;
 import org.pac4j.core.client.direct.AnonymousClient;
 import org.pac4j.core.config.Config;
 import org.pac4j.core.context.HttpConstants;
-import org.pac4j.core.context.WebContext;
 import org.pac4j.core.credentials.UsernamePasswordCredentials;
 import org.pac4j.core.credentials.authenticator.Authenticator;
-import org.pac4j.core.exception.CredentialsException;
 import org.pac4j.core.matching.matcher.PathMatcher;
 import org.pac4j.core.profile.CommonProfile;
-import org.pac4j.core.util.CommonHelper;
-import org.pac4j.core.util.Pac4jConstants;
 import org.pac4j.http.client.direct.DirectBasicAuthClient;
 import org.pac4j.http.client.direct.ParameterClient;
 import org.pac4j.http.client.indirect.FormClient;
@@ -48,7 +44,7 @@ import java.util.Optional;
 
 import org.pac4j.http.client.direct.DirectFormClient;
 import providers.SimpleTestUsernamePasswordAuthenticator;
-import util.Utils;
+import org.hadatac.utils.Utils;
 
 import static play.mvc.Results.forbidden;
 import static play.mvc.Results.unauthorized;
@@ -146,7 +142,7 @@ public class SecurityModule extends AbstractModule {
                 "pac4j-demo-passwd", "pac4j-demo-passwd", "resource:openidp-feide.xml");
         cfg.setMaximumAuthenticationLifetime(3600);
         cfg.setServiceProviderEntityId("urn:mace:saml:pac4j.org");
-        cfg.setServiceProviderMetadataPath(new File("target", "sp-metadata.xml").getAbsolutePath());
+        cfg.setServiceProviderMetadataPath(new File("target", "sp-org.hadatac.metadata.xml").getAbsolutePath());
         return new SAML2Client(cfg);
     }
 
@@ -200,8 +196,8 @@ public class SecurityModule extends AbstractModule {
                 indirectBasicAuthClient,
                 new AnonymousClient(), directFormClient);
 
-        PlayHttpActionAdapter.INSTANCE.getResults().put(HttpConstants.UNAUTHORIZED, unauthorized(views.html.error401.render().toString()).as((HttpConstants.HTML_CONTENT_TYPE)));
-        PlayHttpActionAdapter.INSTANCE.getResults().put(HttpConstants.FORBIDDEN, forbidden(views.html.error403.render().toString()).as((HttpConstants.HTML_CONTENT_TYPE)));
+        PlayHttpActionAdapter.INSTANCE.getResults().put(HttpConstants.UNAUTHORIZED, unauthorized(org.hadatac.console.views.html.error401.render().toString()).as((HttpConstants.HTML_CONTENT_TYPE)));
+        PlayHttpActionAdapter.INSTANCE.getResults().put(HttpConstants.FORBIDDEN, forbidden(org.hadatac.console.views.html.error403.render().toString()).as((HttpConstants.HTML_CONTENT_TYPE)));
 
         final Config config = new Config(clients);
         config.addAuthorizer("admin", new RequireAnyRoleAuthorizer<>("ROLE_ADMIN"));

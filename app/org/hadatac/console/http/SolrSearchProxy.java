@@ -1,4 +1,4 @@
-package http;
+package org.hadatac.console.http;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.net.URL;
 
 //import org.hadatac.console.controllers.AuthApplication;
 
+import org.hadatac.utils.CollectionUtil;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;

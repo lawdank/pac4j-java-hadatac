@@ -1,5 +1,6 @@
-package controllers;
+package org.hadatac.console.controllers;
 
+import controllers.routes;
 import org.hadatac.console.models.SysUser;
 import org.hadatac.console.models.Widget;
 import org.apache.solr.client.solrj.SolrClient;
@@ -53,7 +54,7 @@ public class WidgetController extends Controller {
     }
 
     public Result listWidgets(Http.Request request) throws TechnicalException {
-        return ok(views.html.listWidgets.render(asScala(widgets), form, request, messagesApi.preferred(request)));
+        return ok(org.hadatac.console.views.html.listWidgets.render(asScala(widgets), form, request, messagesApi.preferred(request)));
 
     }
 
@@ -62,12 +63,12 @@ public class WidgetController extends Controller {
 
         if (boundForm.hasErrors()) {
             logger.error("errors = {}", boundForm.errors());
-            return badRequest(views.html.listWidgets.render(asScala(widgets), boundForm, request, messagesApi.preferred(request)));
+            return badRequest(org.hadatac.console.views.html.listWidgets.render(asScala(widgets), boundForm, request, messagesApi.preferred(request)));
         } else {
             WidgetData data = boundForm.get();
             if (data.validate()!=null){
 //                messagesApi.preferred(request).at("Your e-mail has already been validated.");
-                return redirect(routes.WidgetController.listWidgets())
+                return redirect(org.hadatac.console.controllers.routes.WidgetController.listWidgets())
                         .flashing("error",data.validate());
             }
             widgets.add(new Widget(data.getName(), data.getEmail(), data.getPassword(), data.getRepeatPassword()));
@@ -106,7 +107,7 @@ public class WidgetController extends Controller {
                 System.out.println("[ERROR] User.getAuthUserFindSolr - Exception message: " + e.getMessage());
             }
 
-            return redirect(routes.Portal.index());
+            return redirect(org.hadatac.console.controllers.routes.Portal.index());
                     //routes.WidgetController.listWidgets())
                     //.flashing("info", "User added!");
         }

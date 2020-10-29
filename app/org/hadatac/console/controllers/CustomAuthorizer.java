@@ -1,4 +1,4 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 import org.apache.commons.lang.StringUtils;
 import org.pac4j.core.authorization.authorizer.ProfileAuthorizer;

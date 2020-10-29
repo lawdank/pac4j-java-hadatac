@@ -140,7 +140,7 @@ public class DataDictionaryAnnotator extends Controller {
             String fileName = uploadedfile.getFilename();
             
             if (fileName.endsWith(".xlsx")) {
-                File file = (File)uploadedfile.getFile();
+                File file = (File)uploadedfile.getRef();
                 File newFile = new File(fileName);
                 InputStream fileInputStream;
                 try {

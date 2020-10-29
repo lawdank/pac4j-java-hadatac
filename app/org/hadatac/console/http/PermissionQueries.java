@@ -1,9 +1,10 @@
-package http;
+package org.hadatac.console.http;
 
 import java.io.ByteArrayOutputStream;
 
 import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.query.ResultSetRewindable;
+import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.NameSpaces;
 
 public class PermissionQueries {

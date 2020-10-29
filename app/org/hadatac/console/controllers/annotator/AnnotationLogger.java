@@ -1,4 +1,4 @@
-package controllers.annotator;
+package org.hadatac.console.controllers.annotator;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

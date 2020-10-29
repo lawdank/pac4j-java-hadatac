@@ -1,4 +1,4 @@
-package controllers.triplestore;
+package org.hadatac.console.controllers.triplestore;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +24,7 @@ import org.hadatac.utils.NameSpaces;
 
 import com.typesafe.config.ConfigFactory;
 
-import views.html.triplestore.loadOnt;
+import org.hadatac.console.views.html.triplestore.loadOnt;
 
 
 public class LoadOnt extends Controller {

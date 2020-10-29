@@ -1,4 +1,4 @@
-package controllers.schema;
+package org.hadatac.console.controllers.schema;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -30,7 +30,7 @@ public class EditDAS extends Controller {
 		if (!das_uri.equals("")) {
 			das = DataAcquisitionSchema.find(das_uri);
 		}
-		return ok(views.html.schema.editDAS.render(das));
+		return ok(org.hadatac.console.views.html.schema.editDAS.render(das));
 	}
 
 //	@Restrict(@Group(AuthApplication.DATA_OWNER_ROLE))

@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class LinkedAccount {
 	    this.userId = userId;
 	}
 
-	public static LinkedAccount findByProviderKey(final models.SysUser user, String key) {
+	public static LinkedAccount findByProviderKey(final SysUser user, String key) {
 		return findByProviderKeySolr(user, key);
 	}
 

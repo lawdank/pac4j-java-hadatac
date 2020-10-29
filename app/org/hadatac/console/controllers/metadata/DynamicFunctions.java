@@ -1,4 +1,4 @@
-package org.hadatac.console.controllers.Metadata;
+package org.hadatac.console.controllers.metadata;
 
 import java.util.ArrayList;
 import java.util.HashMap;

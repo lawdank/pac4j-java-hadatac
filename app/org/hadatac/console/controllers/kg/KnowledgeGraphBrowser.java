@@ -13,7 +13,7 @@
 ////import org.hadatac.console.controllers.AuthApplication;
 ////import org.hadatac.console.controllers.objectcollections.OCForceFieldGraph;
 ////import org.hadatac.console.controllers.triplestore.UserManagement;
-////import org.hadatac.console.org.hadatac.console.http.SPARQLUtils;
+////import org.hadatac.console.org.hadatac.console.org.hadatac.console.http.SPARQLUtils;
 ////import org.hadatac.console.org.hadatac.console.models.SysUser;
 ////import org.hadatac.org.hadatac.utils.CollectionUtil;
 ////import org.hadatac.org.hadatac.utils.ConfigProp;

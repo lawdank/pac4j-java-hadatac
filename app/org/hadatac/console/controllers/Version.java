@@ -1,10 +1,10 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 import play.mvc.Controller;
 import play.mvc.Result;
 
-import controllers.triplestore.LoadOnt;
-import views.html.version;
+import org.hadatac.console.controllers.triplestore.LoadOnt;
+import org.hadatac.console.views.html.version;
 import org.hadatac.entity.pojo.Ontology;
 import org.hadatac.utils.NameSpaces;
 

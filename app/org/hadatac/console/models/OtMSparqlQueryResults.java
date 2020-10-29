@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-import controllers.Metadata.DynamicFunctions;
+import org.hadatac.console.controllers.metadata.DynamicFunctions;
 
 import java.util.Iterator;
 //import javax.swing.tree.TreeNode;

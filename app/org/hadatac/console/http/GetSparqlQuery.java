@@ -1,4 +1,4 @@
-package http;
+package org.hadatac.console.http;
 
 import java.io.ByteArrayOutputStream;
 
@@ -6,11 +6,6 @@ import org.hadatac.console.models.SparqlQuery;
 import org.hadatac.utils.CollectionUtil;
 import org.hadatac.utils.CollectionUtil.Collection;
 import org.hadatac.utils.NameSpaces;
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QueryFactory;
-import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.query.ResultSetRewindable;
 

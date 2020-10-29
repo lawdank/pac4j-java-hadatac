@@ -1,9 +1,9 @@
-package controllers.annotator;
+package org.hadatac.console.controllers.annotator;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 //import controllers.AuthApplication;
-import http.GetSparqlQuery;
+import org.hadatac.console.http.GetSparqlQuery;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,8 +24,8 @@ import play.mvc.Http.MultipartFormData.FilePart;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import views.html.annotator.uploadCSV;
-import views.html.annotator.measurementsSpec;
+import org.hadatac.console.views.html.annotator.uploadCSV;
+import org.hadatac.console.views.html.annotator.measurementsSpec;
 
 
 public class FileProcessing extends Controller {

@@ -1,4 +1,4 @@
-package controllers.annotator;
+package org.hadatac.console.controllers.annotator;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,9 +13,9 @@ import play.mvc.Result;
 
 import org.apache.commons.io.FileUtils;
 //import controllers.AuthApplication;
-import controllers.dataacquisitionsearch.LoadCCSV;
+import org.hadatac.console.controllers.dataacquisitionsearch.LoadCCSV;
 import org.hadatac.console.models.CSVAnnotationHandler;
-import views.html.annotator.completeAnnotation;
+import org.hadatac.console.views.html.annotator.completeAnnotation;
 import org.hadatac.data.api.DataFactory;
 import org.hadatac.data.model.ParsingResult;
 import org.hadatac.utils.NameSpaces;

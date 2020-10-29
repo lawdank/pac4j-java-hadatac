@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package controllers.schema;
+package org.hadatac.console.controllers.schema;
 
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -15,11 +15,11 @@ import org.hadatac.utils.Hierarchy;
 public class EditingOptions extends Controller {
 
 	public Result entityOptions() {
-		return ok(views.html.schema.entityOptions.render(getEntities()));
+		return ok(org.hadatac.console.views.html.schema.entityOptions.render(getEntities()));
 	}
 
 	public Result postEntityOptions() {
-		return ok(views.html.schema.entityOptions.render(getEntities()));
+		return ok(org.hadatac.console.views.html.schema.entityOptions.render(getEntities()));
 	}
 
 	public static OtMSparqlQueryResults getEntities() {

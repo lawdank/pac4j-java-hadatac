@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package controllers.schema;
+package org.hadatac.console.controllers.schema;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -7,7 +7,7 @@ import java.util.List;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-//import views.schema.*;
+//import org.hadatac.console.views.schema.*;
 //import controllers.AuthApplication;
 import org.hadatac.entity.pojo.DataAcquisitionSchema;
 import org.hadatac.entity.pojo.PossibleValue;
@@ -32,7 +32,7 @@ public class ViewDAS extends Controller {
             das = DataAcquisitionSchema.find(das_uri);
         }
 
-        return ok(views.html.schema.viewDAS.render(das));
+        return ok(org.hadatac.console.views.html.schema.viewDAS.render(das));
     }
 
 //    @Restrict(@Group(AuthApplication.DATA_OWNER_ROLE))
@@ -45,7 +45,7 @@ public class ViewDAS extends Controller {
         DataAcquisitionSchema sdd = DataAcquisitionSchema.find(schemaUri);
         if (schemaUri != null) {
             List<PossibleValue> codes = PossibleValue.findBySchema(schemaUri);
-            return ok(views.html.schema.viewCodeBook.render(sdd, codes));
+            return ok(org.hadatac.console.views.html.schema.viewCodeBook.render(sdd, codes));
         }
         return badRequest("Could not retrieve schema from provided uri");
     }

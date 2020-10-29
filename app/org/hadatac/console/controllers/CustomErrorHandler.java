@@ -1,4 +1,4 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 import play.*;
 import com.typesafe.config.Config;
@@ -22,10 +22,10 @@ public class CustomErrorHandler extends DefaultHttpErrorHandler {
     }
 
     protected CompletionStage<Result> onDevServerError(RequestHeader var1, UsefulException var2) {
-        return CompletableFuture.completedFuture(Results.status(500, views.html.error500.render()));
+        return CompletableFuture.completedFuture(Results.status(500, org.hadatac.console.views.html.error500.render()));
     }
 
     protected CompletionStage<Result> onProdServerError(RequestHeader var1, UsefulException var2) {
-        return CompletableFuture.completedFuture(Results.status(500, views.html.error500.render()));
+        return CompletableFuture.completedFuture(Results.status(500, org.hadatac.console.views.html.error500.render()));
     }
 }

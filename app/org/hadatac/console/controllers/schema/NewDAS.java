@@ -1,4 +1,4 @@
-package controllers.schema;
+package org.hadatac.console.controllers.schema;
 
 import play.mvc.Http;
 import org.hadatac.utils.ConfigProp;
@@ -17,7 +17,7 @@ import org.hadatac.console.models.DataAcquisitionSchemaForm;
 import org.hadatac.console.models.SparqlQuery;
 import org.hadatac.console.models.SparqlQueryResults;
 //import controllers.AuthApplication;
-import views.html.schema.newDAS;
+import org.hadatac.console.views.html.schema.newDAS;
 
 public class NewDAS extends Controller {
 
@@ -64,7 +64,7 @@ public class NewDAS extends Controller {
         DataAcquisitionSchema das = DataFactory.createDataAcquisitionSchema(label);
 
         das.save();
-        return ok(views.html.schema.DASConfirm.render("New Data Acquisition Schema",
+        return ok(org.hadatac.console.views.html.schema.DASConfirm.render("New Data Acquisition Schema",
                 String.format("Rows have been inserted in Table \"DataAcquisitionSchema\" \n"),data.getLabel()));
      }
 
@@ -73,7 +73,7 @@ public class NewDAS extends Controller {
     	
         DataAcquisitionSchema das = new DataAcquisitionSchema();
 
-        return ok(views.html.schema.editDAS.render(das));
+        return ok(org.hadatac.console.views.html.schema.editDAS.render(das));
        
     }
 
@@ -82,6 +82,6 @@ public class NewDAS extends Controller {
 
     	DataAcquisitionSchema das = new DataAcquisitionSchema();
     	    	
-        return ok(views.html.schema.editDAS.render(das));
+        return ok(org.hadatac.console.views.html.schema.editDAS.render(das));
     }
 }

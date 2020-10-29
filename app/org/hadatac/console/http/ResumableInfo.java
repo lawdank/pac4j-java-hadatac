@@ -1,4 +1,4 @@
-package http;
+package org.hadatac.console.http;
 
 import java.io.File;
 import java.util.HashSet;

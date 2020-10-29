@@ -1,4 +1,4 @@
-package controllers.sandbox;
+package org.hadatac.console.controllers.sandbox;
 //
 //import java.text.ParseException;
 //import java.text.SimpleDateFormat;
@@ -12,7 +12,7 @@ import play.mvc.*;
 //import controllers.AuthApplication;
 //import org.hadatac.console.models.SysUser;
 //import controllers.routes;
-//import views.html.sandbox.*;
+//import org.hadatac.console.views.html.sandbox.*;
 //import org.hadatac.entity.pojo.OperationMode;
 //import util.NameSpaces;
 //

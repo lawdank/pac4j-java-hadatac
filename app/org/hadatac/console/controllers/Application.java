@@ -1,4 +1,4 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 import be.objectify.deadbolt.java.actions.SubjectPresent;
 import javax.inject.Inject;
@@ -61,12 +61,12 @@ public class Application extends Controller {
         final String sessionId = context.getSessionStore().getOrCreateSessionId(context);
         final String token = (String) context.getRequestAttribute(Pac4jConstants.CSRF_TOKEN).orElse(null);
         // profiles (maybe be empty if not authenticated)
-        return ok(views.html.index.render(getProfiles(request), token, sessionId));
+        return ok(org.hadatac.console.views.html.index.render(getProfiles(request), token, sessionId));
     }
 
     private Result protectedIndexView(Http.Request request) {
         // profiles
-        return ok(views.html.protectedIndex.render(getProfiles(request)));
+        return ok(org.hadatac.console.views.html.protectedIndex.render(getProfiles(request)));
     }
 
     @Secure(clients = "FacebookClient", matchers = "excludedPath")
@@ -76,7 +76,7 @@ public class Application extends Controller {
 
     private Result notProtectedIndexView(Http.Request request) {
         // profiles
-        return ok(views.html.notprotectedIndex.render(getProfiles(request)));
+        return ok(org.hadatac.console.views.html.notprotectedIndex.render(getProfiles(request)));
     }
 
     public Result facebookNotProtectedIndex(Http.Request request) {
@@ -98,7 +98,7 @@ public class Application extends Controller {
         return protectedIndexView(request);
     }
 
-    @Secure
+    @SubjectPresent(forceBeforeAuthCheck = true)
     public Result protectedIndex(Http.Request request) {
         return protectedIndexView(request);
     }
@@ -113,7 +113,7 @@ public class Application extends Controller {
     // a 401 error response will be returned instead of a redirection to the login url.
     @Secure(clients = "FormClient")
     public Result formIndexJson(Http.Request request) {
-        Content content = views.html.protectedIndex.render(getProfiles(request));
+        Content content = org.hadatac.console.views.html.protectedIndex.render(getProfiles(request));
         JsonContent jsonContent = new JsonContent(content.body());
         return ok(jsonContent);
     }
@@ -140,7 +140,7 @@ public class Application extends Controller {
             final CasProxyProfile proxyProfile = (CasProxyProfile) profile;
             proxyTicket = proxyProfile.getProxyTicketFor(service);
         }
-        return ok(views.html.casProtectedIndex.render(profile, service, proxyTicket));
+        return ok(org.hadatac.console.views.html.casProtectedIndex.render(profile, service, proxyTicket));
     }
 
     @Secure(clients = "SAML2Client")
@@ -161,12 +161,12 @@ public class Application extends Controller {
 
     //@Secure(clients = "AnonymousClient", authorizers = "csrfCheck")
     public Result csrfIndex(Http.Request request) {
-        return ok(views.html.csrf.render(getProfiles(request)));
+        return ok(org.hadatac.console.views.html.csrf.render(getProfiles(request)));
     }
 
     public Result loginForm() throws TechnicalException {
         final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(views.html.loginForm.render(formClient.getCallbackUrl()));
+        return ok(org.hadatac.console.views.html.loginForm.render(formClient.getCallbackUrl()));
     }
 
     public Result jwt(Http.Request request) {
@@ -176,7 +176,7 @@ public class Application extends Controller {
         if (CommonHelper.isNotEmpty(profiles)) {
             token = generator.generate(profiles.get(0));
         }
-        return ok(views.html.jwt.render(token));
+        return ok(org.hadatac.console.views.html.jwt.render(token));
     }
 
     public Result forceLogin(Http.Request request) {
@@ -192,7 +192,7 @@ public class Application extends Controller {
 
     public Result signUp() throws TechnicalException {
         final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(views.html.signUp.render(formClient.getCallbackUrl()));
+        return ok(org.hadatac.console.views.html.signUp.render(formClient.getCallbackUrl()));
     }
 
 }

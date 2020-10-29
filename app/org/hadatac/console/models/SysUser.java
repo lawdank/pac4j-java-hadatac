@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 import be.objectify.deadbolt.java.models.Permission;
 import be.objectify.deadbolt.java.models.Role;
@@ -15,7 +15,8 @@ import be.objectify.deadbolt.java.models.Subject;
 //import com.feth.play.module.pa.user.FirstLastNameIdentity;
 
 //import controllers.AuthApplication;
-import models.TokenAction.Type;
+import org.hadatac.console.models.TokenAction.Type;
+import org.hadatac.utils.CollectionUtil;
 import play.data.validation.Constraints;
 
 import org.apache.solr.client.solrj.SolrClient;
@@ -38,10 +39,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
-import org.hadatac.entity.pojo.User;
-
-import org.hadatac.utils.CollectionUtil;
 
 /**
  * Initial version based on work by Steve Chaloner (steve@objectify.be) for

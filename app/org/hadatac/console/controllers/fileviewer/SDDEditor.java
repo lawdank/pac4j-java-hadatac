@@ -63,7 +63,7 @@ public class SDDEditor extends Controller {
         
         if (uploadedfile != null) {
             if (uploadedfile.getFilename().endsWith(".xlsx")) {
-                File file = (File)uploadedfile.getFile();
+                File file = (File)uploadedfile.getRef();
                 String newFileName = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss").format(new Date()) + ".xlsx";
                 
                 // Ingest the uploaded SDD file

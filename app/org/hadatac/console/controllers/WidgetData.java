@@ -1,4 +1,4 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 import javax.inject.Inject;
 import play.api.i18n.MessagesApi;

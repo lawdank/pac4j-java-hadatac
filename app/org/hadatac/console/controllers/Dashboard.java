@@ -1,11 +1,11 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.twirl.api.Html;
 
-import views.html.main;
-import views.html.dashboard;
+import org.hadatac.console.views.html.main;
+import org.hadatac.console.views.html.dashboard;
 import org.hadatac.utils.Repository;
 
 public class Dashboard extends Controller {

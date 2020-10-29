@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 import java.io.IOException;
 import java.util.Date;

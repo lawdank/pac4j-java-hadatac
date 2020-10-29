@@ -1,5 +1,6 @@
-package controllers.triplestore;
+package org.hadatac.console.controllers.triplestore;
 
+import org.hadatac.utils.CollectionUtil;
 import play.mvc.*;
 
 import java.io.File;
@@ -13,7 +14,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
 //import controllers.AuthApplication;
-import views.html.triplestore.*;
+import org.hadatac.console.views.html.triplestore.*;
 import org.hadatac.utils.ConfigProp;
 import org.hadatac.utils.NameSpaces;
 

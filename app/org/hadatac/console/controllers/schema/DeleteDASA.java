@@ -1,4 +1,4 @@
-package controllers.schema;
+package org.hadatac.console.controllers.schema;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -29,9 +29,9 @@ public class DeleteDASA extends Controller {
 		if (!dasa_uri.equals("")) {
 			dasa = DataAcquisitionSchemaAttribute.find(dasa_uri);
 			System.out.println("delete org.hadatac.data acquisition schema attribute");
-			return ok(views.html.schema.deleteDASA.render(dasa));
+			return ok(org.hadatac.console.views.html.schema.deleteDASA.render(dasa));
 		}
-		return ok(views.html.schema.deleteDASA.render(dasa));
+		return ok(org.hadatac.console.views.html.schema.deleteDASA.render(dasa));
 	}
 
 //	@Restrict(@Group(AuthApplication.DATA_OWNER_ROLE))
@@ -63,6 +63,6 @@ public class DeleteDASA extends Controller {
 			dasa.delete();
 		}
 
-		return ok(views.html.schema.DASAConfirm.render("Deleted Data Acquisition Schema Attribute", "Deleted " + deletedRows + " tuples", dasa));
+		return ok(org.hadatac.console.views.html.schema.DASAConfirm.render("Deleted Data Acquisition Schema Attribute", "Deleted " + deletedRows + " tuples", dasa));
 	}
 }

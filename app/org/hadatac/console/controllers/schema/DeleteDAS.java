@@ -1,4 +1,4 @@
-package controllers.schema;
+package org.hadatac.console.controllers.schema;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -42,10 +42,10 @@ public class DeleteDAS extends Controller {
             System.out.println("delete org.hadatac.data acquisition schema");
             dasForm.setUri(das_uri);
             dasForm.setLabel(das.getLabel());
-            return ok(views.html.schema.deleteDAS.render(das_uri, dasForm));
+            return ok(org.hadatac.console.views.html.schema.deleteDAS.render(das_uri, dasForm));
         }
 
-        return ok(views.html.schema.deleteDAS.render(das_uri, dasForm));
+        return ok(org.hadatac.console.views.html.schema.deleteDAS.render(das_uri, dasForm));
     }
 
 //    @Restrict(@Group(AuthApplication.DATA_OWNER_ROLE))
@@ -81,9 +81,9 @@ public class DeleteDAS extends Controller {
         }
 
         if (form.hasErrors()) {
-            return badRequest(views.html.schema.DASConfirm.render("ERROR Deleting Data Acquisition Schema ", "Error from form", data.getLabel()));
+            return badRequest(org.hadatac.console.views.html.schema.DASConfirm.render("ERROR Deleting Data Acquisition Schema ", "Error from form", data.getLabel()));
         } else {
-            return ok(views.html.schema.DASConfirm.render("Deleted Data Acquisition Schema ", "", data.getLabel()));
+            return ok(org.hadatac.console.views.html.schema.DASConfirm.render("Deleted Data Acquisition Schema ", "", data.getLabel()));
         }
     }
 }

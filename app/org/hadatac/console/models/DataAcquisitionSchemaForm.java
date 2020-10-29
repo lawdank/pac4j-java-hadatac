@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 public class DataAcquisitionSchemaForm {
 

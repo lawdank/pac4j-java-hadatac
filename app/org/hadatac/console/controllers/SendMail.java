@@ -1,4 +1,4 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 
 import com.google.inject.Inject;

@@ -1,4 +1,4 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 import org.apache.commons.mail.EmailAttachment;
 import play.api.libs.mailer.MailerClient;

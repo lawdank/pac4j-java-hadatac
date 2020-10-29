@@ -1,4 +1,4 @@
-package controllers.schema;
+package org.hadatac.console.controllers.schema;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class DASManagement extends Controller {
     @Secure
     public Result index() {
         List<DataAcquisitionSchema> sdds = DataAcquisitionSchema.findAll();
-        return ok(views.html.schema.DASManagement.render(sdds));
+        return ok(org.hadatac.console.views.html.schema.DASManagement.render(sdds));
     }
 
 //    @Restrict(@Group(AuthApplication.DATA_OWNER_ROLE))

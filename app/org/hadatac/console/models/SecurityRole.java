@@ -1,4 +1,4 @@
-package models;
+package org.hadatac.console.models;
 
 import java.util.UUID;
 
@@ -9,9 +9,9 @@ import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import org.hadatac.utils.CollectionUtil;
 
 import be.objectify.deadbolt.java.models.Role;
+import org.hadatac.utils.CollectionUtil;
 
 /**
  * @author Steve Chaloner (steve@objectify.be)

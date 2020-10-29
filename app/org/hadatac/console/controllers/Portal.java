@@ -1,10 +1,10 @@
-package controllers;
+package org.hadatac.console.controllers;
 
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.twirl.api.Html;
-import views.html.main;
-import views.html.portal;
+import org.hadatac.console.views.html.main;
+import org.hadatac.console.views.html.portal;
 import org.hadatac.utils.Repository;
 
 public class Portal extends Controller {

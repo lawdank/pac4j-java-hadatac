@@ -1,8 +1,8 @@
-package controllers.annotator;
+package org.hadatac.console.controllers.annotator;
 
 //import controllers.AuthApplication;
-import http.DeploymentQueries;
-import http.GetSparqlQuery;
+import org.hadatac.console.http.DeploymentQueries;
+import org.hadatac.console.http.GetSparqlQuery;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -18,8 +18,8 @@ import org.hadatac.console.models.TripleDocument;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-import views.html.error_page;
-import views.html.annotator.*;
+import org.hadatac.console.views.html.error_page;
+import org.hadatac.console.views.html.annotator.*;
 import org.hadatac.data.api.DataFactory;
 import org.hadatac.entity.pojo.STR;
 
