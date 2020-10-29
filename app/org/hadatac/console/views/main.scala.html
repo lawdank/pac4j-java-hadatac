@@ -1,0 +1,95 @@
+@(title: String, nav: String = "")(content: Html)
+
+ @import be.objectify.deadbolt.java.views.html._
+ @import be.objectify.deadbolt.java.utils.TemplateUtils._
+ @import org.hadatac.console.controllers._
+ @import be.objectify.deadbolt.java.DeadboltHandler
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>@title</title>
+        <script type="text/javascript" src="@controllers.routes.Assets.at("lib/jquery/jquery.js")"></script>
+        <script type="text/javascript" src="@controllers.routes.Assets.at("javascripts/moment-with-locales.js")"></script>
+        <script type="text/javascript" src="@controllers.routes.Assets.at("lib/bootstrap/js/bootstrap.js")"></script>
+        <script type="text/javascript" src="@controllers.routes.Assets.at("javascripts/bootstrap-datetimepicker.js")"></script>
+        @*        <script type="text/javascript" src="@org.hadatac.console.controllers.routes.AuthApplication.jsRoutes" defer="defer"></script>*@
+@*        <script type="text/javascript" src="@org.hadatac.console.controllers.routes.JS.jsRoutesMain" defer="defer"></script>*@
+
+        <link rel="stylesheet" href="@controllers.routes.Assets.at("lib/bootstrap/css/bootstrap.css")">
+        <link href="@controllers.routes.Assets.at("css/upload.css")" rel="stylesheet">
+        <link href="@controllers.routes.Assets.at("css/main.css")" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="@controllers.routes.Assets.at("lib/dhtmlx/css/dhtmlx.css")"/>
+        <link rel="stylesheet" type="text/css" href="@controllers.routes.Assets.at("stylesheets/bootstrap-datetimepicker.css")"/>
+        <script src="@controllers.routes.Assets.at("lib/dhtmlx/js/dhtmlx.js")"></script>
+        <script type="text/stylesheet" rel="stylesheet" media="print" href="@controllers.routes.Assets.at("css/printfriendly.css")"></script>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" org.hadatac.data-toggle="collapse" org.hadatac.data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="@org.hadatac.console.controllers.routes.Portal.index()">HADatAc Home</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@org.hadatac.console.controllers.dataacquisitionsearch.routes.DataAcquisitionSearch.index()">Search Data</a></li>*@
+                         <li><a href="@org.hadatac.metadata.routes.Metadata.index()">Browse Metadata</a></li>*@
+                        <li><a href="@org.hadatac.console.controllers.routes.Dashboard.index()">Dashboard</a></li>
+@*                        @if(org.hadatac.utils.CollectionUtil.isSandboxMode()) {*@
+@*                            <li><a style="background-color: #FFFF00" href="@org.hadatac.console.controllers.sandbox.routes.Sandbox.index()">Sandbox Mode</a></li>*@
+@*                        } else {*@
+@*                            <li><a href="@org.hadatac.console.controllers.sandbox.routes.Sandbox.index()">Sandbox Mode</a></li>*@
+@*                        }
+                        @subjectNotPresent()  *@
+                        @subjectNotPresent
+                        {
+                            <li class="@("active".when(nav == "signUp"))"><a href="@org.hadatac.console.controllers.routes.WidgetController.createWidget()"<a>Sign up</a></li>
+                        }
+@*                    </ul>*@
+
+@*                        @subjectPresentOr {*@
+@*                            <ul class="nav navbar-nav navbar-right">*@
+@*                            @defining(getUserProvider().getUser(session())) { user =>*@
+@*                                <li class="dropdown">*@
+@*                                    @if(user!=null){*@
+@*                                        <a href="#" class="dropdown-toggle" org.hadatac.data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> @user.getName() <span class="caret"></span></a>*@
+@*                                    }*@
+                               @* <ul class="dropdown-menu" role="menu">*@
+                                    <li class="@("active".when(nav == "profile"))"><a href="@org.hadatac.console.controllers.routes.Application.protectedIndex()">Profile</a></li>
+                                    <li><a href="@org.hadatac.console.controllers.routes.CentralLogoutController.logout()"><i class="icon-off"></i> Log Out</a></li>
+                               @* </ul>*@
+@*                                </li>*@
+
+@*                            </ul>*@
+@*                        } {*@
+                            <a href="@org.hadatac.console.controllers.routes.Application.formIndex()" class=" navbar-right btn btn-default navbar-btn @("disabled".when(nav == "login"))">Log In</a>
+@*                        }*@
+                    </ul>
+                </div>
+
+                </div>
+            </div>
+        </nav>
+       @content
+        <div class="footer">
+            <hr>
+            <a href="@org.hadatac.console.controllers.routes.Version.index()">Version</a><br>
+            (c) 2015-2020 <a href="http://hadatac.org">HADatAc.org</a>
+        </div>
+
+    </body>
+</html>
+
