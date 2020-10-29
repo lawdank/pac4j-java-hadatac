@@ -73,6 +73,11 @@ GET	    /hadatac/getIndicatorValueDownload/download	   org.hadatac.console.http.
 POST    /hadatac/apiStudy/download			           org.hadatac.console.http.SolrSearchProxy.getApiStudyDownload(request: Request)
 POST    /hadatac/apiStudyVariable/download		       org.hadatac.console.http.SolrSearchProxy.getApiStudyVariableDownload(request: Request)
 POST    /hadatac/apiStudyVariableData/download		   org.hadatac.console.http.SolrSearchProxy.getApiStudyVariableDataDownload(request: Request)
+GET	    /hadatac/knowledgegraph                        org.hadatac.console.controllers.kg.KnowledgeGraphBrowser.index(autoRefresh : Boolean, hasOntologies : Boolean, hasIndicators : Boolean, hasDeployments : Boolean, hasSDDs : Boolean, hasDASpecs : Boolean)
+POST    /hadatac/knowledgegraph                        org.hadatac.console.controllers.kg.KnowledgeGraphBrowser.postIndex(autoRefresh : Boolean, hasOntologies : Boolean, hasIndicators : Boolean, hasDeployments : Boolean,  hasSDDs : Boolean, hasDASpecs : Boolean)
+GET	    /hadatac/objects/objectView	                   org.hadatac.console.controllers.objects.ObjectView.index(obj_uri: String, autoRefresh : Boolean)
+POST	/hadatac/objects/objectView	                   org.hadatac.console.controllers.objects.ObjectView.postIndex(obj_uri: String, autoRefresh : Boolean)
+
 
 GET     /hadatac/version                                   org.hadatac.console.controllers.Version.index()
 POST    /hadatac/version                                   org.hadatac.console.controllers.Version.postIndex()
@@ -131,6 +136,11 @@ GET     /hadatac/metadata/metadataentrybyuri           org.hadatac.console.contr
 POST    /hadatac/metadata/metadataentrybyuri           org.hadatac.console.controllers.metadata.MetadataEntry.postIndexByUri(uri: String)
 GET	    /hadatac/org.hadatac.metadata/dynamicfunctions        org.hadatac.console.controllers.metadata.DynamicFunctions.index()
 POST	/hadatac/org.hadatac.metadata/dynamicfunctions        org.hadatac.console.controllers.metadata.DynamicFunctions.postIndex()
+GET	    /hadatac/metadataacquisitions                  org.hadatac.console.controllers.metadataacquisition.MetadataAcquisition.index(request: Request)
+POST	/hadatac/metadataacquisitions		           org.hadatac.console.controllers.metadataacquisition.MetadataAcquisition.postIndex(request: Request)
+POST	/hadatac/metadataacquisitions		           org.hadatac.console.controllers.metadataacquisition.MetadataAcquisition.postIndex(request: Request)
+GET	    /hadatac/metadataacquisitions/updatestudy      org.hadatac.console.controllers.metadataacquisition.MetadataAcquisition.update()
+POST	/hadatac/metadataacquisitions/updatestudy      org.hadatac.console.controllers.metadataacquisition.MetadataAcquisition.postUpdate()
 GET	    /hadatac/schemaattributes                          org.hadatac.console.controllers.metadataacquisition.SchemaAttribute.index(request: Request)
 POST	/hadatac/schemaattributes                             org.hadatac.console.controllers.metadataacquisition.SchemaAttribute.postIndex(request: Request)
 GET	    /hadatac/schemaattributes/updateda                 org.hadatac.console.controllers.metadataacquisition.SchemaAttribute.update()
@@ -396,6 +406,9 @@ POST	/hadatac/dataacquisitions/edit/form            org.hadatac.console.controll
 #POST	/hadatac/streams/visualization       	       org.hadatac.console.controllers.streams.StreamVisualization.postIndex(dir : String, file_id : String, da_uri: String)
 
 
+#studies management
+GET	    /hadatac/studies/graph                         org.hadatac.console.controllers.studies.StudyViewGraph.index(study_uri : String, autoRefresh : Boolean, maxObjsPerSOC : Int)
+POST    /hadatac/studies/graph                         org.hadatac.console.controllers.studies.StudyViewGraph.postIndex(study_uri : String, autoRefresh : Boolean, maxObjsPerSOC : Int)
 
 # org.hadatac.metadata store management URLs
 GET     /hadatac/ts/loadont                         org.hadatac.console.controllers.triplestore.LoadOnt.loadOnt(oper: String)
