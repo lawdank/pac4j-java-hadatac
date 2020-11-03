@@ -14,7 +14,8 @@ import org.apache.jena.rdf.model.Model;
 public class SPARQLUtils {
 
     public static ResultSetRewindable select(String sparqlService, String queryString) {
-        // System.out.println("\nqueryString: " + queryString + "\n");
+//        System.out.println("\nqueryString: " + queryString + "\n");
+//        System.out.println("\nsparqlService: " + sparqlService + "\n");
 
         try {
             Query query = QueryFactory.create(queryString);

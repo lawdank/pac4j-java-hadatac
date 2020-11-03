@@ -8,6 +8,7 @@ import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.hadatac.console.views.html.error_page;
 import org.hadatac.utils.CollectionUtil;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.credentials.UsernamePasswordCredentials;
@@ -23,8 +24,8 @@ import java.util.Iterator;
 import java.util.List;
 //import util.SecurityPasswordEncoder;
 //import util.SecurityPasswordEncoder;
+import static play.mvc.Results.*;
 
-import static play.mvc.Results.redirect;
 
 public class SimpleTestUsernamePasswordAuthenticator implements Authenticator<UsernamePasswordCredentials> {
 
@@ -44,32 +45,37 @@ public class SimpleTestUsernamePasswordAuthenticator implements Authenticator<Us
         if (CommonHelper.isBlank(password)) {
             throw new CredentialsException("Password cannot be blank");
         }
-        System.out.println("credentials hashcode:"+credentials.hashCode());
-//        System.out.println( "securityPasswordEncoder.encode(password))" + securityPasswordEncoder.encode(password));
         //Querying from DB
         SolrClient solrClient = new HttpSolrClient.Builder(
                 CollectionUtil.getCollectionPath(CollectionUtil.Collection.AUTHENTICATE_USERS)).build();
         String query = "active_bool:true";
+        System.out.println("solrClient:"+solrClient);
         SolrQuery solrQuery = new SolrQuery(query);
+        System.out.println("solrQuery:"+solrQuery);
         List<SysUser> users = new ArrayList<SysUser>();
+
 
         try {
             QueryResponse queryResponse = solrClient.query(solrQuery);
             SolrDocumentList list = queryResponse.getResults();
             Iterator<SolrDocument> i = list.iterator();
-
+            System.out.println("i:"+i);
             boolean userExists = false;
-            while (i.hasNext()) {
-                if(i.next().containsValue(username)) {
+            int userSize = list.size();
+            while (userSize > 0 ) {
+                System.out.println("Inside while:"+userSize);
+                if(i.hasNext() && i.next().containsValue(username)) {
                     //TODO: delete later
-                    System.out.println("User exists:" +i.next());
+                    System.out.println("User exists:");
                     userExists=true;
                     break;
                 }
+                userSize --;
 
             }
             solrClient.close();
             if(!userExists){
+                System.out.println("User does not exists:");
                 redirect(org.hadatac.console.controllers.routes.Application.loginForm())
                         .flashing("error", "user does not exist");
                 return;
@@ -84,7 +90,7 @@ public class SimpleTestUsernamePasswordAuthenticator implements Authenticator<Us
 
             }
         } catch (Exception e) {
-            System.out.println("[ERROR] User.getAuthUserFindSolr - Exception message: " + e.getMessage());
+            System.out.println("[ERROR] SimpleTestUsernamePasswordAuthenticator - Exception message: " + e.getMessage());
         }
 
     }

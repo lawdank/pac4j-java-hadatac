@@ -13,6 +13,8 @@ POST        /hadatac                                       org.hadatac.console.c
 GET         /hadatac/loginForm                             org.hadatac.console.controllers.Application.loginForm()
 GET         /hadatac/form/index.html                       org.hadatac.console.controllers.Application.formIndex(request: Request)
 GET         /hadatac/form/index.html.json                  org.hadatac.console.controllers.Application.formIndexJson(request: Request)
+POST        /hadatac/upload                                org.hadatac.console.controllers.Application.upload(request: Request)
+#GET        /hadatac/upload                                org.hadatac.console.controllers.Application.upload(request: Request)
 #GET         /hadatac/signUp                  controllers.Application.signUp()
 GET        /send/mail                                      org.hadatac.console.controllers.SendMail.sendMail()
 GET	    /hadatac/dash                                   org.hadatac.console.controllers.Dashboard.index()

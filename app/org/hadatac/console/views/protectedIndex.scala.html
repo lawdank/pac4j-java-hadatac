@@ -29,10 +29,10 @@
                 <div class="col-md-1 col-xs-0"></div>
                 <div class="col-md-3 col-xs-2">
                     <h4>Data/Metadata Search</h4>
-                    @*                <a href="@org.hadatac.console.controllers.kg.routes.KnowledgeGraphBrowser.index(false, false, false, false, false, false)"*@
-                    @*                id="kg" class="btn btn-primary btn-block" role="button">Knowledge Graph Browsing</a>*@
-                    @*                <a href="@org.hadatac.console.controllers.metadataacquisition.routes.MetadataAcquisition.index()"*@
-                    @*                id="metadatafacet" class="btn btn-primary btn-block disabled" role="button">Study Search</a>*@
+                                    <a href="@org.hadatac.console.controllers.kg.routes.KnowledgeGraphBrowser.index(false, false, false, false, false, false)"
+                                    id="kg" class="btn btn-primary btn-block" role="button">Knowledge Graph Browsing</a>
+                                    <a href="@org.hadatac.console.controllers.metadataacquisition.routes.MetadataAcquisition.index()"
+                                    id="metadatafacet" class="btn btn-primary btn-block disabled" role="button">Study Search</a>
                     @*                <a href="@org.hadatac.console.controllers.metadataacquisition.routes.DataAcquisitionBrowser.index()"*@
                     @*                id="dataacquisitionfacet" class="btn btn-primary btn-block disabled" role="button">Data Stream Search</a>*@
                     @*                <a href="@org.hadatac.console.controllers.dataacquisitionsearch.routes.DataAcquisitionSearch.index()"*@
@@ -87,8 +87,8 @@
                 </div>
                 @*            @restrict(roles = anyOf(allOf("data_manager"))) {*@
                 @*                @defining(AuthApplication.getAuthApplication().getUserProvider().getUser(session())) { user =>*@
-                @*                    <div class="col-md-3 col-xs-2">*@
-                @*                        <h4>Knowledge Management</h4>*@
+                                   <div class="col-md-3 col-xs-2">
+                                        <h4>Knowledge Management</h4>
                 @*                        <a href="@org.hadatac.console.controllers.triplestore.routes.Clean.clean("init")"*@
                 @*                        class="btn btn-primary btn-block" role="button">Manage Repository</a>*@
                 @*                        *@@*  <a href="@org.hadatac.console.controllers.triplestore.routes.CleanStudy.clean("init")"*@
@@ -102,6 +102,17 @@
                 @*                    </div>*@
                 @*                }*@
                 @*            }*@
+                                       @helper.form(action = routes.Application.upload, Symbol("enctype") -> "multipart/form-data") {
+
+                                           <input type="file" name="picture">
+
+                                           <p>
+                                               <input type="submit">
+                                           </p>
+
+                                       }
+                                        <a href="@org.hadatac.console.controllers.routes.Application.upload()"
+                                        class="btn btn-primary btn-block" role="button">Upload Additional Knowledge</a>
                 <div class="col-md-1 col-xs-0"></div>
             </div>
 
