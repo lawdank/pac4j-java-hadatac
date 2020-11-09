@@ -32,9 +32,6 @@ public class WidgetData {
         this.messagesApi = messagesApi;
     }
 
-//    @Constraints.Min(0)
-//    private int price;
-
     public WidgetData() {
     }
 

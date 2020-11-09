@@ -170,8 +170,7 @@ public class Application extends Controller {
 
     public Result loginForm() throws TechnicalException {
         final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(org.hadatac.console.views.html.loginForm.render(formClient.getCallbackUrl()))
-                .flashing("error", "user does not exist");
+        return ok(org.hadatac.console.views.html.loginForm.render(formClient.getCallbackUrl()));
     }
 
     public Result jwt(Http.Request request) {
