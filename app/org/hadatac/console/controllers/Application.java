@@ -199,24 +199,4 @@ public class Application extends Controller {
         return ok(org.hadatac.console.views.html.signUp.render(formClient.getCallbackUrl()));
     }
 
-    public Result upload(Http.Request request) {
-        Http.MultipartFormData<TemporaryFile> body = request.body().asMultipartFormData();
-        Http.MultipartFormData.FilePart<TemporaryFile> picture = body.getFile("picture");
-        System.out.println("picture:"+picture);
-        if (picture != null) {
-            String fileName = picture.getFilename();
-            long fileSize = picture.getFileSize();
-            String contentType = picture.getContentType();
-            TemporaryFile file = picture.getRef();
-            System.out.println("file:"+file);
-            file.copyTo(Paths.get("/Users/kandws01/Desktop/tmp/uploaded_file.jpg"), true);
-            return ok("File uploaded");
-        } else {
-            return badRequest().flashing("error", "Missing file");
-        }
-    }
-//        File file = request.body().asRaw().asFile();
-//        return ok("File uploaded");
-
-
 }
