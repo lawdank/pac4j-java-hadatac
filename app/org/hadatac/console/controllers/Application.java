@@ -20,6 +20,7 @@ import org.pac4j.play.PlayWebContext;
 import org.pac4j.play.http.PlayHttpActionAdapter;
 import org.pac4j.play.java.Secure;
 import org.pac4j.play.store.PlaySessionStore;
+import play.api.data.Form;
 import play.api.libs.Files;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -193,10 +194,4 @@ public class Application extends Controller {
             throw new TechnicalException(e);
         }
     }
-
-    public Result signUp() throws TechnicalException {
-        final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(org.hadatac.console.views.html.signUp.render(formClient.getCallbackUrl()));
-    }
-
 }

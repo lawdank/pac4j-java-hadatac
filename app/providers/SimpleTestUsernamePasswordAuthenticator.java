@@ -67,10 +67,10 @@ public class SimpleTestUsernamePasswordAuthenticator implements Authenticator<Us
                         .flashing("error", "user does not exist");
             } else {
                 //TODO : email validation implementation
-                if (!u.getEmailValidated()) {
-                    System.out.println("User unverified!");
-                    throw new CredentialException("User is not verified");
-                } else {
+//                if (!u.getEmailValidated()) {
+//                    System.out.println("User unverified!");
+//                    throw new CredentialException("User is not verified");
+//                } else {
                     for (final LinkedAccount acc : u.getLinkedAccounts()) {
                         if (checkPassword(acc.providerUserId, password)) {
                             System.out.println("User logged in!:"+acc.providerUserId+"...."+ password);
@@ -89,7 +89,7 @@ public class SimpleTestUsernamePasswordAuthenticator implements Authenticator<Us
                             throw new CredentialException("User password is invalid");
                         }
                     }
-                }
+//                }
             }
         } catch (Exception e) {
             System.out.println("[ERROR] SimpleTestUsernamePasswordAuthenticator - Exception message: " + e.getMessage());
