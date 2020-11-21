@@ -292,10 +292,10 @@ public class DataAcquisitionSchemaObject extends HADatAcThing {
 
         DataAcquisitionSchemaObject object = null;
         String queryString = NameSpaces.getInstance().printSparqlNameSpaceList() +
-                "SELECT ?org.hadatac.entity ?partOfSchema ?role ?inRelationTo ?relation ?inRelationToStr ?wasDerivedFrom ?alternativeName WHERE { \n" +
+                "SELECT ?entity ?partOfSchema ?role ?inRelationTo ?relation ?inRelationToStr ?wasDerivedFrom ?alternativeName WHERE { \n" +
                 "   <" + uri + "> a hasco:DASchemaObject . \n" +
                 "   <" + uri + "> hasco:partOfSchema ?partOfSchema . \n" +
-                "   OPTIONAL { <" + uri + "> hasco:hasEntity ?org.hadatac.entity } . \n" +
+                "   OPTIONAL { <" + uri + "> hasco:hasEntity ?entity } . \n" +
                 "   OPTIONAL { <" + uri + "> hasco:hasRole ?role } .  \n" +
                 "   OPTIONAL { <" + uri + "> sio:SIO_000668 ?inRelationTo } . \n" +
                 "   OPTIONAL { <" + uri + "> hasco:Relation ?relation } . \n" +

@@ -20,6 +20,7 @@ import org.pac4j.play.PlayWebContext;
 import org.pac4j.play.http.PlayHttpActionAdapter;
 import org.pac4j.play.java.Secure;
 import org.pac4j.play.store.PlaySessionStore;
+import play.api.data.Form;
 import play.api.libs.Files;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -170,8 +171,7 @@ public class Application extends Controller {
 
     public Result loginForm() throws TechnicalException {
         final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(org.hadatac.console.views.html.loginForm.render(formClient.getCallbackUrl()))
-                .flashing("error", "user does not exist");
+        return ok(org.hadatac.console.views.html.loginForm.render(formClient.getCallbackUrl()));
     }
 
     public Result jwt(Http.Request request) {
@@ -194,30 +194,4 @@ public class Application extends Controller {
             throw new TechnicalException(e);
         }
     }
-
-    public Result signUp() throws TechnicalException {
-        final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(org.hadatac.console.views.html.signUp.render(formClient.getCallbackUrl()));
-    }
-
-    public Result upload(Http.Request request) {
-        Http.MultipartFormData<TemporaryFile> body = request.body().asMultipartFormData();
-        Http.MultipartFormData.FilePart<TemporaryFile> picture = body.getFile("picture");
-        System.out.println("picture:"+picture);
-        if (picture != null) {
-            String fileName = picture.getFilename();
-            long fileSize = picture.getFileSize();
-            String contentType = picture.getContentType();
-            TemporaryFile file = picture.getRef();
-            System.out.println("file:"+file);
-            file.copyTo(Paths.get("/Users/kandws01/Desktop/tmp/uploaded_file.jpg"), true);
-            return ok("File uploaded");
-        } else {
-            return badRequest().flashing("error", "Missing file");
-        }
-    }
-//        File file = request.body().asRaw().asFile();
-//        return ok("File uploaded");
-
-
 }

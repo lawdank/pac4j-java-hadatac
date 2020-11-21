@@ -3,7 +3,7 @@
 @import helper._
 @import org.hadatac.console.views.html._
 @import org.hadatac.console.controllers.triplestore._
-@* @import org.hadatac.metadata.loader._ *@
+@import org.hadatac.metadata.loader._
 @import java.net._
 
 @main("Load Facts into Metadata Store") {
@@ -23,17 +23,17 @@
         <div class="col-md-8 col-md-offset-1">
 
          @if(oper=="init") {
-
+         </br></br></br>
              <h4>Load facts into org.hadatac.metadata store from turtle...</h4>
              <div id="rcorners">
-                 The org.hadatac.metadata store has <br> @* @MetadataContext.playTotalTriples() triples. <br>
+                 The org.hadatac.metadata store has <br>  @MetadataContext.playTotalTriples() triples. <br>
 
-@*                 <form name="fileUploadForm" id='upload3' method="POST" enctype="multipart/form-org.hadatac.data" action="@org.hadatac.console.controllers.triplestore.routes.LoadKB.uploadTurtleFile("load")" onchange="checkform3()">*@
-@*                     <input type="file" class="btn btn-info" name="pic"> *@
-@*                     <div id='submitMessage3'  style="display:none;" >*@
-@*                        <br>Press <input type="submit" class="btn-sm btn-success" value="Parse and Load"> to add knowledge into the knowledge base. *@
-@*	                 </div>*@
-@*                 </form>*@
+                 <form name="fileUploadForm" id='upload3' method="POST" enctype="multipart/form-data" action="@org.hadatac.console.controllers.triplestore.routes.LoadKB.uploadTurtleFile("load")" onchange="checkform3()">
+                     <input type="file" class="btn btn-info" name="pic">
+                     <div id='submitMessage3'  style="display:none;" >
+                        <br>Press <input type="submit" class="btn-sm btn-success" value="Parse and Load"> to add knowledge into the knowledge base.
+	                 </div>
+                 </form>
              </div>
          }
 
@@ -46,18 +46,18 @@
 	         </div>
 
              <script> 
-                @*var msg = "@LoadKB.playLoadKB(oper)";*@
+                var msg = "@LoadKB.playLoadKB(oper)";
                 var msg2 = decodeURIComponent(msg).replace(/\+/g, '&nbsp;');
                 $('#msgarea').html(msg2.replace(/&lt;br&gt;/g, '<br>'));
                 document.getElementById('end-process-box').style.display = 'inline';
              </script> 
 
-@*             <a href="@org.hadatac.console.controllers.triplestore.routes.LoadKB.loadKB("init")" class="btn btn-warning" role="button">Back to Load KB</a>*@
+             <a href="@org.hadatac.console.controllers.triplestore.routes.LoadKB.loadKB("init")" class="btn btn-warning" role="button">Back to Load KB</a>
          }
 
          @if(oper=="init") {
 	        <br>
-            <a href="@org.hadatac.console.controllers.routes.Portal.index()" class="btn btn-warning" role="button">Back to Main Page</a>
+            <a href="@org.hadatac.console.controllers.routes.Application.formIndex()" class="btn btn-warning" role="button">Back to Main Page</a>
          }
 
 	   </div>

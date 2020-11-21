@@ -7,12 +7,15 @@ import be.objectify.deadbolt.java.models.Subject;
 //import com.feth.play.module.pa.providers.oauth2.BasicOAuth2AuthUser;
 //import com.feth.play.module.pa.providers.oauth2.google.GoogleAuthUser;
 //import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
-//import com.feth.play.module.pa.user.AuthUser;
-//import com.feth.play.module.pa.user.AuthUserIdentity;
-//import com.feth.play.module.pa.user.EmailIdentity;
-//import com.feth.play.module.pa.user.NameIdentity;
+import com.typesafe.config.ConfigFactory;
+import org.hadatac.console.controllers.WidgetData;
+import org.hadatac.entity.pojo.User;
+import providers.AuthUser;
+import providers.AuthUserIdentity;
+import providers.EmailIdentity;
+import providers.NameIdentity;
 //import com.feth.play.module.pa.user.SessionAuthUser;
-//import com.feth.play.module.pa.user.FirstLastNameIdentity;
+import providers.FirstLastNameIdentity;
 
 //import controllers.AuthApplication;
 import org.hadatac.console.models.TokenAction.Type;
@@ -34,11 +37,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Initial version based on work by Steve Chaloner (steve@objectify.be) for
@@ -190,13 +189,12 @@ public class SysUser implements Subject {
 	}
 
 	public boolean isDataManager() {
-//		SecurityRole target = SecurityRole.findByRoleNameSolr(
-//		        AuthApplication.DATA_MANAGER_ROLE);
-//		for(SecurityRole r : roles) {
-//			if(r.id_s.equals(target.id_s)){
-//				return true;
-//			}
-//		}
+		SecurityRole target = SecurityRole.findByRoleNameSolr("data_manager");
+		for(SecurityRole r : roles) {
+			if(r.id_s.equals(target.id_s)){
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -282,30 +280,30 @@ public class SysUser implements Subject {
 //		return !users.isEmpty();
 //	}
 
-//	private static List<SysUser> getAuthUserFindSolr(
-//			final AuthUserIdentity identity) {
+	private static List<SysUser> getAuthUserFindSolr(
+			final AuthUserIdentity identity) {
 		SolrClient solrClient = new HttpSolrClient.Builder(
 		        CollectionUtil.getCollectionPath(CollectionUtil.Collection.AUTHENTICATE_USERS)).build();
-//		String query = "active_bool:true AND provider_user_id_str:" + identity.getId() + " AND provider_key_str:" + identity.getProvider();
-//		SolrQuery solrQuery = new SolrQuery(query);
-//		List<SysUser> users = new ArrayList<SysUser>();
-//
-//		try {
-//			QueryResponse queryResponse = solrClient.query(solrQuery);
-//			solrClient.close();
-//			SolrDocumentList list = queryResponse.getResults();
-//			Iterator<SolrDocument> i = list.iterator();
-//			while (i.hasNext()) {
-//				SysUser user = convertSolrDocumentToUser(i.next());
-//				users.add(user);
-//			}
-//		} catch (Exception e) {
-//			System.out.println("[ERROR] User.getAuthUserFindSolr - Exception message: " + e.getMessage());
-//		}
-//
-//		return users;
-//	}
-//
+		String query = "active_bool:true AND provider_user_id_str:" + identity.getId() + " AND provider_key_str:" + identity.getProvider();
+		SolrQuery solrQuery = new SolrQuery(query);
+		List<SysUser> users = new ArrayList<SysUser>();
+
+		try {
+			QueryResponse queryResponse = solrClient.query(solrQuery);
+			solrClient.close();
+			SolrDocumentList list = queryResponse.getResults();
+			Iterator<SolrDocument> i = list.iterator();
+			while (i.hasNext()) {
+				SysUser user = convertSolrDocumentToUser(i.next());
+				users.add(user);
+			}
+		} catch (Exception e) {
+			System.out.println("[ERROR] User.getAuthUserFindSolr - Exception message: " + e.getMessage());
+		}
+
+		return users;
+	}
+
 //	public static SysUser findByAuthUserIdentity(final AuthUserIdentity identity) {
 //		return findByAuthUserIdentitySolr(identity);
 //	}
@@ -318,13 +316,14 @@ public class SysUser implements Subject {
 //		if (identity instanceof UsernamePasswordAuthUser) {
 //		    SysUser retUser = findByUsernamePasswordIdentitySolr((UsernamePasswordAuthUser) identity);
 //            return retUser;
-//		} else if (identity instanceof GoogleAuthUser) {
+//		}
+//		else if (identity instanceof GoogleAuthUser) {
 //		    SysUser retUser = findByEmailSolr(((GoogleAuthUser)identity).getEmail());
 //		    return retUser;
 //		} else if (identity instanceof SessionAuthUser) {
 //            List<LinkedAccount> linkedAccounts = LinkedAccount.findByProviderUserIdSolr(
 //                    ((SessionAuthUser)identity).getId());
-//
+
 //            SysUser retUser = null;
 //            for (LinkedAccount account : linkedAccounts) {
 //                retUser = SysUser.findByUserIdSolr(account.getUserId());
@@ -422,40 +421,36 @@ public class SysUser implements Subject {
 		otherUser.save();
 	}
 
-//	public static SysUser create(final AuthUser authUser, String uri) {
-//		final SysUser sys_user = new SysUser();
-//
-//		sys_user.roles.add(SecurityRole
-//				.findByRoleNameSolr(AuthApplication.DATA_OWNER_ROLE));
-//		sys_user.roles.add(SecurityRole.findByRoleNameSolr(
-//                AuthApplication.FILE_VIEWER_EDITOR_ROLE));
-//
-//		sys_user.permissions = new ArrayList<UserPermission>();
-//		sys_user.active = true;
-//		sys_user.lastLogin = Instant.now().toString();
+	//TODO: test
+	public static SysUser create(final WidgetData authUser, String uri, LinkedAccount acc) {
+		final SysUser sys_user = new SysUser();
+
+		sys_user.roles.add(SecurityRole.findByRoleNameSolr("data_owner"));
+		sys_user.roles.add(SecurityRole.findByRoleNameSolr("file_viewer_editor"));
+
+		sys_user.permissions = new ArrayList<UserPermission>();
+		sys_user.active = true;
+		sys_user.lastLogin = Instant.now().toString();
 //		sys_user.linkedAccounts = java.util.Collections.singletonList(LinkedAccount
 //				.create(authUser));
-//
-//		if (authUser instanceof EmailIdentity) {
-//			System.out.println("authUser instanceof EmailIdentity");
-//			final EmailIdentity identity = (EmailIdentity) authUser;
-//			// Remember, even when getting them from FB & Co., emails should be
-//			// verified within the application as a security breach there might
-//			// break your security as well!
-//			sys_user.email = identity.getEmail();
-//			sys_user.emailValidated = false;
-//		}
-//
-//		if (authUser instanceof NameIdentity) {
-//			System.out.println("authUser instanceof NameIdentity");
-//			final NameIdentity identity = (NameIdentity) authUser;
-//			final String name = identity.getName();
-//			System.out.println("name: " + name);
-//			if (name != null) {
-//				sys_user.name = name;
-//			}
-//		}
-//
+		sys_user.linkedAccounts = java.util.Collections.singletonList(LinkedAccount
+				.create(acc));
+
+		if (authUser.getEmail()!=null && !authUser.getEmail().isEmpty()) {
+			System.out.println("authUser instanceof EmailIdentity");
+			sys_user.email = authUser.getEmail();
+			sys_user.emailValidated = false;
+		}
+
+		if (authUser.getName()!=null && !authUser.getName().isEmpty()) {
+			System.out.println("authUser instanceof NameIdentity");
+			final String name = authUser.getName();
+			System.out.println("name: " + name);
+			if (name != null) {
+				sys_user.name = name;
+			}
+		}
+//TODO: to be implemented in UI too
 //		if (authUser instanceof FirstLastNameIdentity) {
 //			System.out.println("authUser instanceof FirstLastNameIdentity");
 //			final FirstLastNameIdentity identity = (FirstLastNameIdentity) authUser;
@@ -470,43 +465,131 @@ public class SysUser implements Subject {
 //				sys_user.lastName = lastName;
 //			}
 //		}
-//
-//		sys_user.id_s = UUID.randomUUID().toString();
-//
-//		if (!SysUser.existsSolr()) {
-//			sys_user.roles.add(SecurityRole
-//					.findByRoleNameSolr(AuthApplication.DATA_MANAGER_ROLE));
-//			sys_user.emailValidated = true;
-//
-//			String admin_uri = ConfigFactory.load().getString("hadatac.console.kb") + "/users#admin";
-//			User user = new User();
-//			user.setName(sys_user.name);
-//			user.setEmail(sys_user.email);
-//			user.setUri(admin_uri);
-//
-//			if(null == uri){
-//				sys_user.uri = admin_uri;
-//			}
-//			else{
-//				sys_user.uri = uri;
-//			}
-//			System.out.println("sys_user before save uri: " + admin_uri);
-//			user.save();
-//			sys_user.save();
-//
-//			return sys_user;
-//		}
-//
-//		if(null == uri) {
-//			sys_user.uri = "";
-//		} else {
-//			sys_user.uri = uri;
-//		}
-//		System.out.println("sys_user before save uri: " + sys_user.uri);
-//		sys_user.save();
-//
-//		return sys_user;
-//	}
+
+		sys_user.id_s = UUID.randomUUID().toString();
+
+		if (!SysUser.existsSolr()) {
+			System.out.println("existsSolr: " );
+			sys_user.roles.add(SecurityRole
+					.findByRoleNameSolr("data_manager"));
+			sys_user.emailValidated = true;
+
+			String admin_uri = ConfigFactory.load().getString("hadatac.console.kb") + "/users#admin";
+			SysUser user = new SysUser();
+			user.setName(sys_user.name);
+			user.setEmail(sys_user.email);
+			user.setUri(admin_uri);
+
+			if(null == uri){
+				sys_user.uri = admin_uri;
+			}
+			else{
+				sys_user.uri = uri;
+			}
+			System.out.println("sys_user before save uri admin: " + admin_uri);
+			user.save();
+			sys_user.save();
+
+			return sys_user;
+		}
+
+		if(null == uri) {
+			sys_user.uri = "";
+		} else {
+			sys_user.uri = uri;
+		}
+		System.out.println("sys_user before save uri other: " + sys_user.uri);
+		sys_user.save();
+
+		return sys_user;
+	}
+	//TODO: original
+	public static SysUser create(final AuthUser authUser, String uri) {
+		final SysUser sys_user = new SysUser();
+
+		sys_user.roles.add(SecurityRole.findByRoleNameSolr("data_owner"));
+		sys_user.roles.add(SecurityRole.findByRoleNameSolr("file_viewer_editor"));
+
+		sys_user.permissions = new ArrayList<UserPermission>();
+		sys_user.active = true;
+		sys_user.lastLogin = Instant.now().toString();
+//		sys_user.linkedAccounts = java.util.Collections.singletonList(LinkedAccount
+//				.create(authUser));
+		sys_user.linkedAccounts = java.util.Collections.singletonList(LinkedAccount
+				.create(authUser));
+
+		if (authUser instanceof EmailIdentity) {
+			System.out.println("authUser instanceof EmailIdentity");
+			final EmailIdentity identity = (EmailIdentity) authUser;
+			// Remember, even when getting them from FB & Co., emails should be
+			// verified within the application as a security breach there might
+			// break your security as well!
+			sys_user.email = identity.getEmail();
+			sys_user.emailValidated = false;
+		}
+
+		if (authUser instanceof NameIdentity) {
+			System.out.println("authUser instanceof NameIdentity");
+			final NameIdentity identity = (NameIdentity) authUser;
+			final String name = identity.getName();
+			System.out.println("name: " + name);
+			if (name != null) {
+				sys_user.name = name;
+			}
+		}
+
+		if (authUser instanceof FirstLastNameIdentity) {
+			System.out.println("authUser instanceof FirstLastNameIdentity");
+			final FirstLastNameIdentity identity = (FirstLastNameIdentity) authUser;
+			final String firstName = identity.getFirstName();
+			final String lastName = identity.getLastName();
+			System.out.println("firstName: " + firstName);
+			System.out.println("lastName: " + lastName);
+			if (firstName != null) {
+				sys_user.firstName = firstName;
+			}
+			if (lastName != null) {
+				sys_user.lastName = lastName;
+			}
+		}
+
+		sys_user.id_s = UUID.randomUUID().toString();
+
+		if (!SysUser.existsSolr()) {
+			System.out.println("existsSolr: " );
+			sys_user.roles.add(SecurityRole
+					.findByRoleNameSolr("data_manager"));
+			sys_user.emailValidated = true;
+
+			String admin_uri = ConfigFactory.load().getString("hadatac.console.kb") + "/users#admin";
+			SysUser user = new SysUser();
+			user.setName(sys_user.name);
+			user.setEmail(sys_user.email);
+			user.setUri(admin_uri);
+
+			if(null == uri){
+				sys_user.uri = admin_uri;
+			}
+			else{
+				sys_user.uri = uri;
+			}
+			System.out.println("sys_user before save uri admin: " + admin_uri);
+			user.save();
+			sys_user.save();
+
+			return sys_user;
+		}
+
+		if(null == uri) {
+			sys_user.uri = "";
+		} else {
+			sys_user.uri = uri;
+		}
+		System.out.println("sys_user before save uri other: " + sys_user.uri);
+		sys_user.save();
+
+		return sys_user;
+	}
 
 	public static boolean existsSolr() {
 		SolrClient solrClient = new HttpSolrClient.Builder(
@@ -526,73 +609,73 @@ public class SysUser implements Subject {
 
 		return false;
 	}
+//TODO : orginal
+	public static SysUser create(final AuthUser authUser) {
+		final SysUser sys_user = new SysUser();
 
-//	public static SysUser create(final AuthUser authUser) {
-//		final SysUser sys_user = new SysUser();
-//
-//		sys_user.roles.add(SecurityRole.findByRoleNameSolr(
-//                AuthApplication.FILE_VIEWER_EDITOR_ROLE));
-//
-//		sys_user.permissions = new ArrayList<UserPermission>();
-//		sys_user.active = true;
-//		sys_user.lastLogin = Instant.now().toString();
-//		sys_user.linkedAccounts = java.util.Collections.singletonList(LinkedAccount
-//				.create(authUser));
-//
-//		if (authUser instanceof EmailIdentity) {
-//			final EmailIdentity identity = (EmailIdentity) authUser;
-//			// Remember, even when getting them from FB & Co., emails should be
-//			// verified within the application as a security breach there might
-//			// break your security as well!
-//			sys_user.email = identity.getEmail();
-//			sys_user.emailValidated = false;
-//		}
-//
-//		if (authUser instanceof NameIdentity) {
-//			final NameIdentity identity = (NameIdentity) authUser;
-//			final String name = identity.getName();
-//			if (name != null) {
-//				sys_user.name = name;
-//			}
-//		}
-//
-//		if (authUser instanceof FirstLastNameIdentity) {
-//			final FirstLastNameIdentity identity = (FirstLastNameIdentity) authUser;
-//			final String firstName = identity.getFirstName();
-//			final String lastName = identity.getLastName();
-//			if (firstName != null) {
-//				sys_user.firstName = firstName;
-//			}
-//			if (lastName != null) {
-//				sys_user.lastName = lastName;
-//			}
-//		}
-//
+		sys_user.roles.add(SecurityRole.findByRoleNameSolr(
+                "file_viewer_editor"));
+
+		sys_user.permissions = new ArrayList<UserPermission>();
+		sys_user.active = true;
+		sys_user.lastLogin = Instant.now().toString();
+		sys_user.linkedAccounts = java.util.Collections.singletonList(LinkedAccount
+				.create(authUser));
+
+		if (authUser instanceof EmailIdentity) {
+			final EmailIdentity identity = (EmailIdentity) authUser;
+			// Remember, even when getting them from FB & Co., emails should be
+			// verified within the application as a security breach there might
+			// break your security as well!
+			sys_user.email = identity.getEmail();
+			sys_user.emailValidated = false;
+		}
+
+		if (authUser instanceof NameIdentity) {
+			final NameIdentity identity = (NameIdentity) authUser;
+			final String name = identity.getName();
+			if (name != null) {
+				sys_user.name = name;
+			}
+		}
+
+		if (authUser instanceof FirstLastNameIdentity) {
+			final FirstLastNameIdentity identity = (FirstLastNameIdentity) authUser;
+			final String firstName = identity.getFirstName();
+			final String lastName = identity.getLastName();
+			if (firstName != null) {
+				sys_user.firstName = firstName;
+			}
+			if (lastName != null) {
+				sys_user.lastName = lastName;
+			}
+		}
+
 //		if (authUser instanceof BasicOAuth2AuthUser) {
 //		    sys_user.emailValidated = true;
 //		} else {
 //		    sys_user.roles.add(SecurityRole.findByRoleNameSolr(
-//	                AuthApplication.DATA_OWNER_ROLE));
+//	                "data_owner"));
 //		}
-//
-//		sys_user.id_s = UUID.randomUUID().toString();
-//
-//		User user = new User();
-//		user.setName(sys_user.name);
-//		user.setEmail(sys_user.email);
-//
-//		if (SysUser.existsSolr() == false) {
-//			sys_user.roles.add(SecurityRole
-//					.findByRoleNameSolr(AuthApplication.DATA_MANAGER_ROLE));
-//			sys_user.emailValidated = true;
-//			user.setUri(ConfigFactory.load().getString("hadatac.console.kb") + "/users#admin");
-//		}
-//
-//		user.save();
-//		sys_user.save();
-//
-//		return sys_user;
-//	}
+
+		sys_user.id_s = UUID.randomUUID().toString();
+
+		User user = new User();
+		user.setName(sys_user.name);
+		user.setEmail(sys_user.email);
+
+		if (SysUser.existsSolr() == false) {
+			sys_user.roles.add(SecurityRole
+					.findByRoleNameSolr("data_manager"));
+			sys_user.emailValidated = true;
+			user.setUri(ConfigFactory.load().getString("hadatac.console.kb") + "/users#admin");
+		}
+
+		user.save();
+		sys_user.save();
+
+		return sys_user;
+	}
 
 	public void save() {
 		SolrClient solrClient = new HttpSolrClient.Builder(
@@ -636,7 +719,7 @@ public class SysUser implements Subject {
 //	public static void merge(final AuthUser oldUser, final AuthUser newUser) {
 //		mergeSolr(oldUser, newUser);
 //	}
-//
+
 //	public static void mergeSolr(final AuthUser oldUser, final AuthUser newUser) {
 //		SysUser.findByAuthUserIdentitySolr(oldUser).merge(
 //				SysUser.findByAuthUserIdentitySolr(newUser));

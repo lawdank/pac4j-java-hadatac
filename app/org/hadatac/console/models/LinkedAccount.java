@@ -15,10 +15,11 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.hadatac.console.controllers.WidgetData;
 import org.hadatac.utils.CollectionUtil;
 import org.noggit.JSONUtil;
 
-//import com.feth.play.module.pa.user.AuthUser;
+import providers.AuthUser;
 
 
 public class LinkedAccount {
@@ -145,18 +146,31 @@ public class LinkedAccount {
 
     	return "";
 	}
-
-//	public static LinkedAccount create(final AuthUser authUser) {
+	//TODO: test
+//	public static LinkedAccount create(final WidgetData authUser) {
 //		final LinkedAccount ret = new LinkedAccount();
 //		ret.id_s = UUID.randomUUID().toString();
 //		ret.update(authUser);
 //		return ret;
 //	}
-//
-//	public void update(final AuthUser authUser) {
-//		this.providerKey = authUser.getProvider();
-//		this.providerUserId = authUser.getId();
-//	}
+//TODO : original
+	public static LinkedAccount create(final AuthUser authUser) {
+		final LinkedAccount ret = new LinkedAccount();
+		ret.id_s = UUID.randomUUID().toString();
+		ret.update(authUser);
+		return ret;
+	}
+
+//TODO : test
+//public void update(final WidgetData authUser) {
+//	this.providerKey = authUser.getProvider();
+//	this.providerUserId = authUser.getId();
+//}
+
+	public void update(final AuthUser authUser) {
+		this.providerKey = authUser.getProvider();
+		this.providerUserId = authUser.getId();
+	}
 
 	public static LinkedAccount create(final LinkedAccount acc) {
 		final LinkedAccount ret = new LinkedAccount();

@@ -25,9 +25,8 @@ import org.hadatac.utils.NameSpaces;
 import com.typesafe.config.ConfigFactory;
 
 
-public class MetadataContext {
-//        implements RDFContext {
-//
+public class MetadataContext implements RDFContext {
+
     String username = null;
     String password = null;
     String kbURL = null;

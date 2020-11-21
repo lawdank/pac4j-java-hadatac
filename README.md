@@ -1,18 +1,35 @@
-<p align="center">
-  <img src="https://pac4j.github.io/pac4j/img/logo-play.png" width="300" />
-</p>
+# HaDatAc Upgrade
 
-This `play-pac4j-java-demo` project is a Java Play framework web app to test the [play-pac4j-java](https://github.com/pac4j/play-pac4j) security library with various authentication mechanisms: Facebook, Twitter, form, basic auth, CAS, SAML, OpenID Connect, JWT...
+## System Requirements
+**Java** - **openjdk 11**
 
-## Start & test
+Steps : Open Terminal (mac)/ putty(windows) & excute these commands.
 
-Build the project and launch the Play app on [http://localhost:9000](http://localhost:9000):
+      brew tap AdoptOpenJDK/openjdk
+      brew cask install adoptopenjdk11
+      java -version //Check the downloaded version is correct. Below should be the expected result
+          openjdk version "11.0.2" 2019-01-15_     
+          OpenJDK Runtime Environment AdoptOpenJDK (build 11.0.2+9)     
+          OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.2+9, mixed mode)
 
-    cd play-pac4j-java-demo
-    bin\activator run
+**Solr** -  **8.6.1**
+Config Files in the code will take care of it
 
-To test, you can call a protected url by clicking on the "Protected url by **xxx**" link, which will start the authentication process with the **xxx** provider.
+**Play** - **2.8.2** 
+Config Files in the code will take care of it
 
-## Live demo
+## Code Changes
+Comprehensive list of play framework related changes is [here.](https://www.playframework.com/documentation/2.8.x/Requirements)
+| Original Code        | New Code           | Details  |
+| ------------- |:-------------:| -----:|
+| File file = (File)uploadedfile.getFile();| import play.libs.Files.TemporaryFile;      TemporaryFile temporaryFile = (TemporaryFile) uploadedfile.getRef();     File file = temporaryFile.path().toFile(); | getFile() method is now implemented in two steps, as latest play version provided access to temporaryfile. |
+| Request request      | Http.Request request      |    |
+| session() | request.session(); [Add Http.Request request in the method as parameter]  *      |    Eg: testApi(){session();} -> testApi(Http.Request request) {request.session();} |
+|response().setHeader("Content-disposition", String.format("attachment; filename=%s", dataFile.getFileName()));|return ok(new File(dataFile.getAbsolutePath())).withHeader("Content-disposition", String.format("attachment; filename=%s", dataFile.getFileName()));||
+|bindFromRequest();|bindFromRequest(request); [Add Http.Request request in the method as parameter]*|Eg: testApi(){bindFromRequest ();} -> testApi(Http.Request request) { bindFromRequest (request);}|
+|request().body()|request.body() [Add Http.Request request in the method as parameter]|Eg: testApi(){request().body();} -> testApi(Http.Request request) {request.body();}|
 
-Find a live demo on Heroku: [https://play-pac4j-java-demo.herokuapp.com](https://play-pac4j-java-demo.herokuapp.com/)
+
+
+#### *Update _routes.conf_ parameters accordingly, Http.Request should be added in routes as **request:Request**
+Build the project and launch the app at [http://localhost:9000](http://localhost:9000)

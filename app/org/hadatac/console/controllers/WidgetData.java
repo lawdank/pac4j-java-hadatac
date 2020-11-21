@@ -1,9 +1,13 @@
 package org.hadatac.console.controllers;
 
 import javax.inject.Inject;
+
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import play.api.i18n.MessagesApi;
 import play.data.validation.Constraints;
 import play.mvc.Http;
+import providers.AuthUser;
+import providers.AuthUserIdentity;
 
 /**
  * A form processing DTO that maps to the widget form.
@@ -31,9 +35,6 @@ public class WidgetData {
     public WidgetData(MessagesApi messagesApi) {
         this.messagesApi = messagesApi;
     }
-
-//    @Constraints.Min(0)
-//    private int price;
 
     public WidgetData() {
     }
@@ -73,7 +74,14 @@ public class WidgetData {
 			if (password == null || !password.equals(repeatPassword)) {
 				return "Passwords do not match";
 			}
-//			if(name)
 			return null;
 		}
+
+	public String getHashedPassword() {
+        return createPassword(this.password);
+    }
+
+    protected String createPassword(final String clearString) {
+        return BCrypt.hashpw(clearString, BCrypt.gensalt());
+    }
 }
