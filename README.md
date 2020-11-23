@@ -18,6 +18,12 @@ Config Files in the code will take care of it
 **Play** - **2.8.2** 
 Config Files in the code will take care of it
 
+**Pac4j** - **4.0.3** 
+Config Files in the code will take care of it
+
+**play-pac4j** - **10.0.1** 
+Config Files in the code will take care of it
+
 ## Code Changes
 Comprehensive list of play framework related changes is [here.](https://www.playframework.com/documentation/2.8.x/Requirements)
 | Original Code        | New Code           | Details  |
