@@ -30,10 +30,11 @@ Comprehensive list of play framework related changes is [here.](https://www.play
 | ------------- |:-------------:| -----:|
 | File file = (File)uploadedfile.getFile();| import play.libs.Files.TemporaryFile;      TemporaryFile temporaryFile = (TemporaryFile) uploadedfile.getRef();     File file = temporaryFile.path().toFile(); | getFile() method is now implemented in two steps, as latest play version provided access to temporaryfile. |
 | Request request      | Http.Request request      |    |
-| session() | request.session(); [Add Http.Request request in the method as parameter]  *      |    Eg: testApi(){session();} -> testApi(Http.Request request) {request.session();} |
+| session() | request.session(); [Add Http.Request request in the method as parameter]*      |    Eg: testApi(){session();} -> testApi(Http.Request request) {request.session();} |
 |response().setHeader("Content-disposition", String.format("attachment; filename=%s", dataFile.getFileName()));|return ok(new File(dataFile.getAbsolutePath())).withHeader("Content-disposition", String.format("attachment; filename=%s", dataFile.getFileName()));||
 |bindFromRequest();|bindFromRequest(request); [Add Http.Request request in the method as parameter]*|Eg: testApi(){bindFromRequest ();} -> testApi(Http.Request request) { bindFromRequest (request);}|
 |request().body()|request.body() [Add Http.Request request in the method as parameter]|Eg: testApi(){request().body();} -> testApi(Http.Request request) {request.body();}|
+|Back to main menu (in scala template)|Portal.index()|Application.formIndex()|
 
 
 
