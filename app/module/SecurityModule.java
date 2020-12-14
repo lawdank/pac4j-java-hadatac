@@ -43,7 +43,7 @@ import java.io.File;
 import java.util.Optional;
 
 import org.pac4j.http.client.direct.DirectFormClient;
-import providers.SimpleTestUsernamePasswordAuthenticator;
+import org.hadatac.console.providers.SimpleTestUsernamePasswordAuthenticator;
 import org.hadatac.utils.Utils;
 
 import static play.mvc.Results.forbidden;

@@ -55,7 +55,7 @@ libraryDependencies ++= Seq(
   "org.pac4j" % "pac4j-oauth" % pac4jVersion,
   "org.pac4j" % "pac4j-saml-opensamlv3" % pac4jVersion exclude("org.springframework", "spring-core"),
   "org.pac4j" % "pac4j-oidc" % pac4jVersion exclude("commons-io" , "commons-io"),
-  "org.pac4j" % "pac4j-gae" % pac4jVersion,
+//  "org.pac4j" % "pac4j-gae" % pac4jVersion,
   "org.pac4j" % "pac4j-jwt" % pac4jVersion exclude("commons-io" , "commons-io"),
   "org.pac4j" % "pac4j-ldap" % pac4jVersion,
   "org.pac4j" % "pac4j-sql" % pac4jVersion,

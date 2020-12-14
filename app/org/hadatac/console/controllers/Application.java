@@ -4,6 +4,7 @@ import be.objectify.deadbolt.java.actions.SubjectPresent;
 import javax.inject.Inject;
 import org.hadatac.console.models.JsonContent;
 import module.SecurityModule;
+import org.hadatac.console.views.html.loginForm;
 import org.pac4j.cas.profile.CasProxyProfile;
 import org.pac4j.core.client.Client;
 import org.pac4j.core.config.Config;
@@ -171,7 +172,7 @@ public class Application extends Controller {
 
     public Result loginForm() throws TechnicalException {
         final FormClient formClient = (FormClient) config.getClients().findClient("FormClient").get();
-        return ok(org.hadatac.console.views.html.loginForm.render(formClient.getCallbackUrl()));
+        return ok(loginForm.render(formClient.getCallbackUrl()));
     }
 
     public Result jwt(Http.Request request) {

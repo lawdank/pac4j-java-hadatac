@@ -15,11 +15,10 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import org.hadatac.console.controllers.WidgetData;
 import org.hadatac.utils.CollectionUtil;
 import org.noggit.JSONUtil;
 
-import providers.AuthUser;
+import org.hadatac.console.providers.AuthUser;
 
 
 public class LinkedAccount {

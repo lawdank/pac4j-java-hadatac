@@ -1,4 +1,4 @@
-package providers;
+package org.hadatac.console.providers;
 
 import controllers.routes;
 import org.hadatac.console.models.LinkedAccount;

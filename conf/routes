@@ -13,16 +13,23 @@ POST        /hadatac                                       org.hadatac.console.c
 GET         /hadatac/loginForm                             org.hadatac.console.controllers.Application.loginForm()
 GET         /hadatac/form/index.html                       org.hadatac.console.controllers.Application.formIndex(request: Request)
 GET         /hadatac/form/index.html.json                  org.hadatac.console.controllers.Application.formIndexJson(request: Request)
-#POST         /hadatac/signup                                org.hadatac.console.controllers.WidgetController.doSignup()
-#POST    /hadatac/signup                                org.hadatac.console.controllers.AuthApplication.doSignup
+#POST         /hadatac/signup                              org.hadatac.console.controllers.WidgetController.doSignup()
+#POST    /hadatac/signup                                   org.hadatac.console.controllers.AuthApplication.doSignup
 GET        /send/mail                                      org.hadatac.console.controllers.SendMail.sendMail()
-GET	    /hadatac/dash                                   org.hadatac.console.controllers.Dashboard.index()
+GET	    /hadatac/dash                                      org.hadatac.console.controllers.Dashboard.index()
 POST    /hadatac/dash                                      org.hadatac.console.controllers.Dashboard.postIndex()
 #ApplicationJava.send()
 
 # Widgets
 GET     /hadatac/signUp                                    org.hadatac.console.controllers.WidgetController.listWidgets(request: Request)
 POST    /hadatac/signUp                                    org.hadatac.console.controllers.WidgetController.createWidget(request: Request)
+POST    /hadatac/accounts/password/reset                   org.hadatac.console.controllers.Signup.doResetPassword(request: Request)
+GET     /hadatac/login/password/forgot                     org.hadatac.console.controllers.Signup.forgotPassword(request: Request)
+POST    /hadatac/login/password/forgot		               org.hadatac.console.controllers.Signup.doForgotPassword(request: Request)
+GET     /hadatac/accounts/password/reset/:token            org.hadatac.console.controllers.Signup.resetPassword(token: String, request: Request)
+
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                                      controllers.Assets.versioned(path="/public", file: Asset)
@@ -415,13 +422,13 @@ POST    /hadatac/studies/graph                         org.hadatac.console.contr
 GET     /hadatac/ts/loadont                         org.hadatac.console.controllers.triplestore.LoadOnt.loadOnt(oper: String)
 POST    /hadatac/ts/loadont                         org.hadatac.console.controllers.triplestore.LoadOnt.postLoadOnt(oper: String)
 GET     /hadatac/ts/loadont/cache                   org.hadatac.console.controllers.triplestore.LoadOnt.eraseCache()
-#POST    /hadatac/ts/loadont/savenamespaces             controllers.triplestore.LoadOnt.saveNamespaces(request: Request)
-#POST    /hadatac/ts/loadont/importnamespaces           controllers.triplestore.LoadOnt.importNamespaces(request: Request)
+POST    /hadatac/ts/loadont/savenamespaces             org.hadatac.console.controllers.triplestore.LoadOnt.saveNamespaces(request: Request)
+POST    /hadatac/ts/loadont/importnamespaces           org.hadatac.console.controllers.triplestore.LoadOnt.importNamespaces(request: Request)
 GET     /hadatac/ts/loadont/exportnamespaces        org.hadatac.console.controllers.triplestore.LoadOnt.exportNamespaces()
-#GET     /hadatac/ts/loadont/reloadgraphfromremote      controllers.triplestore.LoadOnt.reloadNamedGraphFromRemote(abbreviation: String)
-#GET     /hadatac/ts/loadont/reloadgraphfromcache       controllers.triplestore.LoadOnt.reloadNamedGraphFromCache(abbreviation: String)
-#GET     /hadatac/ts/loadont/deletegraph                controllers.triplestore.LoadOnt.deleteNamedGraph(abbreviation: String)
-#GET     /hadatac/ts/loadont/deleteallgraphs            controllers.triplestore.LoadOnt.deleteAllNamedGraphs()
+GET     /hadatac/ts/loadont/reloadgraphfromremote      org.hadatac.console.controllers.triplestore.LoadOnt.reloadNamedGraphFromRemote(abbreviation: String)
+GET     /hadatac/ts/loadont/reloadgraphfromcache       org.hadatac.console.controllers.triplestore.LoadOnt.reloadNamedGraphFromCache(abbreviation: String)
+GET     /hadatac/ts/loadont/deletegraph                org.hadatac.console.controllers.triplestore.LoadOnt.deleteNamedGraph(abbreviation: String)
+GET     /hadatac/ts/loadont/deleteallgraphs            org.hadatac.console.controllers.triplestore.LoadOnt.deleteAllNamedGraphs()
 GET     /hadatac/ts/loadkb                          org.hadatac.console.controllers.triplestore.LoadKB.loadKB(oper: String)
 POST    /hadatac/ts/loadkb                          org.hadatac.console.controllers.triplestore.LoadKB.postLoadKB(oper: String)
 POST    /hadatac/ts/loadkb/upload                   org.hadatac.console.controllers.triplestore.LoadKB.uploadFile(oper: String,request: Request)

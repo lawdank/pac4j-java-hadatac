@@ -1,10 +1,9 @@
 @import org.springframework.test.web.servlet.result.MockMvcResultMatchers.request
 @import org.hadatac.console.views.html.loginForm
-@import org.hadatac.console.controllers.WidgetData
 @import org.hadatac.console.models.Widget
 @import org.hadatac.console.models.Widget
 @import play.mvc.Http.Request
-@import org.hadatac.console.controllers.WidgetData
+@import org.hadatac.console.providers.WidgetData
 @(url: String)
 
 
@@ -36,6 +35,8 @@
 @*						</div>*@
 @*					}*@
 @*				}*@
+@*			</div>*@
+			<a href="@org.hadatac.console.controllers.routes.Signup.forgotPassword()">Forgot your password?</a><br>
 			</div>
 		</div>
 	}

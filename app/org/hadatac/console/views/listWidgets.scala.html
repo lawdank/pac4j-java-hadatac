@@ -1,6 +1,6 @@
 @import org.hadatac.console.models.Widget
+@import org.hadatac.console.providers.WidgetData
 @import play.mvc.Http.Request
-@import org.hadatac.console.controllers.WidgetData
 @(widgets: Seq[Widget], form: Form[WidgetData])(implicit request: Request, messages: play.i18n.Messages)
 
 @main("Signup","signUp") {

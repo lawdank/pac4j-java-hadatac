@@ -1,19 +1,10 @@
 package org.hadatac.console.controllers;
 
-import controllers.routes;
 import org.hadatac.console.controllers.triplestore.UserManagement;
 import org.hadatac.console.models.LinkedAccount;
 import org.hadatac.console.models.SysUser;
 import org.hadatac.console.models.Widget;
-import org.apache.solr.client.solrj.SolrClient;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.impl.HttpSolrClient;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.SolrInputDocument;
-import org.hadatac.console.views.html.triplestore.notRegistered;
-import org.hadatac.utils.CollectionUtil;
+import org.hadatac.console.providers.WidgetData;
 import org.pac4j.core.exception.TechnicalException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +12,10 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.i18n.MessagesApi;
 import play.mvc.*;
-import providers.AuthUser;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 import static play.libs.Scala.asScala;
 

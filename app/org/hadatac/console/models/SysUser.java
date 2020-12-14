@@ -8,14 +8,14 @@ import be.objectify.deadbolt.java.models.Subject;
 //import com.feth.play.module.pa.providers.oauth2.google.GoogleAuthUser;
 //import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
 import com.typesafe.config.ConfigFactory;
-import org.hadatac.console.controllers.WidgetData;
+import org.hadatac.console.providers.WidgetData;
 import org.hadatac.entity.pojo.User;
-import providers.AuthUser;
-import providers.AuthUserIdentity;
-import providers.EmailIdentity;
-import providers.NameIdentity;
+import org.hadatac.console.providers.AuthUser;
+import org.hadatac.console.providers.AuthUserIdentity;
+import org.hadatac.console.providers.EmailIdentity;
+import org.hadatac.console.providers.NameIdentity;
 //import com.feth.play.module.pa.user.SessionAuthUser;
-import providers.FirstLastNameIdentity;
+import org.hadatac.console.providers.FirstLastNameIdentity;
 
 //import controllers.AuthApplication;
 import org.hadatac.console.models.TokenAction.Type;
@@ -758,8 +758,10 @@ public class SysUser implements Subject {
 	public static SysUser findByEmailSolr(final String email) {
 		List<SysUser> users = getEmailUserFindSolr(email);
 		if (users.size() == 1) {
+			System.out.println("USER found:"+users.get(0));
 			return users.get(0);
 		} else {
+			System.out.println("USER NOT found:");
 			return null;
 		}
 	}
@@ -830,13 +832,13 @@ public class SysUser implements Subject {
 		unverified.save();
 		TokenAction.deleteByUser(unverified, Type.EMAIL_VERIFICATION);
 	}
-
-//	public void changePassword(final UsernamePasswordAuthUser authUser,
+////todo :fix this
+//	public void changePassword(final WidgetData authUser,
 //			final boolean create) {
 //		changePasswordSolr(authUser, create);
 //	}
-//
-//	public void changePasswordSolr(final UsernamePasswordAuthUser authUser,
+//	//todo :fix this
+//	public void changePasswordSolr(final WidgetData authUser,
 //			final boolean create) {
 //		LinkedAccount account = this.getAccountByProviderSolr(authUser.getProvider());
 //		if (account == null) {
@@ -851,13 +853,14 @@ public class SysUser implements Subject {
 //		account.save();
 //	}
 //
-//	public void resetPassword(final UsernamePasswordAuthUser authUser,
+//	//todo :fix this
+//	public void resetPassword(final WidgetData authUser //UsernamePasswordAuthUser authUser,
 //			final boolean create) {
 //		// You might want to wrap this into a transaction
 //		resetPasswordSolr(authUser, create);
 //	}
-
-//	public void resetPasswordSolr(final UsernamePasswordAuthUser authUser,
+//	//todo :fix this
+//	public void resetPasswordSolr(final WidgetData authUser //UsernamePasswordAuthUser authUser,
 //			final boolean create) {
 //		// You might want to wrap this into a transaction
 //		this.changePassword(authUser, create);
