@@ -2,6 +2,8 @@ package org.hadatac.console.providers;
 
 import javax.inject.Inject;
 
+import akka.actor.Cancellable;
+import com.feth.play.module.mail.IMailer;
 import com.feth.play.module.mail.Mailer;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
@@ -38,7 +40,7 @@ import static org.hadatac.Constants.EMAIL_TEMPLATE_FALLBACK_LANGUAGE;
  * of a parameter tampering attack and makes code clearer, because
  * you can define constraints against the class.
  */
-public class WidgetData {
+public class MyUsernamePasswordAuthProvider {
 
     @Constraints.Required
     private String name;
@@ -52,14 +54,16 @@ public class WidgetData {
 
     private MessagesApi messagesApi;
     private Config config;
+    MyService myService;
 
 
     @Inject
-    public WidgetData(MessagesApi messagesApi) {
+    public MyUsernamePasswordAuthProvider(MessagesApi messagesApi, MyService myService) {
         this.messagesApi = messagesApi;
+        this.myService = myService;
     }
 
-    public WidgetData() {
+    public MyUsernamePasswordAuthProvider() {
     }
     public static class MyIdentity {
 
@@ -107,6 +111,10 @@ public class WidgetData {
         this.repeatPassword = repeatPassword;
     }
 
+//    public static IMailer getMailer() {
+//        return mailer;
+//    }
+
     public String validate() {
 			if (password == null || !password.equals(repeatPassword)) {
 				return "Passwords do not match";
@@ -122,12 +130,15 @@ public class WidgetData {
         return BCrypt.hashpw(clearString, BCrypt.gensalt());
     }
 
+
     public void sendPasswordResetMailing(final SysUser user, final Http.Request request) {
         final String token = generatePasswordResetRecord(user);
         final String subject = getPasswordResetMailingSubject(user, request);
         final Body body = getPasswordResetMailingBody(token, user, request);
-        MyService.sendMail(subject, body, getEmailName(user));
+        myService.sendMail(subject, body, getEmailName(user));
     }
+
+
 
     private static String generateToken() {
         return UUID.randomUUID().toString();
@@ -148,10 +159,6 @@ public class WidgetData {
 //        return this.messagesApi.preferred((Http.RequestHeader) request.acceptLanguages()).at(
 //                "How to reset your password");
     }
-
-//    public Config getConfiguration() {
-//        return config.getConfig("authenticate");
-//    }
 
     protected String getEmailTemplate(final String template,
                                       final String langCode, final String url, final String token,

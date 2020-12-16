@@ -8,19 +8,22 @@ GET         /loginForm                                     org.hadatac.console.c
 GET         /facebook/index.html                           org.hadatac.console.controllers.Application.facebookIndex(request: Request)
 GET         /hadatac/                                      org.hadatac.console.controllers.Portal.index()
 POST        /hadatac/                                      org.hadatac.console.controllers.Portal.postIndex()
-GET         /hadatac                                       org.hadatac.console.controllers.Portal.index()
-POST        /hadatac                                       org.hadatac.console.controllers.Portal.postIndex()
 GET         /hadatac/loginForm                             org.hadatac.console.controllers.Application.loginForm()
 GET         /hadatac/form/index.html                       org.hadatac.console.controllers.Application.formIndex(request: Request)
 GET         /hadatac/form/index.html.json                  org.hadatac.console.controllers.Application.formIndexJson(request: Request)
 #POST         /hadatac/signup                              org.hadatac.console.controllers.WidgetController.doSignup()
 #POST    /hadatac/signup                                   org.hadatac.console.controllers.AuthApplication.doSignup
-GET        /send/mail                                      org.hadatac.console.controllers.SendMail.sendMail()
 GET	    /hadatac/dash                                      org.hadatac.console.controllers.Dashboard.index()
 POST    /hadatac/dash                                      org.hadatac.console.controllers.Dashboard.postIndex()
+GET     /hadatac/URILookup                                 org.hadatac.console.controllers.URILookup.index(mode : String, message : String)
+POST    /hadatac/URILookup                                org.hadatac.console.controllers.URILookup.postIndex(mode : String, message : String)
+POST 	/hadatac/URILookup/form	                          org.hadatac.console.controllers.URILookup.processForm(mode : String, request: Request)
+GET 	/hadatac/URILookup/uriform       	              org.hadatac.console.controllers.URILookup.processUri(mode : String, uri : String)
+
 #ApplicationJava.send()
 
-# Widgets
+# Authorization URLs
+#GET     /hadatac/auth                                      org.hadatac.console.controllers.AuthApplication.index
 GET     /hadatac/signUp                                    org.hadatac.console.controllers.WidgetController.listWidgets(request: Request)
 POST    /hadatac/signUp                                    org.hadatac.console.controllers.WidgetController.createWidget(request: Request)
 POST    /hadatac/accounts/password/reset                   org.hadatac.console.controllers.Signup.doResetPassword(request: Request)
@@ -28,7 +31,41 @@ GET     /hadatac/login/password/forgot                     org.hadatac.console.c
 POST    /hadatac/login/password/forgot		               org.hadatac.console.controllers.Signup.doForgotPassword(request: Request)
 GET     /hadatac/accounts/password/reset/:token            org.hadatac.console.controllers.Signup.resetPassword(token: String, request: Request)
 
+# Metadata empirical
+GET	    /hadatac/infra	    	                       org.hadatac.console.controllers.metadata.empirical.Infra.index(dir : String, filename : String, da_uri : String)
+POST	/hadatac/infra               		           org.hadatac.console.controllers.metadata.empirical.Infra.postIndex(dir : String, filename : String, da_uri : String)
+GET	    /hadatac/infra/hierarchy	                   org.hadatac.console.controllers.metadata.empirical.Infra.hierarchy(concept : String, dir : String, filename : String, da_uri : String)
+POST	/hadatac/infra/hierarchy       	               org.hadatac.console.controllers.metadata.empirical.Infra.postHierarchy(concept : String, dir : String, filename : String, da_uri : String)
+GET	    /hadatac/infra/instancemanagement/:offset      org.hadatac.console.controllers.metadata.empirical.Infra.findWithPages(concept : String, dir : String, filename : String, da_uri : String, offset : Integer)
+POST	/hadatac/infra/instancemanagement/:offset      org.hadatac.console.controllers.metadata.empirical.Infra.postFindWithPages(concept : String, dir : String, filename : String, da_uri : String, offset : Integer)
+GET	    /hadatac/metadata/platform/new		           org.hadatac.console.controllers.metadata.empirical.NewPlatform.index(dir : String, filename : String, da_uri : String)
+POST	/hadatac/metadata/platform/new	               org.hadatac.console.controllers.metadata.empirical.NewPlatform.postIndex(dir : String, filename : String, da_uri : String)
+POST 	/hadatac/metadata/platform/new/form	           org.hadatac.console.controllers.metadata.empirical.NewPlatform.processForm(dir : String, filename : String, da_uri : String, request: Request)
+GET	    /hadatac/infraview/platform	                   org.hadatac.console.controllers.metadata.empirical.ViewInfra.viewPlatform(dir : String, filename : String, da_uri : String, platform_uri: String)
+POST	/hadatac/infraview/platform   	               org.hadatac.console.controllers.metadata.empirical.ViewInfra.postViewPlatform(dir : String, filename : String, da_uri : String, platform_uri : String)
+GET	    /hadatac/infraview/instrument   	           org.hadatac.console.controllers.metadata.empirical.ViewInfra.viewInstrument(dir : String, filename : String, da_uri : String, instrument_uri: String)
+POST	/hadatac/infraview/instrument   	           org.hadatac.console.controllers.metadata.empirical.ViewInfra.postViewInstrument(dir : String, filename : String, da_uri : String, instrument_uri : String)
+GET	    /hadatac/infraview/detector	                   org.hadatac.console.controllers.metadata.empirical.ViewInfra.viewDetector(dir : String, filename : String, da_uri : String, instrument_uri: String)
+POST	/hadatac/infraview/detector   	               org.hadatac.console.controllers.metadata.empirical.ViewInfra.postViewDetector(dir : String, filename : String, da_uri : String, instrument_uri : String)
 
+# deployment management
+GET	    /hadatac/deployments/		                   org.hadatac.console.controllers.deployments.DeploymentManagement.index(oper : Int, dir : String, filename : String, da_uri : String, page : Integer, details : Integer)
+POST	/hadatac/deployments/     	                   org.hadatac.console.controllers.deployments.DeploymentManagement.postIndex(oper : Int, dir : String, filename : String, da_uri : String, page : Integer, details : Integer)
+POST 	/hadatac/deployments/new/form		           org.hadatac.console.controllers.deployments.NewDeployment.processForm(dir : String, filename : String, da_uri : String, page : Integer, request: Request)
+GET	    /hadatac/deployments/new		               org.hadatac.console.controllers.deployments.NewDeployment.index(dir : String, filename : String, da_uri : String, type : String, page : Integer)
+POST	/hadatac/deployments/new	                   org.hadatac.console.controllers.deployments.NewDeployment.postIndex(dir : String, filename : String, da_uri : String, type : String, page : Integer)
+GET	    /hadatac/deployments/close		               org.hadatac.console.controllers.deployments.CloseDeployment.index(deployment_uri : String)
+POST	/hadatac/deployments/close		               org.hadatac.console.controllers.deployments.CloseDeployment.postIndex(deployment_uri : String)
+POST 	/hadatac/deployments/close/form	               org.hadatac.console.controllers.deployments.CloseDeployment.processForm(deployment_uri : String, request: Request)
+GET	    /hadatac/deployments/delete	    	           org.hadatac.console.controllers.deployments.DeleteDeployment.index(deployment_uri : String)
+POST	/hadatac/deployments/delete		               org.hadatac.console.controllers.deployments.DeleteDeployment.postIndex(deployment_uri : String)
+POST 	/hadatac/deployments/delete/form	           org.hadatac.console.controllers.deployments.DeleteDeployment.processForm(deployment_uri : String, request: Request)
+GET	    /hadatac/deployments/view		               org.hadatac.console.controllers.deployments.ViewDeployment.index(deployment_uri : String, prev_platUri : String)
+POST	/hadatac/deployments/view	                   org.hadatac.console.controllers.deployments.ViewDeployment.postIndex(deployment_uri : String, prev_platUri : String)
+GET	    /hadatac/deployments/browser		           org.hadatac.console.controllers.deployments.DeploymentBrowser.index(dir : String, filename : String, da_uri : String, plat_uri : String, prev_platUri : String)
+POST	/hadatac/deployments/browser     	           org.hadatac.console.controllers.deployments.DeploymentBrowser.postIndex(dir : String, filename : String, da_uri : String, plat_uri : String, prev_platUri : String)
+GET	    /hadatac/deployments/resources		           org.hadatac.console.controllers.deployments.ResourceAvailability.index()
+POST	/hadatac/deployments/resources	               org.hadatac.console.controllers.deployments.ResourceAvailability.postIndex()
 
 
 # Map static resources from the /public folder to the /assets URL path
@@ -57,6 +94,8 @@ GET         /casProxyCallback                              @org.pac4j.play.Callb
 POST        /casProxyCallback                              @org.pac4j.play.CallbackController.callback(request: Request)
 GET         /logout                                        @org.pac4j.play.LogoutController.logout(request: Request)
 GET         /centralLogout                                 org.hadatac.console.controllers.CentralLogoutController.logout(request: Request)
+
+# data acquisition management
 GET	    /hadatac/metadataacquisitions/solrsearch        org.hadatac.console.http.SolrSearchProxy.getStudyAcquisition(request: Request)
 POST	/hadatac/metadataacquisitions/solrsearch   	   org.hadatac.console.http.SolrSearchProxy.getStudyAcquisition(request: Request)
 GET	    /hadatac/dataacquisitionbrowser/solrsearch     org.hadatac.console.http.SolrSearchProxy.getDataAcquisition(request: Request)
@@ -85,6 +124,8 @@ GET	    /hadatac/knowledgegraph                        org.hadatac.console.contr
 POST    /hadatac/knowledgegraph                        org.hadatac.console.controllers.kg.KnowledgeGraphBrowser.postIndex(autoRefresh : Boolean, hasOntologies : Boolean, hasIndicators : Boolean, hasDeployments : Boolean,  hasSDDs : Boolean, hasDASpecs : Boolean)
 GET	    /hadatac/objects/objectView	                   org.hadatac.console.controllers.objects.ObjectView.index(obj_uri: String, autoRefresh : Boolean)
 POST	/hadatac/objects/objectView	                   org.hadatac.console.controllers.objects.ObjectView.postIndex(obj_uri: String, autoRefresh : Boolean)
+GET	    /hadatac/streams/visualization   	           org.hadatac.console.controllers.streams.StreamVisualization.index(dir : String, file_id : String, da_uri: String)
+POST	/hadatac/streams/visualization       	       org.hadatac.console.controllers.streams.StreamVisualization.postIndex(dir : String, file_id : String, da_uri: String)
 
 
 GET     /hadatac/version                                   org.hadatac.console.controllers.Version.index()
@@ -468,4 +509,7 @@ POST	/hadatac/perm/backupgraph     		           org.hadatac.console.controllers.
 #GET	    /hadatac/perm/invite		                   org.hadatac.console.controllers.triplestore.UserManagement.sendInvitationEmail(user_name: String, user_email: String)
 #POST	/hadatac/perm/invite     		               org.hadatac.console.controllers.triplestore.UserManagement.postSendInvitationEmail(user_name: String, user_email: String)
 
+# JavaScript Routing
+GET     /hadatac/assets/javascript/routesMain.js       org.hadatac.console.controllers.JS.jsRoutesMain()
+#GET     /hadatac/assets/javascript/routes.js           org.hadatac.console.controllers.AuthApplication.jsRoutes
 

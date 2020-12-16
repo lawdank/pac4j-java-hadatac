@@ -1,7 +1,7 @@
 @import org.hadatac.console.models.Widget
-@import org.hadatac.console.providers.WidgetData
+@import org.hadatac.console.providers.MyUsernamePasswordAuthProvider
 @import play.mvc.Http.Request
-@(widgets: Seq[Widget], form: Form[WidgetData])(implicit request: Request, messages: play.i18n.Messages)
+@(widgets: Seq[Widget], form: Form[MyUsernamePasswordAuthProvider])(implicit request: Request, messages: play.i18n.Messages)
 
 @main("Signup","signUp") {
 

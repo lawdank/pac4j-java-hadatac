@@ -8,14 +8,10 @@ import be.objectify.deadbolt.java.models.Subject;
 //import com.feth.play.module.pa.providers.oauth2.google.GoogleAuthUser;
 //import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
 import com.typesafe.config.ConfigFactory;
-import org.hadatac.console.providers.WidgetData;
+import org.hadatac.console.providers.*;
+import org.hadatac.console.providers.MyUsernamePasswordAuthProvider;
 import org.hadatac.entity.pojo.User;
-import org.hadatac.console.providers.AuthUser;
-import org.hadatac.console.providers.AuthUserIdentity;
-import org.hadatac.console.providers.EmailIdentity;
-import org.hadatac.console.providers.NameIdentity;
 //import com.feth.play.module.pa.user.SessionAuthUser;
-import org.hadatac.console.providers.FirstLastNameIdentity;
 
 //import controllers.AuthApplication;
 import org.hadatac.console.models.TokenAction.Type;
@@ -422,7 +418,7 @@ public class SysUser implements Subject {
 	}
 
 	//TODO: test
-	public static SysUser create(final WidgetData authUser, String uri, LinkedAccount acc) {
+	public static SysUser create(final MyUsernamePasswordAuthProvider authUser, String uri, LinkedAccount acc) {
 		final SysUser sys_user = new SysUser();
 
 		sys_user.roles.add(SecurityRole.findByRoleNameSolr("data_owner"));
@@ -833,12 +829,12 @@ public class SysUser implements Subject {
 		TokenAction.deleteByUser(unverified, Type.EMAIL_VERIFICATION);
 	}
 ////todo :fix this
-//	public void changePassword(final WidgetData authUser,
+//	public void changePassword(final MyUsernamePasswordAuthProvider authUser,
 //			final boolean create) {
 //		changePasswordSolr(authUser, create);
 //	}
 //	//todo :fix this
-//	public void changePasswordSolr(final WidgetData authUser,
+//	public void changePasswordSolr(final MyUsernamePasswordAuthProvider authUser,
 //			final boolean create) {
 //		LinkedAccount account = this.getAccountByProviderSolr(authUser.getProvider());
 //		if (account == null) {
@@ -854,13 +850,13 @@ public class SysUser implements Subject {
 //	}
 //
 //	//todo :fix this
-//	public void resetPassword(final WidgetData authUser //UsernamePasswordAuthUser authUser,
+//	public void resetPassword(final MyUsernamePasswordAuthProvider authUser //UsernamePasswordAuthUser authUser,
 //			final boolean create) {
 //		// You might want to wrap this into a transaction
 //		resetPasswordSolr(authUser, create);
 //	}
 //	//todo :fix this
-//	public void resetPasswordSolr(final WidgetData authUser //UsernamePasswordAuthUser authUser,
+//	public void resetPasswordSolr(final MyUsernamePasswordAuthProvider authUser //UsernamePasswordAuthUser authUser,
 //			final boolean create) {
 //		// You might want to wrap this into a transaction
 //		this.changePassword(authUser, create);

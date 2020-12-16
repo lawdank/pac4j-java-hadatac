@@ -1,31 +1,23 @@
 package org.hadatac.console.controllers;
 
-import org.hadatac.Constants;
 import org.hadatac.console.models.SysUser;
 import org.hadatac.console.models.TokenAction;
+import org.hadatac.console.providers.MyService;
+import org.hadatac.console.providers.MyUsernamePasswordAuthProvider;
 import org.hadatac.console.views.html.account.signup.no_token_or_invalid;
 import org.hadatac.console.views.html.account.signup.password_forgot;
 import org.hadatac.console.views.html.account.signup.password_reset;
-import org.hadatac.console.views.html.portal;
-import org.hibernate.annotations.Cache;
-import org.pac4j.core.util.Pac4jConstants;
-import play.Logger;
+import play.api.libs.mailer.MailerClient;
 import play.i18n.MessagesApi;
 import play.data.validation.Constraints;
 import play.mvc.Http;
 import play.mvc.Result;
-import play.mvc.Results;
 import play.data.Form;
 import play.data.FormFactory;
 import org.hadatac.console.models.TokenAction.Type;
-import org.hadatac.console.providers.WidgetData;
 
 import javax.inject.Inject;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import static org.hadatac.Constants.EMAIL_TEMPLATE_FALLBACK_LANGUAGE;
 import static play.mvc.Results.*;
 
 
@@ -63,26 +55,46 @@ public class Signup {
 
     private final Form<PasswordReset> PASSWORD_RESET_FORM;
 
-    private final Form<WidgetData.MyIdentity> FORGOT_PASSWORD_FORM;
-    private final WidgetData userPaswAuthProvider;
+    private final Form<MyUsernamePasswordAuthProvider.MyIdentity> FORGOT_PASSWORD_FORM;
+    private final MyUsernamePasswordAuthProvider userPaswAuthProvider;
     private final MessagesApi msg;
+    MyService myService;
+
+    @com.google.inject.Inject
+    MailerClient mailerClient;
+
+
+//    public void doMail() {
+//        String cid = "1234";
+//        Email email = new Email()
+//                .setSubject("Simple email")
+//                .setFrom("user21email@gmail.com")
+//                .addTo("user21email@gmail.com")
+////                .addAttachment("attachment.pdf", new File("/some/path/attachment.pdf"))
+////                .addAttachment("data.txt", "data".getBytes(), "text/plain", "Simple data", EmailAttachment.INLINE)
+////                .addAttachment("image.jpg", new File("/some/path/image.jpg"), cid)
+//                .setBodyText("A text message")
+//                .setBodyHtml("<html><body><p>An <b>html</b> message with cid <img src=\"cid:" + cid + "\"></p></body></html>");
+//        mailerClient.send(email);
+//    }
 
     //TODO : fix this
     @Inject
     public Signup(//final PlayAuthenticate auth, final UserProvider userProvider,
-                  final WidgetData userPaswAuthProvider,
-                  final FormFactory formFactory, final MessagesApi msg) {
+                  final MyUsernamePasswordAuthProvider userPaswAuthProvider,
+                  final FormFactory formFactory, final MessagesApi msg, MyService myService) {
 //        this.auth = auth;
 //        this.userProvider = userProvider;
         this.userPaswAuthProvider = userPaswAuthProvider;
         this.PASSWORD_RESET_FORM = formFactory.form(PasswordReset.class);
-        this.FORGOT_PASSWORD_FORM = formFactory.form(WidgetData.MyIdentity.class);
+        this.FORGOT_PASSWORD_FORM = formFactory.form(MyUsernamePasswordAuthProvider.MyIdentity.class);
         this.msg = msg;
+        this.myService = myService;
     }
 
     //TODO : fix this
     public Result forgotPassword(Http.Request request) {
-        Form<WidgetData.MyIdentity> form = FORGOT_PASSWORD_FORM;
+        Form<MyUsernamePasswordAuthProvider.MyIdentity> form = FORGOT_PASSWORD_FORM;
         return ok(password_forgot.render(form, request,msg.preferred(request))).withHeader("Cache-Control", "no-cache");
     }
 
@@ -149,7 +161,7 @@ public class Signup {
 
     //todo: fix this
     public Result doForgotPassword(Http.Request request) {
-        final Form<WidgetData.MyIdentity> filledForm = FORGOT_PASSWORD_FORM
+        final Form<MyUsernamePasswordAuthProvider.MyIdentity> filledForm = FORGOT_PASSWORD_FORM
                 .bindFromRequest(request);
         if (filledForm.hasErrors()) {
             // User did not fill in his/her email
@@ -174,10 +186,11 @@ public class Signup {
                 // yep, we have a user with this email that is active - we do
                 // not know if the user owning that account has requested this
                 // reset, though.
-                final WidgetData provider = this.userPaswAuthProvider;
+                final MyUsernamePasswordAuthProvider provider = this.userPaswAuthProvider;
                 // User exists
                 if (user.getEmailValidated()) {
                     provider.sendPasswordResetMailing(user, request);
+//                    myService.doMail();
                     // In case you actually want to let (the unknown person)
                     // know whether a user was found/an email was sent, use,
                     // change the flash message

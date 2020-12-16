@@ -1,0 +1,29 @@
+@(indent   : Boolean,
+        dir      : String,
+        fileId   : String,
+        da_uri   : String,
+        page     : Integer)
+
+@import org.hadatac.utils._
+
+@if(fileId == null || fileId.equals("") || da_uri == null || da_uri.equals("")) {
+    @if(indent) {
+        <div class="row">
+            <div class="col-md-12 col-md-offset-1">
+                <a href="@org.hadatac.console.controllers.deployments.routes.DeploymentManagement.index(State.ACTIVE, dir, fileId, da_uri, page, 0)" class="btn btn-primary" role="button">Back to Deployment Management</a>
+            </div>
+        </div>
+    } else {
+        <a href="@org.hadatac.console.controllers.deployments.routes.DeploymentManagement.index(State.ACTIVE, dir, fileId, da_uri, page, 0)" class="btn btn-primary" role="button">Back to Deployment Management</a>
+    }
+} else {
+    @if(indent) {
+        <div class="row">
+            <div class="col-md-12 col-md-offset-1">
+                <a href="@org.hadatac.console.controllers.annotator.routes.PrepareIngestion.create(dir, fileId, da_uri)" class="btn btn-primary" role="button">Back to Prepare Ingestion</a>
+            </div>
+        </div>
+    } else {
+        <a href="@org.hadatac.console.controllers.annotator.routes.PrepareIngestion.create(dir, fileId, da_uri)" class="btn btn-primary" role="button">Back to Prepare Ingestion</a>
+    }
+}

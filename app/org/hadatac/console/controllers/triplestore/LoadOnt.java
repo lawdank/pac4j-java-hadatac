@@ -72,7 +72,7 @@ public class LoadOnt extends Controller {
         return ok(loadOnt.render(oper, cacheList, NameSpaces.getInstance().getOrderedNamespacesAsList()));
     }
 
-    //@Restrict(@Group(Constants.DATA_MANAGER_ROLE))
+    @Restrict(@Group(Constants.DATA_MANAGER_ROLE))
     public Result postLoadOnt(String oper) {
         return loadOnt(oper);
     }
@@ -87,7 +87,7 @@ public class LoadOnt extends Controller {
         return metadata.loadOntologies(Feedback.WEB, oper);
     }
 
-    //@Restrict(@Group(Constants.DATA_MANAGER_ROLE))
+    @Restrict(@Group(Constants.DATA_MANAGER_ROLE))
     public Result eraseCache() {
         List<String> cacheList = new ArrayList<String>();
         File folder = new File(NameSpaces.CACHE_PATH);
@@ -105,7 +105,7 @@ public class LoadOnt extends Controller {
         return ok(loadOnt.render("init", cacheList, NameSpaces.getInstance().getOrderedNamespacesAsList()));
     }
 
-    //@Restrict(@Group(Constants.DATA_MANAGER_ROLE))
+    @Restrict(@Group(Constants.DATA_MANAGER_ROLE))
     public Result reloadNamedGraphFromRemote(String abbreviation) {
         NameSpace ns = NameSpaces.getInstance().getNamespaces().get(abbreviation);
         ns.deleteTriples();
@@ -119,7 +119,7 @@ public class LoadOnt extends Controller {
         return redirect(routes.LoadOnt.loadOnt("init"));
     }
 
-    //@Restrict(@Group(Constants.DATA_MANAGER_ROLE))
+    @Restrict(@Group(Constants.DATA_MANAGER_ROLE))
     public Result reloadNamedGraphFromCache(String abbreviation) {
         NameSpace ns = NameSpaces.getInstance().getNamespaces().get(abbreviation);
         ns.deleteTriples();
@@ -136,7 +136,7 @@ public class LoadOnt extends Controller {
         return redirect(routes.LoadOnt.loadOnt("init"));
     }
 
-    //@Restrict(@Group(Constants.DATA_MANAGER_ROLE))
+    @Restrict(@Group(Constants.DATA_MANAGER_ROLE))
     public Result deleteNamedGraph(String abbreviation) {
         NameSpace ns = NameSpaces.getInstance().getNamespaces().get(abbreviation);
         ns.deleteTriples();
@@ -145,7 +145,7 @@ public class LoadOnt extends Controller {
         return redirect(routes.LoadOnt.loadOnt("init"));
     }
 
-    //@Restrict(@Group(Constants.DATA_MANAGER_ROLE))
+    @Restrict(@Group(Constants.DATA_MANAGER_ROLE))
     public Result deleteAllNamedGraphs() {
         for (NameSpace ns : NameSpaces.getInstance().getNamespaces().values()) {
             ns.deleteTriples();
@@ -181,7 +181,7 @@ public class LoadOnt extends Controller {
         return redirect(routes.LoadOnt.loadOnt("init"));
     }
 
-    //@Restrict(@Group(Constants.DATA_MANAGER_ROLE))
+    @Restrict(@Group(Constants.DATA_MANAGER_ROLE))
     @BodyParser.Of(value = BodyParser.MultipartFormData.class)
     public Result importNamespaces(Http.Request request) {
         System.out.println("importNamespaces is called");
@@ -237,7 +237,7 @@ public class LoadOnt extends Controller {
     }
 
 
-    //@Restrict(@Group(Constants.DATA_MANAGER_ROLE))
+    @Restrict(@Group(Constants.DATA_MANAGER_ROLE))
     public Result exportNamespaces() {
         String path = ConfigProp.getPathDownload();
         File folder = new File(path);

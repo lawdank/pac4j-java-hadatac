@@ -69,7 +69,7 @@ libraryDependencies ++= Seq(
   "org.apache.poi" % "poi-ooxml" % "3.14",
   "org.apache.commons" % "commons-configuration2" % "2.0",
   "com.typesafe.play" %% "play-mailer" % "8.0.1",
-  "com.typesafe.play" %% "play-mailer-guice" % "8.0.1",
+//  "com.typesafe.play" %% "play-mailer-guice" % "8.0.1",
   "org.springframework.security" % "spring-security-crypto" % "5.4.1",
 
   //For Java > 8

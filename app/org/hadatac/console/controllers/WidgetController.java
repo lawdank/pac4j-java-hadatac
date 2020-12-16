@@ -4,7 +4,7 @@ import org.hadatac.console.controllers.triplestore.UserManagement;
 import org.hadatac.console.models.LinkedAccount;
 import org.hadatac.console.models.SysUser;
 import org.hadatac.console.models.Widget;
-import org.hadatac.console.providers.WidgetData;
+import org.hadatac.console.providers.MyUsernamePasswordAuthProvider;
 import org.pac4j.core.exception.TechnicalException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,7 @@ import static play.libs.Scala.asScala;
 @Singleton
 public class WidgetController extends Controller {
 
-    private final Form<WidgetData> form;
+    private final Form<MyUsernamePasswordAuthProvider> form;
     private MessagesApi messagesApi;
     private final List<Widget> widgets;
 
@@ -35,7 +35,7 @@ public class WidgetController extends Controller {
 
     @Inject
     public WidgetController(FormFactory formFactory, MessagesApi messagesApi){
-        this.form = formFactory.form(WidgetData.class);
+        this.form = formFactory.form(MyUsernamePasswordAuthProvider.class);
         this.messagesApi = messagesApi;
         this.widgets = com.google.common.collect.Lists.newArrayList(
                 new Widget("Data 1", "a", "a","a"),
@@ -50,7 +50,7 @@ public class WidgetController extends Controller {
     }
 
     public Result createWidget(Http.Request request) throws TechnicalException {
-        final Form<WidgetData> boundForm = form.bindFromRequest(request);
+        final Form<MyUsernamePasswordAuthProvider> boundForm = form.bindFromRequest(request);
 //        if (SysUser.existsSolr()) { // only check for pre-registration if it is not the first user signing up
 //            if (!UserManagement.isPreRegistered(boundForm.get().getEmail())) {
 //                return ok(notRegistered.render());
@@ -61,7 +61,7 @@ public class WidgetController extends Controller {
             logger.error("errors = {}", boundForm.errors());
             return badRequest(org.hadatac.console.views.html.listWidgets.render(asScala(widgets), boundForm, request, messagesApi.preferred(request)));
         } else {
-            WidgetData data = boundForm.get();
+            MyUsernamePasswordAuthProvider data = boundForm.get();
             if (data.validate()!=null){
 //                messagesApi.preferred(request).at("Your e-mail has already been validated.");
                 return redirect(org.hadatac.console.controllers.routes.WidgetController.listWidgets())

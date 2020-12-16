@@ -1,0 +1,30 @@
+@(triple : org.hadatac.console.models.TripleDocument)
+@*****************************
+  hasURI    | model
+  rdfs:subClassOf   | (not used)
+  rdfs:label    | modelName
+  vstoi:hasMaker  | maker
+  vstoi:hasDesc  | desc
+*****************************@
+
+@defining(triple.generateID()) {itemID =>
+<div class="panel-heading" role="tab" id="heading@itemID">
+    <h4 class="panel-title">
+     @defining(triple.get("modelName").replaceAll("[\\W]|_", "")) {cleanName =>
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#@cleanName" aria-expanded="false" aria-controls="@itemID">
+            @triple.get("modelName")</a></h4>
+        
+</div>
+<div id="@cleanName" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading@itemID">
+    }
+    <div class="panel-body">
+        <p><b>@triple.get("modelName") </b> (manufactured by: @triple.get("maker") )</p>
+        <p>Description: @triple.get("desc")</p>
+        @defining(triple.get("model")) {theuri =>
+            <form>
+                <input type="text" size="80" value="@theuri">
+            </form>
+        }
+    </div>
+</div>
+}

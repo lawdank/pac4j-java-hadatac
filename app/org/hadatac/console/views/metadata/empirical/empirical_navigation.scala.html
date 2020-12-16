@@ -1,0 +1,96 @@
+@(dir       : String,
+  filename  : String,
+  da_uri    : String,
+  selection : String)
+ 
+@import org.hadatac.console.controllers.metadata.empirical._
+ 
+   <div class="navbar-collapse collapse navbar-secondary hidden-print">
+        <div class="col-md-8">
+	        <h4>Instrument Infrastructure</h4>
+       	</div>
+   </div>
+   <div class="navbar-collapse collapse navbar-secondary hidden-print">
+	   @if(selection == "") {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.index("/", filename, da_uri)" 
+       		     class="btn-xs btn-block btn-warning" role="button">Instrument<br>Infrastructure<br>Dashboard</a>
+       	     </div>
+       } else {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.index("/", filename, da_uri)" 
+       		     class="btn-xs btn-block btn-primary" role="button">Instrument<br>Infrastructure<br>Dashboard</a>
+       	     </div>
+       }
+	   @if(selection == Infra.INFRA_PLATFORM) {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.findWithPages(Infra.INFRA_PLATFORM, dir, filename, da_uri, 0)" 
+       		     class="btn-xs btn-block btn-warning" role="button">Platform<br>List<br>&nbsp;</a>
+       	     </div>
+       } else {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.findWithPages(Infra.INFRA_PLATFORM, dir, filename, da_uri, 0)" 
+       		     class="btn-xs btn-block btn-primary" role="button">Platform<br>List<br>&nbsp;</a>
+       	     </div>
+       }
+	   @if(selection == Infra.INFRA_PLATFORM_TYPE) {
+             <div class="col-md-1">
+          	     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.hierarchy(Infra.INFRA_PLATFORM_TYPE, dir, filename, da_uri)" 
+          	     class="btn-xs btn-block btn-warning" role="button">Platform<br>Model<br>Hierarchy</a>
+       	     </div>
+       } else {
+             <div class="col-md-1">
+          	     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.hierarchy(Infra.INFRA_PLATFORM_TYPE, dir, filename, da_uri)" 
+          	     class="btn-xs btn-block btn-primary" role="button">Platform<br>Model<br>Hierarchy</a>
+       	     </div>
+       }
+	   @if(selection == Infra.INFRA_INSTRUMENT) {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.findWithPages(Infra.INFRA_INSTRUMENT, dir, filename, da_uri, 0)" 
+       		     class="btn-xs btn-block btn-warning" role="button">Instrument<br>List<br>&nbsp;</a>
+       	     </div>
+       } else {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.findWithPages(Infra.INFRA_INSTRUMENT, dir, filename, da_uri, 0)" 
+       		     class="btn-xs btn-block btn-primary" role="button">Instrument<br>List<br>&nbsp;</a>
+       	     </div>
+       }
+	   @if(selection == Infra.INFRA_INSTRUMENT_TYPE) {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.hierarchy(Infra.INFRA_INSTRUMENT_TYPE, dir, filename, da_uri)" 
+       		     class="btn-xs btn-block btn-warning" role="button">Instrument<br>Model<br>Hierarchy</a>
+       	     </div>
+       } else {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.hierarchy(Infra.INFRA_INSTRUMENT_TYPE, dir, filename, da_uri)" 
+       		     class="btn-xs btn-block btn-primary" role="button">Instrument<br>Model<br>Hierarchy</a>
+       	     </div>
+       }
+	   @if(selection == Infra.INFRA_DETECTOR) {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.findWithPages(Infra.INFRA_DETECTOR, dir, filename, da_uri, 0)" 
+       		     class="btn-xs btn-block btn-warning" role="button">Detector<br>List<br>&nbsp;</a>
+       	     </div>
+       } else {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.findWithPages(Infra.INFRA_DETECTOR, dir, filename, da_uri, 0)" 
+       		     class="btn-xs btn-block btn-primary" role="button">Detector<br>List<br>&nbsp;</a>
+       	     </div>
+       }
+	   @if(selection == Infra.INFRA_DETECTOR_TYPE) {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.hierarchy(Infra.INFRA_DETECTOR_TYPE, dir, filename, da_uri)" 
+       		     class="btn-xs btn-block btn-warning" role="button">Detector<br>Model<br>Hierarchy</a>
+       	     </div>
+       } else {
+             <div class="col-md-1">
+       		     <a href="@org.hadatac.console.controllers.metadata.empirical.routes.Infra.hierarchy(Infra.INFRA_DETECTOR_TYPE, dir, filename, da_uri)" 
+       		     class="btn-xs btn-block btn-primary" role="button">Detector<br>Model<br>Hierarchy</a>
+       	     </div>
+       }
+	   <div class="col-md-1">
+           <a href="@org.hadatac.console.controllers.routes.Portal.index()" 
+       	   class="btn-xs btn-block btn-info" role="button">Back to<br>Main<br>Page</a>
+       </div>
+    </div>
+    <br>

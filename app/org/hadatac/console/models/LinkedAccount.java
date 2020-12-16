@@ -146,7 +146,7 @@ public class LinkedAccount {
     	return "";
 	}
 	//TODO: test
-//	public static LinkedAccount create(final WidgetData authUser) {
+//	public static LinkedAccount create(final MyUsernamePasswordAuthProvider authUser) {
 //		final LinkedAccount ret = new LinkedAccount();
 //		ret.id_s = UUID.randomUUID().toString();
 //		ret.update(authUser);
@@ -161,7 +161,7 @@ public class LinkedAccount {
 	}
 
 //TODO : test
-//public void update(final WidgetData authUser) {
+//public void update(final MyUsernamePasswordAuthProvider authUser) {
 //	this.providerKey = authUser.getProvider();
 //	this.providerUserId = authUser.getId();
 //}
